@@ -1,0 +1,39 @@
+:root {
+  --primary-color: #e9c896;
+  --header-footer-bg-color: #de812b;
+  --main-font: 'Lobster';
+  --dark-color: black;
+  --light-color: #f8f8ff;
+}
+
+body {
+  font-family: var(--main-font), cursive;
+  background: var(--primary-color);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+a {
+  color: var(--light-color);
+  text-decoration: none;
+  margin: 0;
+}
+
+nav {
+  padding: 10px 0;
+}
+
+nav ul {
+  margin: 0;
+  width: 100vw;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+header {
+  background-color: var(--header-footer-bg-color);
+  color: var(--primary-color);
+}
