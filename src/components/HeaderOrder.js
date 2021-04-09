@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-export default function Header() {
+export default function HeaderOrder() {
   return (
     <header>
       <nav>
@@ -11,18 +11,13 @@ export default function Header() {
             </NavLink>
           </li>
           <li>
-            <NavLink exact to="/pizzaperso" className="menuItems">
-              Commander
+            <NavLink exact to="/frommenu" className="menuItems">
+              Les pizzas du menu
             </NavLink>
           </li>
           <li>
-            <NavLink exact to="/login" className="menuItems">
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink exact to="/contact" className="menuItems">
-              Contact/About
+            <NavLink exact to="/favpizza" className="menuItems">
+              Mes pizzas favorites
             </NavLink>
           </li>
         </ul>

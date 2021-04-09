@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+
 :root {
   --primary-color: #e9c896;
   --header-footer-bg-color: #de812b;
-  --main-font: 'Lobster';
+  --logo-font: 'Caveat', cursive;
+  --main-font: Arial, cursive;
+  --menu-font: 'Lobster', cursive;
   --dark-color: black;
   --light-color: #f8f8ff;
 }
@@ -21,19 +25,27 @@ a {
   margin: 0;
 }
 
-nav {
-  padding: 10px 0;
-}
-
 nav ul {
   margin: 0;
   width: 100vw;
   list-style: none;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
+  padding: 5px 0;
 }
 
 header {
   background-color: var(--header-footer-bg-color);
   color: var(--primary-color);
+}
+
+#logo {
+  font-family: var(--logo-font);
+  font-size: 35px;
+}
+
+.menuItems {
+  font-family: var(--menu-font);
+  font-size: 18px;
 }

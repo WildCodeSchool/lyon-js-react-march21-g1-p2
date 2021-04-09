@@ -8,7 +8,7 @@ assignees: ''
 
 ##### Le besoin utilisateur.
 
-En tant que ........ , je souhaite ......., afin de .....
+En tant que ......... , je souhaite ......., afin de .....
 
 ##### (Critères et considérations spécifiques)
 
