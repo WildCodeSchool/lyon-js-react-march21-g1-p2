@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import axios from 'axios';
+const axios = require('axios');
 
 const ingrForRequests = [
   { ingr: 'tomato', price: '2', serving: 200 },
@@ -34,16 +33,6 @@ const populateingredients = (array) => {
   });
 };
 
-export default function CustomizedFoodPage() {
-  useEffect(() => {
-    Promise.all(populateingredients(ingrForRequests)).then((newingredients) => {
-      // console.log(newingredients);
-    });
-  }, []);
-
-  return (
-    <>
-      <p>CustomizedFoodPage</p>
-    </>
-  );
-}
+Promise.all(populateingredients(ingrForRequests)).then((newingredients) => {
+  console.log(newingredients);
+});
