@@ -37,7 +37,7 @@ const populateingredients = (array) => {
 export default function CustomizedFoodPage() {
   useEffect(() => {
     Promise.all(populateingredients(ingrForRequests)).then((newingredients) => {
-      // console.log(newingredients);
+      console.log(newingredients);
     });
   }, []);
 
