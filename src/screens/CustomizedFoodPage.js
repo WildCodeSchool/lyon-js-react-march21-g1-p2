@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import axios from 'axios';
+import EmptyPizza from '../components/EmptyPizza';
 
 const ingrForRequests = [
   { ingr: 'tomato', price: '2', serving: 200 },
@@ -44,6 +45,7 @@ export default function CustomizedFoodPage() {
   return (
     <>
       <p>CustomizedFoodPage</p>
+      <EmptyPizza />
     </>
   );
 }
