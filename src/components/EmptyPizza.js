@@ -1,10 +1,10 @@
 import React from 'react';
-import emptypizza from './emptyPizza.png';
+import emptypizza from '../images/emptyPizza.png';
 
 export default function EmptyPizzapizza() {
   return (
     <div>
-      return <img src={emptypizza} alt="Logo" />
+      <img src={emptypizza} alt="Logo" />
     </div>
   );
 }
