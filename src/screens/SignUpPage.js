@@ -1,4 +1,4 @@
-export default function HomePage() {
+export default function SignUpPage() {
   return (
     <div
       style={{
@@ -8,7 +8,7 @@ export default function HomePage() {
         height: '90vh',
       }}
     >
-      <h1>HomePage</h1>
+      <h1>SignUpPage</h1>
     </div>
   );
 }

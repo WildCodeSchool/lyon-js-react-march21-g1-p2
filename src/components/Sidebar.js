@@ -1,58 +1,52 @@
-/* eslint-disable prettier/prettier */
+import { NavLink } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import React from 'react';
-import { slide as Menu } from 'react-burger-menu';
-import { NavLink, useLocation } from 'react-router-dom';
-import './Sidebar.css';
 
-// eslint-disable-next-line no-unused-vars
-export default (props) => {
-  const location = useLocation();
-  const URLArray = ['/frommenu', '/pizzaperso', '/favpizza'];
+export default function Header() {
+  // const location = useLocation();
+  // const URLArray = ['/frommenu', '/pizzaperso', '/favpizza'];
+  const logoStyle = {
+    'font-family': 'var(--logo-font)',
+    'font-size': '35px',
+  };
 
   return (
-    <Menu>
-      {URLArray.includes(location.pathname) ? (
-        <>
-          <li>
-            <NavLink exact to="/" className="menu-item">
-              U pizz'
-            </NavLink>
-          </li>
-          <li>
-            <NavLink exact to="/frommenu" className="menu-item">
-              Les pizzas du menu
-            </NavLink>
-          </li>
-          <li>
-            <NavLink exact to="/favpizza" className="menu-item">
-              Mes pizzas favorites
-            </NavLink>
-          </li>
-        </>
-      ) : (
-        <>
-          <li>
-            <NavLink exact to="/" className="menu-item">
-              U pizz'
-            </NavLink>
-          </li>
-          <li>
-            <NavLink exact to="/pizzaperso" className="menu-item">
+    <header>
+      <nav className="navbar navbar-expand-sm bg-#e9c896 navbar-dark">
+        <NavLink className="navbar-brand" style={logoStyle} exact to="/">
+          U'Pizz
+        </NavLink>
+        <ul className="navbar-nav">
+          <li className="nav-item dropdown">
+            <NavLink
+              className="nav-link dropdown-toggle"
+              to="/"
+              id="navbardrop"
+              data-toggle="dropdown"
+            >
               Commander
             </NavLink>
+            <div className="dropdown-menu">
+              <NavLink className="dropdown-item" to="/frommenu">
+                Les pizzas du menu
+              </NavLink>
+              <NavLink className="dropdown-item" to="/favpizza">
+                Mes pizzas favorites
+              </NavLink>
+            </div>
           </li>
-          <li>
-            <NavLink exact to="/login" className="menu-item">
+          <li className="nav-item">
+            <NavLink exact to="/login" className="nav-link">
               Login
             </NavLink>
           </li>
-          <li>
-            <NavLink exact to="/contact" className="menu-item">
+          <li className="nav-item">
+            <NavLink exact to="/contact" className="nav-link">
               Contact/About
             </NavLink>
           </li>
-        </>
-      )}
-    </Menu>
+        </ul>
+      </nav>
+    </header>
   );
-};
+}
