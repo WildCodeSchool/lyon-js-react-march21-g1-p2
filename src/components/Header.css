@@ -1,0 +1,14 @@
+:root {
+  --primary-color: #e9c896;
+  --header-footer-bg-color: #de812b;
+  --logo-font: 'Caveat', cursive;
+  --main-font: Arial, cursive;
+  --menu-font: 'Lobster', cursive;
+  --dark-color: black;
+  --light-color: #f8f8ff;
+}
+
+.navbar-brand {
+  font-family: var(--logo-font);
+  font-size: 35px;
+}
