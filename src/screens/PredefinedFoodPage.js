@@ -20,7 +20,7 @@ function PizzaRecipes() {
       name: 'Pizza Diavola',
       ingredients: 'tomate, fromage, chorizo, oignons, poivrons',
       nutrition: '0 Kcal',
-      image: 'src/components/emptyPizza.png',
+      image: '../assets/diavola.png',
     },
   ];
 
