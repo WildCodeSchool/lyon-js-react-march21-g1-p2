@@ -3,9 +3,9 @@
 export default function Form() {
   const userId = '';
   const userEmail = '';
-  const handleAddUserId = '';
+  const handleAddUserId = (event) => setNewUserId(event.target.value);
   const handleUserEmailChange = '';
-  const handleAddUserMessage = '';
+  const handleAddUserMessage = (event) => setNewUserMessage(event.target.value);
   const userMessage = '';
 
   // const messagesDiplayed = [{ userId, userMessage }];
@@ -23,8 +23,8 @@ export default function Form() {
         </thead>
         <tbody>
           <tr>
-            <td>userI d</td>
-            <td>user Message</td>
+            <td>userId</td>
+            <td>userMessage</td>
           </tr>
         </tbody>
       </table>
