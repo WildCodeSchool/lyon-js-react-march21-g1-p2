@@ -17,16 +17,6 @@ export default function Header() {
           U'Pizz
         </NavLink>
         <ul className="navbar-nav">
-          <li className="nav-item">
-            <NavLink exact to="/frommenu" className="nav-link">
-              Les pizzas du menu
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink exact to="/favpizza" className="nav-link">
-              Mes pizzas favorites
-            </NavLink>
-          </li>
           <li className="nav-item dropdown">
             <NavLink
               className="nav-link dropdown-toggle"
@@ -37,10 +27,10 @@ export default function Header() {
               Commander
             </NavLink>
             <div className="dropdown-menu">
-              <NavLink className="dropdown-item" to="/">
+              <NavLink className="dropdown-item" to="/frommenu">
                 Les pizzas du menu
               </NavLink>
-              <NavLink className="dropdown-item" to="/">
+              <NavLink className="dropdown-item" to="/favpizza">
                 Mes pizzas favorites
               </NavLink>
             </div>
