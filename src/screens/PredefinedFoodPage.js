@@ -1,5 +1,8 @@
 import React from 'react';
 import PizzaList from '../components/PizzaList';
+import margarita from '../assets/margarita.png';
+import regina from '../assets/regina.png';
+import diavola from '../assets/diavola.png';
 
 function PizzaRecipes() {
   const pizzaList = [
@@ -7,20 +10,20 @@ function PizzaRecipes() {
       name: 'Pizza Margarita',
       ingredients: 'tomate, mozzarella, olives, roquette',
       nutrition: '0 Kcal',
-      image: 'public/assets/margarita.png',
+      image: margarita,
     },
     {
       name: 'Pizza Regina',
       ingredients: 'tomate, fromage, jambon, champignons, olives, roquette',
       nutrition: '0 Kcal',
-      image: '../assets/regina.png',
+      image: regina,
     },
 
     {
       name: 'Pizza Diavola',
       ingredients: 'tomate, fromage, chorizo, oignons, poivrons',
       nutrition: '0 Kcal',
-      image: '../assets/diavola.png',
+      image: diavola,
     },
   ];
 

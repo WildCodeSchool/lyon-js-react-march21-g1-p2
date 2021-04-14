@@ -1,5 +1,5 @@
 import React from 'react';
-import pizza from './pizza.png';
+import pizza from '../assets/pizza.png';
 
 export default function Homepizza() {
   return (
