@@ -8,20 +8,20 @@ function PizzaRecipes() {
   const pizzaList = [
     {
       name: 'Pizza Margarita',
-      ingredients: 'tomate, mozzarella, olives, roquette',
+      ingredients: 'Tomate, Mozzarella, Olives, Roquette',
       nutrition: '0 Kcal',
       image: margarita,
     },
     {
       name: 'Pizza Regina',
-      ingredients: 'tomate, fromage, jambon, champignons, olives, roquette',
+      ingredients: 'Tomate, Fromage, Jambon, Champignons, Olives, Roquette',
       nutrition: '0 Kcal',
       image: regina,
     },
 
     {
       name: 'Pizza Diavola',
-      ingredients: 'tomate, fromage, chorizo, oignons, poivrons',
+      ingredients: 'Tomate, Fromage, Chorizo, Oignons, Poivrons',
       nutrition: '0 Kcal',
       image: diavola,
     },
