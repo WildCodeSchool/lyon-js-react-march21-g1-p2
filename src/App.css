@@ -69,3 +69,17 @@ header {
   font-family: arial;
   fill: var(--tomato-color);
 }
+
+.pizza-mockup {
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.img-ingredients {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
