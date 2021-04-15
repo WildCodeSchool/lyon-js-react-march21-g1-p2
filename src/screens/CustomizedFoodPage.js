@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import EmptyPizza from '../assets/emptyPizza.png';
+import EmptyPizza from '../assets/empty-pizza.png';
 import Anchovy from '../assets/unite-anchois.png';
 import Pineapple from '../assets/unite-ananas.png';
 import Mushroom from '../assets/unite-champignon.png';
@@ -173,7 +173,7 @@ export default function CustomizedFoodPage() {
   return (
     <>
       <div className="flex flex-col justify-center items-center m-12">
-        <EmptyPizza />
+        <img src={EmptyPizza} alt="Empty pizza" />
       </div>
 
       <ul className="flex flex-wrap justify-evenly">
