@@ -1,16 +1,23 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 
 export default function Form() {
   const userId = '';
-  const userEmail = '';
+  // const userEmail = '';
   const handleAddUserId = (event) => setNewUserId(event.target.value);
   const handleUserEmailChange = '';
   const handleAddUserMessage = (event) => setNewUserMessage(event.target.value);
   const userMessage = '';
 
-  // const messagesDiplayed = [{ userId, userMessage }];
-  // const [userMessagesList, setUserMessagesList] = useState(messagesDiplayed);
-  // const [userIdList, setUserIdList] = useState(messagesDiplayed);
+  const display = (e) => {
+    e.preventDefault();
+    console.log({ userId }, { userMessage });
+  };
+
+  const messagesDiplayed = [{ userId, userMessage }];
+  const [userMessagesList, setUserMessagesList] = useState(
+    'Really great job !'
+  );
+  const [userIdList, setUserIdList] = useState('defaultpseudo');
 
   return (
     <div>
@@ -66,14 +73,16 @@ export default function Form() {
                 type="text"
                 required
                 value={userMessage}
-                onChange={(event) =>
-                  handleAddUserMessage(userId.message, event.target.value)
+                onChange={
+                  (event) => setUserMessagesList(event.target.value)
+
+                  // handleAddUserMessage(userId.message, event.target.value)
                 }
               />
             </label>
             <div>
-              <button id="submit" type="submit" value="Submit">
-                Send
+              <button id="submit" type="submit" onClick={display}>
+                Send your message to the team
               </button>
             </div>
           </div>
