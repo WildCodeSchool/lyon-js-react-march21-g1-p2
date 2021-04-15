@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import EmptyPizza from '../components/EmptyPizza';
-import Anchovy from '../images/unite-anchois.png';
-import Pineapple from '../images/unite-ananas.png';
-import Mushroom from '../images/unite-champignon.png';
-import Chorizo from '../images/unite-chorizo.png';
-import PizzaDough from '../images/unite-fond-pate.png';
-import PizzaSauce from '../images/unite-fond-sauce.png';
-import Emmental from '../images/unite-fromage.png';
-import Jambon from '../images/unite-jambon.png';
-import Mozzarella from '../images/unite-mozarella.png';
-import Onion from '../images/unite-oignon.png';
-import Olive from '../images/unite-olive.png';
-import Peppers from '../images/unite-poivron.png';
-import Arugula from '../images/unite-roquette.png';
-import Tomato from '../images/unite-tomate.png';
+import EmptyPizza from '../assets/emptyPizza.png';
+import Anchovy from '../assets/unite-anchois.png';
+import Pineapple from '../assets/unite-ananas.png';
+import Mushroom from '../assets/unite-champignon.png';
+import Chorizo from '../assets/unite-chorizo.png';
+import PizzaDough from '../assets/unite-fond-pate.png';
+import PizzaSauce from '../assets/unite-fond-sauce.png';
+import Emmental from '../assets/unite-fromage.png';
+import Jambon from '../assets/unite-jambon.png';
+import Mozzarella from '../assets/unite-mozarella.png';
+import Onion from '../assets/unite-oignon.png';
+import Olive from '../assets/unite-olive.png';
+import Peppers from '../assets/unite-poivron.png';
+import Arugula from '../assets/unite-roquette.png';
+import Tomato from '../assets/unite-tomate.png';
 
 const ingrForRequests = [
   {
