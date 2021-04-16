@@ -1,26 +1,21 @@
-import { useState } from 'react';
+import './formStyles.css';
+import React from 'react';
 
 export default function Form() {
-  const userId = '';
-  // const userEmail = '';
-  const handleAddUserId = (event) => setNewUserId(event.target.value);
-  const handleUserEmailChange = '';
-  const handleAddUserMessage = (event) => setNewUserMessage(event.target.value);
-  const userMessage = '';
+  // const [messages, setMessages] = React.useState(["Great Work !"]);
+  const [pseudos, setPseudos] = React.useState(['randompseudo']);
+  const [userIdInput, setUserIdInput] = React.useState('');
 
-  const display = (e) => {
-    e.preventDefault();
-    console.log({ userId }, { userMessage });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setUserIdInput('');
+    setPseudos([...pseudos, userIdInput]);
+    // setMessages([...messages, userMessageInput]);
   };
-
-  const messagesDiplayed = [{ userId, userMessage }];
-  const [userMessagesList, setUserMessagesList] = useState(
-    'Really great job !'
-  );
-  const [userIdList, setUserIdList] = useState('defaultpseudo');
 
   return (
     <div>
+      <h2>Last messages</h2>
       <table>
         <thead>
           <tr>
@@ -36,33 +31,37 @@ export default function Form() {
         </tbody>
       </table>
 
-      <form>
+      <div className="chat-box">
+        <ul className="message">
+          <>
+            {pseudos.map((pseudo, index) => (
+              <li key={index} className="message">
+                {pseudo}
+              </li>
+            ))}
+          </>
+        </ul>
+      </div>
+
+      <form onSubmit={handleSubmit}>
         <h2>Contact-us !</h2>
         <div>
           <div>
-            <label htmlFor="firstName">
+            <label htmlFor="pseudo">
               ID :
               <input
-                id="userId"
+                id="usePseudo"
                 type="text"
                 required
-                value={userId}
-                onChange={(event) =>
-                  handleAddUserId(userId.id, event.target.value)
-                }
+                value={userIdInput}
+                onChange={(event) => setUserIdInput(event.target.value)}
               />
             </label>
           </div>
           <div>
             <label htmlFor="userEmail">
               email :
-              <input
-                id="userEmail"
-                type="text"
-                required
-                value={userEmail}
-                onChange={handleUserEmailChange}
-              />
+              <input id="userEmail" type="text" required />
             </label>
           </div>
           <div>
@@ -72,16 +71,12 @@ export default function Form() {
                 id="userMessage"
                 type="text"
                 required
-                value={userMessage}
-                onChange={
-                  (event) => setUserMessagesList(event.target.value)
-
-                  // handleAddUserMessage(userId.message, event.target.value)
-                }
+                // value={userMessageInput}
+                // onChange={(event) => setUserMessageInput(event.target.value)}
               />
             </label>
             <div>
-              <button id="submit" type="submit" onClick={display}>
+              <button id="submit" type="submit">
                 Send your message to the team
               </button>
             </div>
