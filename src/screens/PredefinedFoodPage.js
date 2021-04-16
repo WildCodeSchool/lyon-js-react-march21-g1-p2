@@ -33,7 +33,7 @@ function PizzaRecipes() {
       <div className="m-6 font-bold text-4xl text-center" h1>
         Nos Pizzas
       </div>
-      <div className="flex flex-row justify-center items-center m-12">
+      <div className="flex flex-row justify-center items-center m-auto">
         {pizzaList.map((pizza) => (
           <PizzaList
             key={pizza.name}
