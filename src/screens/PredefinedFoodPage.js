@@ -1,5 +1,5 @@
 import React from 'react';
-import PizzaList from '../components/PizzaList';
+import PizzaComposition from '../components/PizzaComposition';
 import margarita from '../assets/margarita.png';
 import regina from '../assets/regina.png';
 import diavola from '../assets/diavola.png';
@@ -35,7 +35,7 @@ function PizzaRecipes() {
       </div>
       <div className="flex flex-row justify-center items-center m-auto">
         {pizzaList.map((pizza) => (
-          <PizzaList
+          <PizzaComposition
             key={pizza.name}
             name={pizza.name}
             ingredients={pizza.ingredients}
