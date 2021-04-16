@@ -34,8 +34,8 @@ export default function Form() {
       <div className="chat-box">
         <ul className="message">
           <>
-            {pseudos.map((pseudo, index) => (
-              <li key={index} className="message">
+            {pseudos.map((pseudo) => (
+              <li key={pseudo} className="message">
                 {pseudo}
               </li>
             ))}
