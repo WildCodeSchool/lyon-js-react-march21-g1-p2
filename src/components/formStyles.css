@@ -16,7 +16,7 @@
 }
 
 .message:last-child::before {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 0;
   bottom: 0;
@@ -27,7 +27,7 @@
   border-bottom-right-radius: 15px;
 }
 .message:last-child::after {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 1;
   bottom: 0;
