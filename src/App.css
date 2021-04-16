@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Lobster&display=swap%27');
 
 :root {
   --primary-color: #e9c896;
@@ -8,6 +8,7 @@
   --menu-font: 'Lobster', cursive;
   --dark-color: black;
   --light-color: #f8f8ff;
+  --tomato-color: #d64933;
 }
 
 body {
@@ -48,4 +49,23 @@ header {
 .menuItems {
   font-family: var(--menu-font);
   font-size: 18px;
+}
+
+.order-button {
+  font-family: var(--menu-font);
+  @apply text-6xl font-extrabold;
+}
+
+.pizza {
+  max-width: 500px;
+  height: auto;
+  margin-top: -250px;
+}
+
+.curved-text {
+  font-size: 3.5rem;
+  text-align: center;
+  @apply font-extrabold;
+  font-family: arial;
+  fill: var(--tomato-color);
 }
