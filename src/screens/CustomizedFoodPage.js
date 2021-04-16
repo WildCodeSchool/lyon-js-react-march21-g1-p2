@@ -174,19 +174,22 @@ const ingrForRequests = [
     serving: 200,
   },
 ];
+
 const initialIngredientsList = [
   {
     id: uuidv4(),
     name: 'Pâte à pizza',
     imgsrc: PizzaDough,
-    quantity: 228,
+    quantity: 1,
+    serving: 228,
     kcal100: 200,
   },
   {
     id: uuidv4(),
     name: 'Sauce tomate',
     imgsrc: PizzaSauce,
-    quantity: 50,
+    quantity: 1,
+    serving: 50,
     kcal100: 400,
   },
 ];
@@ -202,6 +205,7 @@ const populateingredients = (array) => {
         return {
           ...ingredient,
           kcal100: data.parsed[0].food.nutrients.ENERC_KCAL,
+          quantity: 0,
         };
       });
   });
@@ -212,28 +216,65 @@ export default function CustomizedFoodPage() {
   const [chosenIngredientsList, setChosenIngredientsList] = useState(
     initialIngredientsList
   );
+  // const [numberOfServings, setNumberOfServings] = useState(0);
+  // console.log('numberOfServings ', numberOfServings);
 
   useEffect(() => {
     Promise.all(populateingredients(ingrForRequests)).then((newingredients) => {
       setIngredientsKcal(newingredients);
     });
+    return () => {
+      console.log('unmounted');
+    };
   }, []);
 
-  const handleAddIngredient = (e) => {
-    const ingredToAdd = ingredientsKcal.filter(
-      (ingred) => ingred.id === e.target.id
+  const handleChangeQuantity = (id, operator, currentQuantity) => {
+    console.log('ingredientsKcal ', ingredientsKcal);
+    console.log(id, operator, currentQuantity);
+    const ingredToUpdate = chosenIngredientsList.filter(
+      (ingred) => ingred.id === id
     );
+    console.log('ingredToUpdate ', ingredToUpdate);
+    if (operator === 'add') {
+      // setNumberOfServings(numberOfServings + 1);
 
-    setChosenIngredientsList([
-      ...chosenIngredientsList,
-      {
-        id: uuidv4(),
-        name: ingredToAdd[0].name,
-        imgsrc: ingredToAdd[0].imglayer,
-        quantity: ingredToAdd[0].serving,
-        kcal100: ingredToAdd[0].kcal100,
-      },
-    ]);
+      if (ingredToUpdate.length === 0) {
+        console.log('ajout 1 ingred', id);
+        const ingredToAdd = ingredientsKcal.filter(
+          (ingred) => ingred.id === id
+        );
+        console.log('ingredtoadd ', ingredToAdd);
+        console.log('ingredientsKcal ', ingredientsKcal);
+        setChosenIngredientsList((IngredientsList) => [
+          ...IngredientsList,
+          {
+            id: ingredToAdd[0].id,
+            name: ingredToAdd[0].name,
+            imgsrc: ingredToAdd[0].imglayer,
+            quantity: 1,
+            serving: ingredToAdd[0].serving,
+            kcal100: ingredToAdd[0].kcal100,
+          },
+        ]);
+      } else {
+        console.log('dejà là');
+        console.log('ingredToUpdate ', ingredToUpdate);
+        ingredToUpdate[0].quantity += 1;
+        setChosenIngredientsList([...chosenIngredientsList]);
+      }
+    } else if (operator === 'remove') {
+      if (currentQuantity > 1) {
+        ingredToUpdate.quantity -= 1;
+        console.log('ingredToUpdate ', ingredToUpdate);
+        setChosenIngredientsList([...chosenIngredientsList]);
+        // setNumberOfServings(numberOfServings + 1);
+      } else if (currentQuantity === 1) {
+        const cleanedingredients = ingredientsKcal.filter(
+          (ingred) => ingred.id !== id
+        );
+        setChosenIngredientsList(cleanedingredients);
+      }
+    }
   };
 
   return (
@@ -241,7 +282,7 @@ export default function CustomizedFoodPage() {
       <div className="m-auto">
         <AddIngredient {...chosenIngredientsList} />
       </div>
-
+      {console.log('chosenIngredientsList ', chosenIngredientsList)}
       <ul className="flex flex-wrap justify-evenly">
         {ingredientsKcal
           .filter((ingredient) => ingredient.category === 'Ingredient')
@@ -250,7 +291,12 @@ export default function CustomizedFoodPage() {
               <div className="m-6 font-bold text-2xl text-center">
                 {ingr.name}
               </div>
-              <button type="button" onClick={handleAddIngredient}>
+              <button
+                type="button"
+                onClick={() =>
+                  handleChangeQuantity(ingr.id, 'add', ingr.quantity)
+                }
+              >
                 <img
                   id={ingr.id}
                   src={ingr.imgsrc}
@@ -265,6 +311,26 @@ export default function CustomizedFoodPage() {
                 {(ingr.kcal100 * ingr.serving) / 100} kcal par portion
               </div>
               <div className="text-l text-center">{ingr.price}€ la portion</div>
+              <div className="text-l text-center">
+                <button
+                  id={ingr.id}
+                  type="button"
+                  className="bg-green-500 text-white font-bold w-8 h-8 m-2 rounded"
+                  onClick={() => handleChangeQuantity(ingr.id, 'add')}
+                >
+                  +
+                </button>
+                {ingr.quantity} portion(s)
+                <button
+                  type="button"
+                  className="bg-red-500 text-white font-bold w-8 h-8 m-2 rounded"
+                  onClick={() =>
+                    handleChangeQuantity(ingr.id, 'remove', ingr.quantity)
+                  }
+                >
+                  -
+                </button>
+              </div>
             </li>
           ))}
       </ul>
