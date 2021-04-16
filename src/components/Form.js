@@ -1,48 +1,88 @@
+import './formStyles.css';
+import React from 'react';
+
 export default function Form() {
-  const firstName = '';
-  const lastName = '';
-  const handleFirstNameChange = '';
-  const handleLastNameChange = '';
-  const handleUrTextChange = '';
-  const urText = '';
+  // const [messages, setMessages] = React.useState(["Great Work !"]);
+  const [pseudos, setPseudos] = React.useState(['randompseudo']);
+  const [userIdInput, setUserIdInput] = React.useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setUserIdInput('');
+    setPseudos([...pseudos, userIdInput]);
+    // setMessages([...messages, userMessageInput]);
+  };
+
   return (
     <div>
-      <div>
-        <label htmlFor="firstName">
-          Your first name :
-          <input
-            id="firstName"
-            type="text"
-            value={firstName}
-            onChange={handleFirstNameChange}
-          />
-        </label>
+      <h2>Last messages</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Pseudo</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>userId</td>
+            <td>userMessage</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div className="chat-box">
+        <ul className="message">
+          <>
+            {pseudos.map((pseudo) => (
+              <li key={pseudo} className="message">
+                {pseudo}
+              </li>
+            ))}
+          </>
+        </ul>
       </div>
-      <div>
-        <label htmlFor="lastName">
-          Your last name :
-          <input
-            id="lastName"
-            type="text"
-            value={lastName}
-            onChange={handleLastNameChange}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="urText">
-          Your message :
-          <input
-            id="urText"
-            type="text"
-            value={urText}
-            onChange={handleUrTextChange}
-          />
-        </label>
+
+      <form onSubmit={handleSubmit}>
+        <h2>Contact-us !</h2>
         <div>
-          <input id="submit" type="submit" value="Submit" />
+          <div>
+            <label htmlFor="pseudo">
+              ID :
+              <input
+                id="usePseudo"
+                type="text"
+                required
+                value={userIdInput}
+                onChange={(event) => setUserIdInput(event.target.value)}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="userEmail">
+              email :
+              <input id="userEmail" type="text" required />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="userMessage">
+              message :
+              <input
+                id="userMessage"
+                type="text"
+                required
+                // value={userMessageInput}
+                // onChange={(event) => setUserMessageInput(event.target.value)}
+              />
+            </label>
+            <div>
+              <button id="submit" type="submit">
+                Send your message to the team
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

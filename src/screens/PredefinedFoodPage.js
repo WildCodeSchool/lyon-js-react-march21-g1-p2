@@ -7,21 +7,22 @@ import diavola from '../assets/diavola.png';
 function PizzaRecipes() {
   const pizzaList = [
     {
-      name: 'Pizza Margarita',
-      ingredients: 'tomate, mozzarella, olives, roquette',
+      name: 'Margarita',
+      ingredients: 'Ingredients : Tomate, Mozzarella, Olives, Roquette',
       nutrition: '0 Kcal',
       image: margarita,
     },
     {
-      name: 'Pizza Regina',
-      ingredients: 'tomate, fromage, jambon, champignons, olives, roquette',
+      name: 'Regina',
+      ingredients:
+        'Ingredients : Tomate, Fromage, Jambon, Champignons, Olives, Roquette',
       nutrition: '0 Kcal',
       image: regina,
     },
 
     {
-      name: 'Pizza Diavola',
-      ingredients: 'tomate, fromage, chorizo, oignons, poivrons',
+      name: 'Diavola',
+      ingredients: 'Ingredients : Tomate, Fromage, Chorizo, Oignons, Poivrons',
       nutrition: '0 Kcal',
       image: diavola,
     },
@@ -29,16 +30,20 @@ function PizzaRecipes() {
 
   return (
     <div>
-      <h1>Nos pizzas</h1>
-      {pizzaList.map((pizza) => (
-        <PizzaList
-          key={pizza.name}
-          name={pizza.name}
-          ingredients={pizza.ingredients}
-          nutrition={pizza.nutrition}
-          image={pizza.image}
-        />
-      ))}
+      <div className="m-6 font-bold text-4xl text-center" h1>
+        Nos Pizzas
+      </div>
+      <div className="flex flex-row justify-center items-center m-auto">
+        {pizzaList.map((pizza) => (
+          <PizzaList
+            key={pizza.name}
+            name={pizza.name}
+            ingredients={pizza.ingredients}
+            nutrition={pizza.nutrition}
+            image={pizza.image}
+          />
+        ))}
+      </div>
     </div>
   );
 }
