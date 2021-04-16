@@ -22,19 +22,19 @@ const Navbar = () => {
   return (
     <>
       <Nav>
-        <NavLink style={logo} to="/Home">
+        <NavLink style={logo} to="/home">
           <h1>U'Pizz</h1>
         </NavLink>
         <Bars />
         <NavMenu>
-          <NavLink style={textDecoration} to="/Home" activeStyle>
+          <NavLink style={textDecoration} to="/home" activeStyle>
             Home
           </NavLink>
           <NavLink style={textDecoration} to="/order" activeStyle>
-            Order
+            Commander
           </NavLink>
           <NavLink style={textDecoration} to="/contact" activeStyle>
-            Contact Us
+            Contactez Nous
           </NavLink>
           <NavLink style={textDecoration} to="/sign-up" activeStyle>
             Sign Up
