@@ -69,3 +69,51 @@ header {
   font-family: arial;
   fill: var(--tomato-color);
 }
+.Figcaption {
+  width: 50vw;
+}
+
+.Button {
+  width: 20em;
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px) {
+  .Cards {
+    width: 450px;
+    height: 450px;
+  }
+
+  .Card {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .Cardfront {
+    width: 450px;
+    height: 450px;
+    position: relative;
+  }
+  .Figcaption {
+    width: 450px;
+    height: 450px;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+  }
+
+  .CardFront,
+  .Figcaption {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  .Cards:active .Card {
+    transform: rotateY(180deg);
+  }
+}
