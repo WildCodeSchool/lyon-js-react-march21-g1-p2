@@ -70,16 +70,47 @@ header {
   fill: var(--tomato-color);
 }
 
-.pizza-mockup {
-  width: 600px;
-  height: 600px;
-  margin: 0 auto;
+.pizza-mockup-container {
+  width: 80vw;
+  height: 90vw;
+  margin: 5vw auto;
   position: relative;
 }
 
-.img-ingredients {
+.img-pizza-construction {
   position: absolute;
+  width: 100%;
+  height: auto;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+}
+
+.ingredients {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.ingredient {
+  display: inline-block;
+  margin: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+  vertical-align: top;
+}
+
+@media screen and (min-width: 640px) {
+  .pizza-mockup-container {
+    width: 630px;
+    height: 630px;
+  }
+
+  .ingredients {
+    @apply flex flex-wrap justify-evenly;
+  }
+  .ingredient {
+    @apply flex flex-col m-6;
+  }
 }

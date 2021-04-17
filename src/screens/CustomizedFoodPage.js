@@ -283,23 +283,24 @@ export default function CustomizedFoodPage() {
         <PizzaChange {...chosenIngredientsList} />
       </div>
 
-      <ul className="flex flex-wrap justify-evenly">
+      <ul className="ingredients">
         {ingredientsKcal
           .filter((ingredient) => ingredient.category === 'Ingredient')
           .map((ingr) => (
-            <li key={ingr.id} className="flex flex-col m-6">
+            <li key={ingr.id} className="ingredient">
               <div className="m-6 font-bold text-2xl text-center">
                 {ingr.name}
               </div>
               <button
                 type="button"
+                className="m-auto w-full"
                 onClick={() => handleChangeQuantity(ingr.id, 'add')}
               >
                 <img
                   id={ingr.id}
                   src={ingr.imgsrc}
                   alt={ingr.name}
-                  className="max-w-xs"
+                  className="sm:w-48 w-28 m-auto"
                 />
               </button>
               <div className="mt-4 font-bold text-l text-center">

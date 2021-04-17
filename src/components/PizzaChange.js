@@ -2,14 +2,14 @@ export default function PizzaChange(props) {
   const ChosenIngredientsList = Object.keys(props).map((i) => props[i]);
   return (
     <div>
-      <div className="pizza-mockup">
+      <div className="pizza-mockup-container">
         {ChosenIngredientsList.map((ingr) =>
           ingr.quantity > 0 ? (
             <img
               key={ingr.id}
               src={ingr.imgsrc}
               alt={ingr.name}
-              className="img-ingredients"
+              className="img-pizza-construction"
             />
           ) : null
         )}
