@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-import AddIngredient from '../components/AddIngredient';
+import PizzaChange from '../components/PizzaChange';
 import PizzaDough from '../assets/unite-fond-pate.png';
 import PizzaSauce from '../assets/unite-fond-sauce.png';
 
@@ -177,7 +177,7 @@ const ingrForRequests = [
 
 const initialIngredientsList = [
   {
-    id: uuidv4(),
+    id: ingrForRequests[0].id,
     name: 'Pâte à pizza',
     imgsrc: PizzaDough,
     quantity: 1,
@@ -185,7 +185,7 @@ const initialIngredientsList = [
     kcal100: 200,
   },
   {
-    id: uuidv4(),
+    id: ingrForRequests[1].id,
     name: 'Sauce tomate',
     imgsrc: PizzaSauce,
     quantity: 1,
@@ -216,35 +216,37 @@ export default function CustomizedFoodPage() {
   const [chosenIngredientsList, setChosenIngredientsList] = useState(
     initialIngredientsList
   );
-  // const [numberOfServings, setNumberOfServings] = useState(0);
-  // console.log('numberOfServings ', numberOfServings);
 
   useEffect(() => {
     Promise.all(populateingredients(ingrForRequests)).then((newingredients) => {
       setIngredientsKcal(newingredients);
     });
-    return () => {
-      console.log('unmounted');
-    };
   }, []);
 
-  const handleChangeQuantity = (id, operator, currentQuantity) => {
-    console.log('ingredientsKcal ', ingredientsKcal);
-    console.log(id, operator, currentQuantity);
+  const setServingQuantity = (ingredientId) => {
+    const ingredExists = chosenIngredientsList.filter(
+      (ingred) => ingred.id === ingredientId
+    );
+
+    return ingredExists.length > 0 ? (
+      <span>{ingredExists[0].quantity} </span>
+    ) : (
+      <span>0 </span>
+    );
+  };
+
+  const handleChangeQuantity = (id, operator) => {
     const ingredToUpdate = chosenIngredientsList.filter(
       (ingred) => ingred.id === id
     );
-    console.log('ingredToUpdate ', ingredToUpdate);
-    if (operator === 'add') {
-      // setNumberOfServings(numberOfServings + 1);
+    const currentQuantity =
+      ingredToUpdate.length === 0 ? 0 : ingredToUpdate[0].quantity;
 
+    if (operator === 'add') {
       if (ingredToUpdate.length === 0) {
-        console.log('ajout 1 ingred', id);
         const ingredToAdd = ingredientsKcal.filter(
           (ingred) => ingred.id === id
         );
-        console.log('ingredtoadd ', ingredToAdd);
-        console.log('ingredientsKcal ', ingredientsKcal);
         setChosenIngredientsList((IngredientsList) => [
           ...IngredientsList,
           {
@@ -257,17 +259,15 @@ export default function CustomizedFoodPage() {
           },
         ]);
       } else {
-        console.log('dejà là');
-        console.log('ingredToUpdate ', ingredToUpdate);
         ingredToUpdate[0].quantity += 1;
+
         setChosenIngredientsList([...chosenIngredientsList]);
       }
     } else if (operator === 'remove') {
-      if (currentQuantity > 1) {
-        ingredToUpdate.quantity -= 1;
-        console.log('ingredToUpdate ', ingredToUpdate);
+      if (currentQuantity > 0) {
+        ingredToUpdate[0].quantity -= 1;
+
         setChosenIngredientsList([...chosenIngredientsList]);
-        // setNumberOfServings(numberOfServings + 1);
       } else if (currentQuantity === 1) {
         const cleanedingredients = ingredientsKcal.filter(
           (ingred) => ingred.id !== id
@@ -280,9 +280,9 @@ export default function CustomizedFoodPage() {
   return (
     <div>
       <div className="m-auto">
-        <AddIngredient {...chosenIngredientsList} />
+        <PizzaChange {...chosenIngredientsList} />
       </div>
-      {console.log('chosenIngredientsList ', chosenIngredientsList)}
+
       <ul className="flex flex-wrap justify-evenly">
         {ingredientsKcal
           .filter((ingredient) => ingredient.category === 'Ingredient')
@@ -293,9 +293,7 @@ export default function CustomizedFoodPage() {
               </div>
               <button
                 type="button"
-                onClick={() =>
-                  handleChangeQuantity(ingr.id, 'add', ingr.quantity)
-                }
+                onClick={() => handleChangeQuantity(ingr.id, 'add')}
               >
                 <img
                   id={ingr.id}
@@ -320,13 +318,12 @@ export default function CustomizedFoodPage() {
                 >
                   +
                 </button>
-                {ingr.quantity} portion(s)
+                {setServingQuantity(ingr.id)}
+                portion(s)
                 <button
                   type="button"
                   className="bg-red-500 text-white font-bold w-8 h-8 m-2 rounded"
-                  onClick={() =>
-                    handleChangeQuantity(ingr.id, 'remove', ingr.quantity)
-                  }
+                  onClick={() => handleChangeQuantity(ingr.id, 'remove')}
                 >
                   -
                 </button>
