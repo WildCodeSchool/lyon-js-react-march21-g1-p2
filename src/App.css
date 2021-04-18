@@ -69,3 +69,12 @@ header {
   font-family: arial;
   fill: var(--tomato-color);
 }
+
+.Figcaption {
+  width: 50vw;
+}
+
+.Button {
+  margin: auto;
+  width: 15em;
+}
