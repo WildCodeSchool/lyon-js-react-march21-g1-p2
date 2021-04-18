@@ -30,7 +30,7 @@ function PizzaRecipes() {
 
   return (
     <div>
-      <div className="m-6 font-bold text-4xl text-center" h1>
+      <div className="m-6 mb-12 font-bold text-4xl text-center" h1>
         Nos Pizzas
       </div>
       <div className="flex flex-col ml-10">

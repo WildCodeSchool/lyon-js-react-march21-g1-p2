@@ -74,6 +74,12 @@ header {
   width: 50vw;
 }
 
+.Ingredients {
+  margin-left: inherit;
+  max-width: 40vw;
+  margin: auto;
+}
+
 .Button {
   margin: auto;
   width: 15em;
