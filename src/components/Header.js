@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 export default function Header() {
   const location = useLocation();
   const URLArray = ['/frommenu', '/pizzaperso', '/favpizza'];
-
+  console.log(location);
   return (
     <header>
       <nav>
