@@ -11,7 +11,7 @@ function PizzaRecipes() {
       ingredients: 'Ingredients : Tomate, Mozzarella, Olives, Roquette',
       nutrition: '0 Kcal',
       image: margarita,
-      isFavorite: false,
+      price: 'Prix : 9 €',
     },
     {
       name: 'Regina',
@@ -19,7 +19,7 @@ function PizzaRecipes() {
         'Ingredients : Tomate, Fromage, Jambon, Champignons, Olives, Roquette',
       nutrition: '0 Kcal',
       image: regina,
-      isFavorite: false,
+      price: 'Prix : 10 €',
     },
 
     {
@@ -27,7 +27,7 @@ function PizzaRecipes() {
       ingredients: 'Ingredients : Tomate, Fromage, Chorizo, Oignons, Poivrons',
       nutrition: '0 Kcal',
       image: diavola,
-      isFavorite: false,
+      price: 'Prix : 11 €',
     },
   ];
 
@@ -44,6 +44,7 @@ function PizzaRecipes() {
             ingredients={pizza.ingredients}
             nutrition={pizza.nutrition}
             image={pizza.image}
+            price={pizza.price}
           />
         ))}
       </div>
