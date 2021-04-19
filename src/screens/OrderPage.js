@@ -16,7 +16,7 @@ export default function OrderPage() {
     <div style={stylingInFlex}>
       <NavBtn>
         <BtnLink style={stylingOrderButton} to="/order/fav-pizza">
-          Vos Pazzas Favoris
+          Vos Pizzas Favoris
         </BtnLink>
       </NavBtn>
       <NavBtn>
@@ -26,7 +26,7 @@ export default function OrderPage() {
       </NavBtn>
       <NavBtn>
         <BtnLink style={stylingOrderButton} to="/order/pizza-list">
-          Nos Pazzas
+          Nos Pizzas
         </BtnLink>
       </NavBtn>
     </div>
