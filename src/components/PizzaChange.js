@@ -1,9 +1,9 @@
 export default function PizzaChange(props) {
-  const chosenIngredientsList = Object.keys(props).map((i) => props[i]);
+  const ChosenIngredientsList = Object.keys(props).map((i) => props[i]);
   return (
     <div>
       <div className="pizza-mockup-container">
-        {chosenIngredientsList.map((ingr) =>
+        {ChosenIngredientsList.map((ingr) =>
           ingr.quantity > 0 ? (
             <img
               key={ingr.id}
@@ -17,7 +17,7 @@ export default function PizzaChange(props) {
 
       <div className="text-l text-center">
         Poids total :{' '}
-        {chosenIngredientsList.reduce(
+        {ChosenIngredientsList.reduce(
           (totalWeight, currentIngr) =>
             totalWeight + currentIngr.quantity * currentIngr.serving,
           0
@@ -26,7 +26,7 @@ export default function PizzaChange(props) {
       </div>
       <div className="text-l text-center">
         Total kcal :{' '}
-        {chosenIngredientsList.reduce(
+        {ChosenIngredientsList.reduce(
           (totalKcal, currentIngr) =>
             totalKcal +
             (currentIngr.quantity * currentIngr.serving * currentIngr.kcal100) /

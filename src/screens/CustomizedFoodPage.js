@@ -259,31 +259,17 @@ export default function CustomizedFoodPage() {
           },
         ]);
       } else {
-        setChosenIngredientsList(
-          chosenIngredientsList.map((currentIngredient) =>
-            currentIngredient.id === ingredToUpdate[0].id
-              ? {
-                  ...currentIngredient,
-                  quantity: currentIngredient.quantity + 1,
-                }
-              : currentIngredient
-          )
-        );
+        ingredToUpdate[0].quantity += 1;
+
+        setChosenIngredientsList([...chosenIngredientsList]);
       }
     } else if (operator === 'remove') {
-      if (currentQuantity > 1) {
-        setChosenIngredientsList(
-          chosenIngredientsList.map((currentIngredient) =>
-            currentIngredient.id === ingredToUpdate[0].id
-              ? {
-                  ...currentIngredient,
-                  quantity: currentIngredient.quantity - 1,
-                }
-              : currentIngredient
-          )
-        );
+      if (currentQuantity > 0) {
+        ingredToUpdate[0].quantity -= 1;
+
+        setChosenIngredientsList([...chosenIngredientsList]);
       } else if (currentQuantity === 1) {
-        const cleanedingredients = chosenIngredientsList.filter(
+        const cleanedingredients = ingredientsKcal.filter(
           (ingred) => ingred.id !== id
         );
         setChosenIngredientsList(cleanedingredients);
