@@ -19,7 +19,7 @@ function PizzaRecipes() {
         'Ingredients : Tomate, Fromage, Jambon, Champignons, Olives, Roquette',
       nutrition: '0 Kcal',
       image: regina,
-      price: 'Prix : 10 €',
+      price: 'Prix : 12 €',
     },
 
     {
