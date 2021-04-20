@@ -50,14 +50,12 @@ const populateingredients = (array) => {
 
 const ingredientsList = [...initialIngredientsList];
 
-export default function CustomizedFoodPage({ location }) {
-  console.log(location);
+export default function CustomizedFoodPage() {
+  const location = useLocation();
   const [ingredientsKcal, setIngredientsKcal] = useState([]);
   const [chosenIngredientsList, setChosenIngredientsList] = useState(
     ingredientsList
   );
-  const currentPath = useLocation().pathname;
-  console.log(currentPath);
 
   useEffect(() => {
     Promise.all(populateingredients(ingrForRequests)).then((newingredients) => {
@@ -67,6 +65,7 @@ export default function CustomizedFoodPage({ location }) {
 
   const selectedIngredients =
     location.state != null ? location.state.selectIngredients : [];
+  console.log('selectedIngredients ', selectedIngredients);
 
   useEffect(() => {
     if (ingredientsKcal.length > 0) {
@@ -85,42 +84,10 @@ export default function CustomizedFoodPage({ location }) {
       });
       setChosenIngredientsList((IngredientsList) => [
         ...IngredientsList,
-        selectedIngredkcal,
+        ...selectedIngredkcal,
       ]);
     }
   }, [ingredientsKcal]);
-
-  // console.log('ingredientsKcal ', ingredientsKcal);
-
-  // const previousLocation =
-  //   location.state != null ? location.state.prevPath : currentPath;
-
-  // console.log('previousLocation ', previousLocation);
-  // console.log('selectedIngredients ', selectedIngredients);
-
-  // if (currentPath !== previousLocation && selectedIngredients.length !== 0) {
-  //   selectedIngredients.map((ingred) => {
-  //     console.log('ingred ', ingred);
-  //     console.log('ingredientsKcal ', ingredientsKcal);
-  //     const ingredToSelect = ingredientsKcal.filter(
-  //       (ingredientKcal) => ingredientKcal.name === ingred
-  //     );
-  //     console.log('ingredToSelect ', ingredToSelect);
-
-  //     setChosenIngredientsList((IngredientsList) => [
-  //       ...IngredientsList,
-  //       {
-  //         id: ingredToSelect[0].id,
-  //         name: ingredToSelect[0].name,
-  //         imgsrc: ingredToSelect[0].imglayer,
-  //         quantity: 1,
-  //         serving: ingredToSelect[0].serving,
-  //         kcal100: ingredToSelect[0].kcal100,
-  //       },
-  //     ]);
-  //     console.log(chosenIngredientsList);
-  //   });
-  // }
 
   const setServingQuantity = (ingredientId) => {
     const ingredExists = chosenIngredientsList.filter(

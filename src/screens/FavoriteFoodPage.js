@@ -8,7 +8,10 @@ export default function FavoriteFoodPage() {
   previousPath = location.pathname;
   console.log(previousPath);
 
-  const selectedIngredients = ['Tomate', 'Chorizo'];
+  const selectedIngredients = [
+    ['Tomate', 3],
+    ['Chorizo', 2],
+  ];
   return (
     <>
       <p>FavoriteFoodPage</p>
