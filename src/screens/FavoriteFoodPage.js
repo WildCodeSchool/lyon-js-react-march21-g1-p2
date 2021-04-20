@@ -1,22 +1,30 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import CustomizedFoodPage from './CustomizedFoodPage';
+// import CustomizedFoodPage from './CustomizedFoodPage';
+
+let previousPath = '';
 
 export default function FavoriteFoodPage() {
   const location = useLocation();
-  const goToPreviousPath = location.pathname;
-  console.log(goToPreviousPath);
+  previousPath = location.pathname;
+  console.log(previousPath);
 
-  const selectedIngredients = [''];
+  const selectedIngredients = ['Tomate', 'Chorizo'];
   return (
     <>
       <p>FavoriteFoodPage</p>
-      <button type="button" onClick={goToPreviousPath}>
-        <NavLink to="/pizzaperso">Go to custom</NavLink>
+      <button type="button">
+        <NavLink
+          to={{
+            pathname: '/pizzaperso',
+            state: {
+              selectIngredients: selectedIngredients,
+              prevPath: previousPath,
+            },
+          }}
+        >
+          Go to custom
+        </NavLink>
       </button>
-      <CustomizedFoodPage
-        selectedIngredients={selectedIngredients}
-        previouspath={goToPreviousPath}
-      />
     </>
   );
 }

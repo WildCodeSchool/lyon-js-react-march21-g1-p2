@@ -188,6 +188,3 @@ export const initialIngredientsList = [
     kcal100: 400,
   },
 ];
-
-// export  ingrForRequests;
-// export initialIngredientsList;
