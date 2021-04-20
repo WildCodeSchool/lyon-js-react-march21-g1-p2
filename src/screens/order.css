@@ -1,0 +1,22 @@
+.stylingInFlex {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .stylingInFlex {
+    flex-direction: column;
+  }
+}
+
+.stylingOrderButton {
+  background-color: #de812b;
+  margin: 5px;
+}
+
+.stylingOrderButton a {
+  background-color: #de812b;
+  text-decoration: none;
+}

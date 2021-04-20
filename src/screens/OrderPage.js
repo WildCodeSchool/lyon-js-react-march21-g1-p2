@@ -1,34 +1,22 @@
-import { NavBtn, BtnLink } from '../components/Navbar/NavbarElements';
+import { BtnLink } from '../components/Navbar/NavbarElements';
+import './order.css';
 
-const stylingInFlex = {
-  display: 'flex',
-  justifyContent: 'center',
-  padding: '10px',
-};
-
-const stylingOrderButton = {
-  backgroundColor: '#de812b',
-  textDecoration: 'none',
-};
+const favoritePizza = 'Vos Pizzas Favoris';
+const createPizza = 'Créez votre pizza';
+const ourPizza = 'Nos Pizzas';
 
 export default function OrderPage() {
   return (
-    <div style={stylingInFlex}>
-      <NavBtn>
-        <BtnLink style={stylingOrderButton} to="/order/fav-pizza">
-          Vos Pizzas Favoris
-        </BtnLink>
-      </NavBtn>
-      <NavBtn>
-        <BtnLink style={stylingOrderButton} to="/order/create-pizza">
-          Créez votre pizza
-        </BtnLink>
-      </NavBtn>
-      <NavBtn>
-        <BtnLink style={stylingOrderButton} to="/order/pizza-list">
-          Nos Pizzas
-        </BtnLink>
-      </NavBtn>
+    <div className="stylingInFlex">
+      <BtnLink className="stylingOrderButton" to="/order/fav-pizza">
+        {favoritePizza}
+      </BtnLink>
+      <BtnLink className="stylingOrderButton" to="/order/create-pizza">
+        {createPizza}
+      </BtnLink>
+      <BtnLink className="stylingOrderButton" to="/order/pizza-list">
+        {ourPizza}
+      </BtnLink>
     </div>
   );
 }
