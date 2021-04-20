@@ -56,28 +56,29 @@ export default function CustomizedFoodPage() {
   const [chosenIngredientsList, setChosenIngredientsList] = useState(
     ingredientsList
   );
+  const selectedIngredients =
+    location.state != null ? location.state.selectIngredients : [];
+  console.log('selectedIngredients ', selectedIngredients);
 
+  // Execution of the request to the API
   useEffect(() => {
     Promise.all(populateingredients(ingrForRequests)).then((newingredients) => {
       setIngredientsKcal(newingredients);
     });
   }, []);
 
-  const selectedIngredients =
-    location.state != null ? location.state.selectIngredients : [];
-  console.log('selectedIngredients ', selectedIngredients);
-
+  // Construction of the basic list of ingredients (= at least pizza dough + tomato sauce if "customization from scratch" +/- the ingredients selected by the predefined pizza, if they exist)
   useEffect(() => {
     if (ingredientsKcal.length > 0) {
       const selectedIngredkcal = selectedIngredients.map((ingred) => {
         const ingredToSelect = ingredientsKcal.find(
-          (ingredientKcal) => ingredientKcal.name === ingred
+          (ingredientKcal) => ingredientKcal.name === ingred[0]
         );
         return {
           id: ingredToSelect.id,
           name: ingredToSelect.name,
           imgsrc: ingredToSelect.imglayer,
-          quantity: 1,
+          quantity: ingred[1],
           serving: ingredToSelect.serving,
           kcal100: ingredToSelect.kcal100,
         };
