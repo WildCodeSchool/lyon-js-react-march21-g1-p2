@@ -1,5 +1,5 @@
 import React from 'react';
-import PizzaList from '../components/PizzaList';
+import PizzaComposition from '../components/PizzaComposition';
 import margarita from '../assets/margarita.png';
 import regina from '../assets/regina.png';
 import diavola from '../assets/diavola.png';
@@ -11,6 +11,7 @@ function PizzaRecipes() {
       ingredients: 'Ingredients : Tomate, Mozzarella, Olives, Roquette',
       nutrition: '0 Kcal',
       image: margarita,
+      price: 'Prix : 9 €',
     },
     {
       name: 'Regina',
@@ -18,6 +19,7 @@ function PizzaRecipes() {
         'Ingredients : Tomate, Fromage, Jambon, Champignons, Olives, Roquette',
       nutrition: '0 Kcal',
       image: regina,
+      price: 'Prix : 12 €',
     },
 
     {
@@ -25,22 +27,24 @@ function PizzaRecipes() {
       ingredients: 'Ingredients : Tomate, Fromage, Chorizo, Oignons, Poivrons',
       nutrition: '0 Kcal',
       image: diavola,
+      price: 'Prix : 11 €',
     },
   ];
 
   return (
     <div>
-      <div className="m-6 font-bold text-4xl text-center" h1>
+      <div className="m-6 mb-12 font-bold text-4xl text-center" h1>
         Nos Pizzas
       </div>
-      <div className="flex flex-row justify-center items-center m-auto">
+      <div className="flex flex-col ml-10">
         {pizzaList.map((pizza) => (
-          <PizzaList
+          <PizzaComposition
             key={pizza.name}
             name={pizza.name}
             ingredients={pizza.ingredients}
             nutrition={pizza.nutrition}
             image={pizza.image}
+            price={pizza.price}
           />
         ))}
       </div>
