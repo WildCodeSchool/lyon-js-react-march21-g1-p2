@@ -177,7 +177,7 @@ export const initialIngredientsList = [
     imgsrc: PizzaDough,
     quantity: 1,
     serving: 228,
-    kcal100: 200,
+    kcal100: ingrForRequests[0].kcal100,
   },
   {
     id: ingrForRequests[1].id,
@@ -185,6 +185,6 @@ export const initialIngredientsList = [
     imgsrc: PizzaSauce,
     quantity: 1,
     serving: 50,
-    kcal100: 400,
+    kcal100: ingrForRequests[1].kcal100,
   },
 ];

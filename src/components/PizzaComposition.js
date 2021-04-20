@@ -15,7 +15,7 @@ const PizzaComposition = ({ name, ingredients, nutrition, image, price }) => (
       <div className="m-4 font-bold italic text-s text-right">{price}</div>
       <div className="Button flex flex-col text-center">
         <button
-          className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 rounded border border-gray-400 rounded shadow inline-flex justify-center "
+          className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex justify-center "
           type="submit"
         >
           <img src={pizzabox} alt="pizzabox" className="h-6 w-6 mr-2" />

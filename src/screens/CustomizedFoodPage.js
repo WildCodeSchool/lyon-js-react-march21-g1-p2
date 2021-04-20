@@ -60,14 +60,15 @@ export default function CustomizedFoodPage() {
     location.state != null ? location.state.selectIngredients : [];
   console.log('selectedIngredients ', selectedIngredients);
 
-  // Execution of the request to the API
+  /* Execution of the request to the API */
   useEffect(() => {
     Promise.all(populateingredients(ingrForRequests)).then((newingredients) => {
       setIngredientsKcal(newingredients);
     });
   }, []);
 
-  // Construction of the basic list of ingredients (= at least pizza dough + tomato sauce if "customization from scratch" +/- the ingredients selected by the predefined pizza, if they exist)
+  /* Construction of the basic list of ingredients (= at least pizza dough + tomato sauce if "customization from scratch"
+     +/- the ingredients selected by the predefined pizza, if they exist) */
   useEffect(() => {
     if (ingredientsKcal.length > 0) {
       const selectedIngredkcal = selectedIngredients.map((ingred) => {
@@ -90,6 +91,9 @@ export default function CustomizedFoodPage() {
     }
   }, [ingredientsKcal]);
 
+  console.log('ingredientsKcal ', ingredientsKcal);
+
+  /* Updating the rendering of the quantity of each ingredient */
   const setServingQuantity = (ingredientId) => {
     const ingredExists = chosenIngredientsList.filter(
       (ingred) => ingred.id === ingredientId
@@ -102,6 +106,7 @@ export default function CustomizedFoodPage() {
     );
   };
 
+  /* */
   const handleChangeQuantity = (id, operator) => {
     const ingredToUpdate = chosenIngredientsList.filter(
       (ingred) => ingred.id === id

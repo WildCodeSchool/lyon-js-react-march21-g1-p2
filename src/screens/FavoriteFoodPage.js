@@ -9,7 +9,7 @@ export default function FavoriteFoodPage() {
   console.log(previousPath);
 
   const selectedIngredients = [
-    ['Tomate', 3],
+    ['Tomate', 5],
     ['Chorizo', 2],
   ];
   return (
