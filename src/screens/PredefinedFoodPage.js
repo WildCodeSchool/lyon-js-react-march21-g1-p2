@@ -33,10 +33,10 @@ function PizzaRecipes() {
 
   return (
     <div>
-      <div className="m-6 mb-12 font-bold text-4xl text-center" h1>
+      <div className="m-6 font-bold text-4xl text-center" h1>
         Nos Pizzas
       </div>
-      <div className="flex flex-col ml-10">
+      <div className="Pizzacontainer flex flex-col w-60% m-auto">
         {pizzaList.map((pizza) => (
           <PizzaComposition
             key={pizza.name}

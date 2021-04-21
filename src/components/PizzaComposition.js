@@ -4,7 +4,7 @@ import pizzabox from '../assets/pizzabox.png';
 const PizzaComposition = ({ name, ingredients, nutrition, image, price }) => (
   <div className="Cards">
     <div className="Card">
-      <figure className="PizzaList flex flex-row m-auto mt-10">
+      <figure className="PizzaList flex flex-row mt-10">
         <img src={image} alt={name} className="max-w-xs m-auto" />
         <figcaption className="Figcaption flex flex-col justify-center">
           <div className="m-6 text-yellow-900 font-bold text-2xl text-center">
