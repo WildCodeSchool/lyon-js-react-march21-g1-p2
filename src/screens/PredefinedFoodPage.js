@@ -9,10 +9,10 @@ function PizzaRecipes() {
     {
       name: 'Margarita',
       ingredients: [
-        ['Tomates', 1],
+        ['Tomates', 3],
         ['Mozzarella', 1],
-        ['Olives', 1],
-        ['Roquette', 1],
+        ['Olives', 3],
+        ['Roquette', 2],
       ],
       nutrition: '0 Kcal',
       image: margarita,
@@ -21,12 +21,12 @@ function PizzaRecipes() {
     {
       name: 'Regina',
       ingredients: [
-        ['Tomates', 1],
+        ['Tomates', 2],
         ['Fromage', 1],
         ['Jambon', 1],
         ['Champignons', 1],
-        ['Olives', 1],
-        ['Roquette', 1],
+        ['Olives', 2],
+        ['Roquette', 2],
       ],
       nutrition: '0 Kcal',
       image: regina,
@@ -36,11 +36,11 @@ function PizzaRecipes() {
     {
       name: 'Diavola',
       ingredients: [
-        ['Tomates', 1],
+        ['Tomates', 3],
         ['Fromage', 1],
-        ['Chorizo', 1],
-        ['Oignons', 1],
-        ['Poivrons', 1],
+        ['Chorizo', 2],
+        ['Oignons', 2],
+        ['Poivrons', 2],
       ],
       nutrition: '0 Kcal',
       image: diavola,
