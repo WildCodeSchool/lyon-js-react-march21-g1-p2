@@ -8,15 +8,26 @@ function PizzaRecipes() {
   const pizzaList = [
     {
       name: 'Margarita',
-      ingredients: 'Ingredients : Tomate, Mozzarella, Olives, Roquette',
+      ingredients: [
+        ['Tomates', 1],
+        ['Mozzarella', 1],
+        ['Olives', 1],
+        ['Roquette', 1],
+      ],
       nutrition: '0 Kcal',
       image: margarita,
       price: 'Prix : 9 €',
     },
     {
       name: 'Regina',
-      ingredients:
-        'Ingredients : Tomate, Fromage, Jambon, Champignons, Olives, Roquette',
+      ingredients: [
+        ['Tomates', 1],
+        ['Fromage', 1],
+        ['Jambon', 1],
+        ['Champignons', 1],
+        ['Olives', 1],
+        ['Roquette', 1],
+      ],
       nutrition: '0 Kcal',
       image: regina,
       price: 'Prix : 12 €',
@@ -24,7 +35,13 @@ function PizzaRecipes() {
 
     {
       name: 'Diavola',
-      ingredients: 'Ingredients : Tomate, Fromage, Chorizo, Oignons, Poivrons',
+      ingredients: [
+        ['Tomates', 1],
+        ['Fromage', 1],
+        ['Chorizo', 1],
+        ['Oignons', 1],
+        ['Poivrons', 1],
+      ],
       nutrition: '0 Kcal',
       image: diavola,
       price: 'Prix : 11 €',
@@ -41,7 +58,7 @@ function PizzaRecipes() {
           <PizzaComposition
             key={pizza.name}
             name={pizza.name}
-            ingredients={pizza.ingredients}
+            selectedIngredients={pizza.ingredients}
             nutrition={pizza.nutrition}
             image={pizza.image}
             price={pizza.price}

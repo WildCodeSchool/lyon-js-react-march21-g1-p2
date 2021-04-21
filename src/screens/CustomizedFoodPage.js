@@ -10,27 +10,6 @@ import {
 
 import PizzaChange from '../components/PizzaChange';
 
-//   {
-//     id: uuidv4(),
-//     name: 'Ananas',
-//     imgsrc: Pineapple,
-//     imglayer: PineappleLayer,
-//     ingr: 'pineapple',
-//     category: 'Ingredient',
-//     price: '2',
-//     serving: 200,
-//   },
-// ];
-// const initialIngredientsList = [
-//   {
-//     id: ingrForRequests[0].id,
-//     name: 'Pâte à pizza',
-//     imgsrc: PizzaDough,
-//     quantity: 1,
-//     serving: 228,
-//     kcal100: 200,
-//   },
-
 const populateingredients = (array) => {
   return array.map((ingredient) => {
     return axios
@@ -75,6 +54,9 @@ export default function CustomizedFoodPage() {
         const ingredToSelect = ingredientsKcal.find(
           (ingredientKcal) => ingredientKcal.name === ingred[0]
         );
+        console.log('ingred ', ingred);
+        console.log('ingredientsKcal ', ingredientsKcal);
+        console.log('ingredToSelect ', ingredToSelect);
         return {
           id: ingredToSelect.id,
           name: ingredToSelect.name,
@@ -90,8 +72,6 @@ export default function CustomizedFoodPage() {
       ]);
     }
   }, [ingredientsKcal]);
-
-  console.log('ingredientsKcal ', ingredientsKcal);
 
   /* Updating the rendering of the quantity of each ingredient */
   const setServingQuantity = (ingredientId) => {

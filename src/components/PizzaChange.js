@@ -1,5 +1,7 @@
 export default function PizzaChange(props) {
   const chosenIngredientsList = Object.keys(props).map((i) => props[i]);
+  console.log(chosenIngredientsList);
+
   return (
     <div>
       <div className="pizza-mockup-container">
