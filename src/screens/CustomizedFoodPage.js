@@ -37,7 +37,6 @@ export default function CustomizedFoodPage() {
   );
   const selectedIngredients =
     location.state != null ? location.state.selectIngredients : [];
-  console.log('selectedIngredients ', selectedIngredients);
 
   /* Execution of the request to the API */
   useEffect(() => {
@@ -54,9 +53,7 @@ export default function CustomizedFoodPage() {
         const ingredToSelect = ingredientsKcal.find(
           (ingredientKcal) => ingredientKcal.name === ingred[0]
         );
-        console.log('ingred ', ingred);
-        console.log('ingredientsKcal ', ingredientsKcal);
-        console.log('ingredToSelect ', ingredToSelect);
+
         return {
           id: ingredToSelect.id,
           name: ingredToSelect.name,
@@ -146,7 +143,6 @@ export default function CustomizedFoodPage() {
   return (
     <div>
       <div className="m-auto">
-        {console.log(chosenIngredientsList)}
         <PizzaChange {...chosenIngredientsList} />
       </div>
 

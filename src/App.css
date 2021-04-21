@@ -95,8 +95,8 @@ header {
 .ingredient {
   display: inline-block;
   margin: 20px;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 20px;
   border-radius: 10px;
   vertical-align: top;
 }
