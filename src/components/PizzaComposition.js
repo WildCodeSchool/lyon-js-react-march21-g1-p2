@@ -11,7 +11,7 @@ const PizzaComposition = ({
 }) => (
   <div className="Cards">
     <div className="Card">
-      <figure className="PizzaList flex flex-row mt-10 max-w-min m-auto">
+      <figure className="PizzaList flex flex-row mt-10 max-w-min m-auto bg-yellow-100 ">
         <img src={image} alt={name} className="max-w-xs m-auto" />
         <figcaption className="Figcaption flex flex-col justify-center w-50">
           <div className="m-6 text-yellow-900 font-bold text-2xl text-center">

@@ -103,6 +103,8 @@ header {
 
 .PizzaList {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 34px;
+  padding-top: 1em;
 }
 
 .Figcaption {
@@ -161,6 +163,7 @@ header {
 
   .PizzaList {
     box-shadow: none;
+    width: 20rem;
   }
 
   .PizzaList img {

@@ -10,11 +10,13 @@ import {
 
 import PizzaChange from '../components/PizzaChange';
 
+require('dotenv').config();
+
 const populateingredients = (array) => {
   return array.map((ingredient) => {
     return axios
       .get(
-        `https://api.edamam.com/api/food-database/v2/parser?app_id=cb0e9cff&app_key=9c4aa6b62257c975bbc78df7ddb04af6&category=generic-foods&ingr=${ingredient.ingr}`
+        `https://api.edamam.com/api/food-database/v2/parser?app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_SECRET_API_KEY}&category=generic-foods&ingr=${ingredient.ingr}`
       )
       .then((response) => response.data)
       .then((data) => {
