@@ -9,6 +9,7 @@
   --menu-font: 'Lobster', cursive;
   --dark-color: black;
   --light-color: #f8f8ff;
+  --tomato-color: #d64933;
 }
 
 * {
@@ -39,4 +40,68 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.order-button {
+  font-family: var(--menu-font);
+  @apply text-6xl font-extrabold;
+}
+
+.pizza {
+  max-width: 500px;
+  height: auto;
+  margin-top: -250px;
+}
+
+.curved-text {
+  font-size: 3.5rem;
+  text-align: center;
+  @apply font-extrabold;
+  font-family: arial;
+  fill: var(--tomato-color);
+}
+
+.pizza-mockup-container {
+  width: 80vw;
+  height: 90vw;
+  margin: 5vw auto;
+  position: relative;
+}
+
+.img-pizza-construction {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.ingredients {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.ingredient {
+  display: inline-block;
+  margin: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+  vertical-align: top;
+}
+
+@media screen and (min-width: 640px) {
+  .pizza-mockup-container {
+    width: 630px;
+    height: 630px;
+  }
+
+  .ingredients {
+    @apply flex flex-wrap justify-evenly;
+  }
+  .ingredient {
+    @apply flex flex-col m-6;
+  }
 }

@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <>
-      <IconContext.Provider value={{ color: 'red' }}>
+      <IconContext.Provider value={{ color: '#e9c896' }}>
         <Nav>
           <NavLink style={logo} to="/home">
             <h1>U'Pizz</h1>
@@ -69,15 +69,15 @@ const Navbar = () => {
               Commander
             </NavLink>
             <NavLink style={textDecoration} to="/contact">
-              Contactez Nous
+              Nous Contacter
             </NavLink>
             <NavLink style={textDecoration} to="/sign-up">
-              Sign Up
+              S'inscrire
             </NavLink>
           </NavMenu>
           <NavBtn>
             <NavBtnLink style={textDecoration} to="/sign-in">
-              Sign In
+              Se Connecter
             </NavBtnLink>
           </NavBtn>
         </Nav>

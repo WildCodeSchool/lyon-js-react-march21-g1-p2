@@ -1,8 +1,8 @@
 import { BtnLink } from '../components/Navbar/NavbarElements';
 import './order.css';
 
-const favoritePizza = 'Vos Pizzas Favoris';
-const createPizza = 'Créez votre pizza';
+const favoritePizza = 'Vos Pizzas Favorites';
+const createPizza = 'Créer votre pizza';
 const ourPizza = 'Nos Pizzas';
 
 export default function OrderPage() {

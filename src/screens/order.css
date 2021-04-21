@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.stylingOrderButton:hover {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 768px) {
   .stylingInFlex {
     flex-direction: column;
@@ -18,5 +22,4 @@
 
 .stylingOrderButton a {
   background-color: #de812b;
-  text-decoration: none;
 }
