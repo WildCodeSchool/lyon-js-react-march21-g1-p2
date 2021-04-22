@@ -15,6 +15,7 @@ export default function PizzaChange(props) {
       });
     }
   });
+
   // one doesn't shuffle the first 2 layers (pizza dough + tomato sauce) which have to stay at the bottom of the pile
   const shuffledImagesForPizza = imagesForPizza
     .slice(0, 2)
@@ -31,7 +32,7 @@ export default function PizzaChange(props) {
             className="img-pizza-construction"
             style={{
               transform: `translateX(-50%) translateY(-50%) rotate(${
-                index > 1 ? Math.random() * 365 : 0
+                index > 1 ? Math.random() * 360 : 0
               }deg)`, // no rotation for pizza dough and tomato sauce
             }}
           />
