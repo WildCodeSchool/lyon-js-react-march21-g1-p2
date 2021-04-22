@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-
 import axios from 'axios';
 
 import {
@@ -33,6 +32,7 @@ const ingredientsList = [...initialIngredientsList];
 
 export default function CustomizedFoodPage() {
   const location = useLocation();
+
   const [ingredientsKcal, setIngredientsKcal] = useState([]);
   const [chosenIngredientsList, setChosenIngredientsList] = useState(
     ingredientsList
@@ -148,7 +148,7 @@ export default function CustomizedFoodPage() {
         <PizzaChange {...chosenIngredientsList} />
       </div>
 
-      <ul className="ingredients">
+      <ul className="ingredientsList">
         {ingredientsKcal
           .filter((ingredient) => ingredient.category === 'Ingredient')
           .map((ingr) => (
