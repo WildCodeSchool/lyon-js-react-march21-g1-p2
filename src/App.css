@@ -102,7 +102,6 @@ body {
 }
 
 .Ingredients {
-  /* margin-left: inherit; */
   max-width: 40vw;
 }
 
@@ -196,12 +195,14 @@ body {
   }
 
   .PizzaList {
+    display: flex;
+    justify-content: center;
+    align-content: center;
     box-shadow: none;
     width: 20rem;
-    margin-left: 0;
-    text-align: center;
+    max-height: fit-content;
+
     margin-top: 60px;
-    align-content: center;
     padding-top: 10px;
   }
 
@@ -228,9 +229,9 @@ body {
     position: absolute;
     width: 100%;
   }
-  .Button {
-    align-content: center;
-    justify-items: center;
+
+  .Pizzaname {
+    padding-top: 2px;
   }
 
   .Cards:active .Card {

@@ -11,9 +11,9 @@ const PizzaComposition = ({
 }) => (
   <div className="Cards">
     <div className="Card">
-      <figure className="PizzaList flex flex-row bg-yellow-100 m-4">
+      <figure className="PizzaList flex flex-row bg-yellow-100 m-4 items-center">
         <img src={image} alt={name} className="max-w-xs m-auto pb-3" />
-        <figcaption className="Figcaption flex flex-col text-center m-auto">
+        <figcaption className="Figcaption flex flex-col text-center items-center m-auto">
           <div className="text-yellow-900 font-bold text-2xl text-center">
             {name}
           </div>
@@ -26,8 +26,8 @@ const PizzaComposition = ({
               )
               .replace(/,\s*$/, '')}
           </div>
-          <div className="text-s text-center">{nutrition}</div>
-          <div className="font-bold italic text-s text-right pr-4">{price}</div>
+          <div className="text-s text-center pb-1">{nutrition}</div>
+          <div className="font-bold italic text-s pb-2 pt-2">{price}</div>
           <div className="Button flex flex-col text-center m-auto">
             <button
               className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex justify-center "
