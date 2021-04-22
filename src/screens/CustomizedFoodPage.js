@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-
 import axios from 'axios';
 
 import {
@@ -32,7 +30,9 @@ const populateingredients = (array) => {
 const ingredientsList = [...initialIngredientsList];
 
 export default function CustomizedFoodPage() {
+
   const location = useLocation();
+
   const [ingredientsKcal, setIngredientsKcal] = useState([]);
   const [chosenIngredientsList, setChosenIngredientsList] = useState(
     ingredientsList
