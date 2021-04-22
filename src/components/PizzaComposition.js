@@ -38,7 +38,7 @@ const PizzaComposition = ({
             </button>
 
             <button
-              className="mt-2 bg-yellow-800 hover:bg-yellow-500 text-gray-200 font-semibold py-2 px-4 border border-gray-400 rounded shadow mb-4"
+              className="mt-2 bg-yellow-800 hover:bg-yellow-500 text-gray-200 font-semibold py-2 px-4 border border-gray-400 rounded shadow mb-4 p-6"
               type="button"
             >
               <NavLink
