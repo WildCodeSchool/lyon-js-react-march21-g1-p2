@@ -1,56 +1,28 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import React from 'react';
+// eslint-disable-next-line import/order
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from '../screens/HomePage';
+import Contact from '../screens/ContactAboutPage';
+import Order from '../screens/OrderPage';
+import SignUp from '../screens/SignUpPage';
+import SignIn from '../screens/SignInPage';
+import FavoritPizzas from '../screens/FavoriteFoodPage';
+import CreatePizza from '../screens/CustomizedFoodPage';
+import ListOfPizzas from '../screens/PredefinedFoodPage';
 
 export default function Header() {
-  const location = useLocation();
-  const URLArray = ['/frommenu', '/pizzaperso', '/favpizza'];
   return (
-    <header>
-      <nav>
-        <ul>
-          {URLArray.includes(location.pathname) ? (
-            <>
-              <li>
-                <NavLink exact to="/" id="logo">
-                  U pizz'
-                </NavLink>
-              </li>
-              <li>
-                <NavLink exact to="/frommenu" className="menuItems">
-                  Les pizzas du menu
-                </NavLink>
-              </li>
-              <li>
-                <NavLink exact to="/favpizza" className="menuItems">
-                  Mes pizzas favorites
-                </NavLink>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <NavLink exact to="/" id="logo">
-                  U pizz'
-                </NavLink>
-              </li>
-              <li>
-                <NavLink exact to="/pizzaperso" className="menuItems">
-                  Commander
-                </NavLink>
-              </li>
-              <li>
-                <NavLink exact to="/login" className="menuItems">
-                  Login
-                </NavLink>
-              </li>
-              <li>
-                <NavLink exact to="/contact" className="menuItems">
-                  Contact/About
-                </NavLink>
-              </li>
-            </>
-          )}
-        </ul>
-      </nav>
-    </header>
+    <Router>
+      <Switch>
+        <Route path="/home" exact component={Home} />
+        <Route path="/order" exact component={Order} />
+        <Route path="/order/fav-pizza" exact component={FavoritPizzas} />
+        <Route path="/order/create-pizza" exact component={CreatePizza} />
+        <Route path="/order/pizza-list" exact component={ListOfPizzas} />
+        <Route path="/contact" exact component={Contact} />
+        <Route path="/sign-up" exact component={SignUp} />
+        <Route path="/sign-in" exact component={SignIn} />
+      </Switch>
+    </Router>
   );
 }
