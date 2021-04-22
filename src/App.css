@@ -168,10 +168,16 @@ body {
 
 /* Small screens */
 @media only screen and (max-width: 640px) {
+  .Pizzacontainer {
+    justify-content: center;
+    text-align: center;
+  }
+
   .Cards {
     width: 300px;
     height: 300px;
     margin-bottom: 40px;
+    margin-left: 0em;
   }
 
   .Card {
@@ -181,11 +187,14 @@ body {
     transform: scale(1);
     transition: transform 0.8s;
     transform-style: preserve-3d;
+    position: absolute;
   }
 
   .PizzaList {
     box-shadow: none;
     width: 20rem;
+    margin-left: 0;
+    text-align: center;
   }
 
   .PizzaList img {
