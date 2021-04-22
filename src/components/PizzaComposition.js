@@ -12,7 +12,7 @@ const PizzaComposition = ({
   <div className="Cards">
     <div className="Card">
       <figure className="PizzaList flex flex-row bg-yellow-100 m-4">
-        <img src={image} alt={name} className="max-w-xs m-auto" />
+        <img src={image} alt={name} className="max-w-xs m-auto pb-3" />
         <figcaption className="Figcaption flex flex-col text-center m-auto">
           <div className="text-yellow-900 font-bold text-2xl text-center">
             {name}
