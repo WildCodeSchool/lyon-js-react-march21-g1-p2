@@ -50,7 +50,7 @@ export const ingrForRequests = [
   },
   {
     id: uuidv4(),
-    name: 'Tomate',
+    name: 'Tomates',
     imgsrc: Tomato,
     imglayer: TomatoLayer,
     ingr: 'tomato',
@@ -70,7 +70,7 @@ export const ingrForRequests = [
   },
   {
     id: uuidv4(),
-    name: 'Emmental',
+    name: 'Fromage',
     imgsrc: Emmental,
     imglayer: EmmentalLayer,
     ingr: 'emmental',
@@ -80,7 +80,7 @@ export const ingrForRequests = [
   },
   {
     id: uuidv4(),
-    name: 'Oignon',
+    name: 'Oignons',
     imgsrc: Onion,
     imglayer: OnionLayer,
     ingr: 'onion',
@@ -90,7 +90,7 @@ export const ingrForRequests = [
   },
   {
     id: uuidv4(),
-    name: 'Olive',
+    name: 'Olives',
     imgsrc: Olive,
     imglayer: OliveLayer,
     ingr: 'olive',
@@ -100,7 +100,7 @@ export const ingrForRequests = [
   },
   {
     id: uuidv4(),
-    name: 'Poivron',
+    name: 'Poivrons',
     imgsrc: Peppers,
     imglayer: PeppersLayer,
     ingr: 'peppers',
@@ -110,7 +110,7 @@ export const ingrForRequests = [
   },
   {
     id: uuidv4(),
-    name: 'Champignon',
+    name: 'Champignons',
     imgsrc: Mushroom,
     imglayer: MushroomLayer,
     ingr: 'mushroom',
@@ -185,9 +185,6 @@ export const initialIngredientsList = [
     imgsrc: PizzaSauce,
     quantity: 1,
     serving: 50,
-    kcal100: 400,
+    kcal100: 18,
   },
 ];
-
-// export  ingrForRequests;
-// export initialIngredientsList;

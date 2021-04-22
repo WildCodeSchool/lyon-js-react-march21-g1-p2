@@ -74,7 +74,7 @@ body {
   height: auto;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  /* transform: translateX(-50%) translateY(-50%); */
 }
 
 .ingredients {
@@ -86,10 +86,31 @@ body {
 .ingredient {
   display: inline-block;
   margin: 20px;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 20px;
   border-radius: 10px;
   vertical-align: top;
+}
+
+.PizzaList {
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 34px;
+  padding-top: 1em;
+}
+
+.Figcaption {
+  width: 50vw;
+}
+
+.Ingredients {
+  margin-left: inherit;
+  max-width: 40vw;
+  margin: auto;
+}
+
+.Button {
+  margin: auto;
+  width: 15em;
 }
 
 @media screen and (min-width: 640px) {
@@ -103,5 +124,65 @@ body {
   }
   .ingredient {
     @apply flex flex-col m-6;
+  }
+}
+
+/* Small screens */
+@media only screen and (max-width: 640px) {
+  .Pizzacontainer {
+    display: flex;
+    align-content: center;
+  }
+
+  .Cards {
+    margin: auto;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    width: 300px;
+    height: 300px;
+  }
+
+  .Card {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    transform: scale(1);
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .PizzaList {
+    box-shadow: none;
+    width: 20rem;
+  }
+
+  .PizzaList img {
+    backface-visibility: hidden;
+  }
+
+  .Cardfront {
+    width: 300px;
+    height: 300px;
+    position: relative;
+  }
+
+  .Figcaption {
+    margin-bottom: 40px;
+    width: 300px;
+    max-height: 300px;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+  }
+
+  .CardFront,
+  .Figcaption {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .Cards:active .Card {
+    transform: rotateY(180deg);
   }
 }

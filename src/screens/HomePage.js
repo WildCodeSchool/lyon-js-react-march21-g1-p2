@@ -18,7 +18,6 @@ export default function HomePage() {
             </textPath>
           </text>
         </svg>
-
         <Homepizza />
       </NavLink>
     </div>

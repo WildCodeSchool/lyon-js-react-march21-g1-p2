@@ -11,7 +11,8 @@ import CreatePizza from '../screens/CustomizedFoodPage';
 import ListOfPizzas from '../screens/PredefinedFoodPage';
 
 export default function Header() {
-  return (
+
+return (
     <Router>
       <Switch>
         <Route path="/home" exact component={Home} />

@@ -1,5 +1,5 @@
 import React from 'react';
-import PizzaList from '../components/PizzaList';
+import PizzaComposition from '../components/PizzaComposition';
 import margarita from '../assets/margarita.png';
 import regina from '../assets/regina.png';
 import diavola from '../assets/diavola.png';
@@ -8,23 +8,43 @@ function PizzaRecipes() {
   const pizzaList = [
     {
       name: 'Margarita',
-      ingredients: 'Ingredients : Tomate, Mozzarella, Olives, Roquette',
+      ingredients: [
+        ['Tomates', 3],
+        ['Mozzarella', 1],
+        ['Olives', 3],
+        ['Roquette', 2],
+      ],
       nutrition: '0 Kcal',
       image: margarita,
+      price: 'Prix : 9 €',
     },
     {
       name: 'Regina',
-      ingredients:
-        'Ingredients : Tomate, Fromage, Jambon, Champignons, Olives, Roquette',
+      ingredients: [
+        ['Tomates', 2],
+        ['Fromage', 1],
+        ['Jambon', 1],
+        ['Champignons', 1],
+        ['Olives', 2],
+        ['Roquette', 2],
+      ],
       nutrition: '0 Kcal',
       image: regina,
+      price: 'Prix : 12 €',
     },
 
     {
       name: 'Diavola',
-      ingredients: 'Ingredients : Tomate, Fromage, Chorizo, Oignons, Poivrons',
+      ingredients: [
+        ['Tomates', 3],
+        ['Fromage', 1],
+        ['Chorizo', 2],
+        ['Oignons', 2],
+        ['Poivrons', 2],
+      ],
       nutrition: '0 Kcal',
       image: diavola,
+      price: 'Prix : 11 €',
     },
   ];
 
@@ -33,14 +53,15 @@ function PizzaRecipes() {
       <div className="m-6 font-bold text-4xl text-center" h1>
         Nos Pizzas
       </div>
-      <div className="flex flex-row justify-center items-center m-auto">
+      <div className="Pizzacontainer flex flex-col w-60% m-auto">
         {pizzaList.map((pizza) => (
-          <PizzaList
+          <PizzaComposition
             key={pizza.name}
             name={pizza.name}
-            ingredients={pizza.ingredients}
+            selectedIngredients={pizza.ingredients}
             nutrition={pizza.nutrition}
             image={pizza.image}
+            price={pizza.price}
           />
         ))}
       </div>
