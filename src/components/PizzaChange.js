@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 export default function PizzaChange(props) {
   const chosenIngredientsList = Object.keys(props).map((i) => props[i]);
 
-
   /* Creating a new array with as much as items as the total quantity of servings, and then shuffling it so the ingredients will be "mixed" on the pizza image */
   const imagesForPizza = [];
   chosenIngredientsList.forEach((ingredient) => {
@@ -38,7 +37,6 @@ export default function PizzaChange(props) {
             }}
           />
         ))}
-
       </div>
 
       <div className="text-l text-center">

@@ -19,19 +19,19 @@ export const SidebarData = [
     cName: 'nav-text',
   },
   {
-    title: 'Contactez Nous',
+    title: 'Nous contacter',
     path: '/contact',
     icon: <FaIcons.FaEnvelopeOpenText />,
     cName: 'nav-text',
   },
   {
-    title: 'Sign Up',
+    title: "S'inscrire",
     path: '/sign-up',
     icon: <SiIcons.SiGnuprivacyguard />,
     cName: 'nav-text',
   },
   {
-    title: 'Sign In',
+    title: 'Se connecter',
     path: '/sign-in',
     icon: <FaIcons.FaSignInAlt />,
     cName: 'nav-text',
