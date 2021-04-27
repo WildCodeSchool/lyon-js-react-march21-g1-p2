@@ -18,12 +18,11 @@ export default function HomePage() {
         </p>
         <h2 className="font-bold text-lg text-left">
           Prenez place sur notre terrasse au bord du fleuve ! <br />A vos
-          papilles
+          papilles !
         </h2>
-        !
       </div>
       <div className="flex flex-col justify-center items-center ">
-        <NavLink to="/pizzaperso">
+        <NavLink to="/order/create-pizza">
           <svg className="rounded-text" width="500" height="400">
             <path id="curve" fill="transparent" d="M0,350 C0,0 500,0 500,350" />
             <text className="curved-text" width="500">

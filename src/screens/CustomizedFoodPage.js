@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
+
 import axios from 'axios';
+import pizzabox from '../assets/pizzabox.png';
 
 import {
   ingrForRequests,
@@ -63,6 +65,7 @@ export default function CustomizedFoodPage() {
           quantity: ingred[1],
           serving: ingredToSelect.serving,
           kcal100: ingredToSelect.kcal100,
+          price: ingredToSelect.price,
         };
       });
       setChosenIngredientsList((IngredientsList) => [
@@ -144,6 +147,23 @@ export default function CustomizedFoodPage() {
 
   return (
     <div>
+      <NavLink
+        to={{
+          pathname: '/order/confirmation',
+          state: {
+            chosenIngredientsList,
+          },
+        }}
+      >
+        <button
+          className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex justify-center "
+          type="button"
+        >
+          <img src={pizzabox} alt="pizzabox" className="h-6 w-6 mr-2" />
+          Ajouter au panier
+        </button>
+      </NavLink>
+
       <div className="m-auto">
         <PizzaChange {...chosenIngredientsList} />
       </div>

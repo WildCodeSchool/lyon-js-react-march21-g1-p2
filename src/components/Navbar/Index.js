@@ -62,7 +62,7 @@ const Navbar = () => {
             </ul>
           </nav>
           <NavMenu>
-            <NavLink style={textDecoration} to="/home">
+            <NavLink style={textDecoration} to="/">
               Home
             </NavLink>
             <NavLink style={textDecoration} to="/order">
