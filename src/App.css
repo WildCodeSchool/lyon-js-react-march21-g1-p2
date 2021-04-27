@@ -48,11 +48,21 @@ body {
 }
 
 /* ************************* PAGE HOME *************************  */
+.pizza-button-container {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.pizza-link {
+  width: 100%;
+}
 
 .pizza {
-  max-width: 500px;
-  height: auto;
-  margin-top: -250px;
+  margin-top: -40vw;
+}
+
+.rounded-text {
+  z-index: 3;
 }
 
 .curved-text {
@@ -61,6 +71,12 @@ body {
   @apply font-extrabold;
   font-family: arial;
   fill: var(--tomato-color);
+  width: 100px;
+  height: 80px;
+}
+
+#curve {
+  width: 80vw;
 }
 
 /* ************************* PIZZACHANGE *************************  */
@@ -165,9 +181,17 @@ body {
 /* ************************* MEDIA QUERIES *************************  */
 
 @media screen and (min-width: 640px) {
+  .pizza-button-container {
+    width: 500px;
+  }
+
   .pizza-mockup-container {
     width: 630px;
     height: 630px;
+  }
+
+  .pizza {
+    margin-top: -250px;
   }
 
   .ingredientsList {
