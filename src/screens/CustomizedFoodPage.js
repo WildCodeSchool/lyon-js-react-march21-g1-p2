@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
+
 import axios from 'axios';
+import pizzabox from '../assets/pizzabox.png';
 
 import {
   ingrForRequests,
@@ -63,6 +65,7 @@ export default function CustomizedFoodPage() {
           quantity: ingred[1],
           serving: ingredToSelect.serving,
           kcal100: ingredToSelect.kcal100,
+          price: ingredToSelect.price,
         };
       });
       setChosenIngredientsList((IngredientsList) => [
@@ -144,59 +147,80 @@ export default function CustomizedFoodPage() {
 
   return (
     <div>
-      <div className="m-auto">
-        <PizzaChange {...chosenIngredientsList} />
-      </div>
+      <div className="pizza-with-ingredients">
+        <div className="m-auto">
+          <NavLink
+            to={{
+              pathname: '/order/confirmation',
+              state: {
+                chosenIngredientsList,
+              },
+            }}
+          >
+            <button
+              className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex justify-center "
+              type="button"
+            >
+              <img src={pizzabox} alt="pizzabox" className="h-6 w-6 mr-2" />
+              Ajouter au panier
+            </button>
+          </NavLink>
 
-      <ul className="ingredientsList">
-        {ingredientsKcal
-          .filter((ingredient) => ingredient.category === 'Ingredient')
-          .map((ingr) => (
-            <li key={ingr.id} className="ingredient">
-              <div className="m-6 font-bold text-2xl text-center">
-                {ingr.name}
-              </div>
-              <button
-                type="button"
-                className="m-auto w-full"
-                onClick={() => handleChangeQuantity(ingr.id, 'add')}
-              >
-                <img
-                  id={ingr.id}
-                  src={ingr.imgsrc}
-                  alt={ingr.name}
-                  className="sm:w-48 w-28 m-auto"
-                />
-              </button>
-              <div className="mt-4 font-bold text-l text-center">
-                Portion : {ingr.serving}g
-              </div>
-              <div className="text-l text-center">
-                {(ingr.kcal100 * ingr.serving) / 100} kcal par portion
-              </div>
-              <div className="text-l text-center">{ingr.price}€ la portion</div>
-              <div className="text-l text-center">
+          <PizzaChange {...chosenIngredientsList} />
+        </div>
+
+        <ul className="ingredientsList">
+          {ingredientsKcal
+            .filter((ingredient) => ingredient.category === 'Ingredient')
+            .map((ingr) => (
+              <li key={ingr.id} className="ingredient">
+                <div className="mb-1 font-bold text-2xl text-center">
+                  {ingr.name}
+                </div>
                 <button
-                  id={ingr.id}
                   type="button"
-                  className="bg-green-500 text-white font-bold w-8 h-8 m-2 rounded"
+                  className="m-auto w-full"
                   onClick={() => handleChangeQuantity(ingr.id, 'add')}
                 >
-                  +
+                  <img
+                    id={ingr.id}
+                    src={ingr.imgsrc}
+                    alt={ingr.name}
+                    className="sm:w-24 w-16 m-auto"
+                  />
                 </button>
-                {setServingQuantity(ingr.id)}
-                portion(s)
-                <button
-                  type="button"
-                  className="bg-red-500 text-white font-bold w-8 h-8 m-2 rounded"
-                  onClick={() => handleChangeQuantity(ingr.id, 'remove')}
-                >
-                  -
-                </button>
-              </div>
-            </li>
-          ))}
-      </ul>
+                <div className="mt-1 font-bold text-l text-center">
+                  1 Portion :
+                </div>
+                <div className="text-l text-center">
+                  {`${ingr.serving} g - ${
+                    (ingr.kcal100 * ingr.serving) / 100
+                  } kcal - ${ingr.price} €`}
+                </div>
+
+                <div className="text-l text-center">
+                  <button
+                    id={ingr.id}
+                    type="button"
+                    className="bg-green-500 text-white font-bold w-8 h-8 m-2 rounded"
+                    onClick={() => handleChangeQuantity(ingr.id, 'add')}
+                  >
+                    +
+                  </button>
+                  {setServingQuantity(ingr.id)}
+                  portion(s)
+                  <button
+                    type="button"
+                    className="bg-red-500 text-white font-bold w-8 h-8 m-2 rounded"
+                    onClick={() => handleChangeQuantity(ingr.id, 'remove')}
+                  >
+                    -
+                  </button>
+                </div>
+              </li>
+            ))}
+        </ul>
+      </div>
     </div>
   );
 }

@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <Router>
       <Switch>
-        <Route path="/home" exact component={Home} />
+        <Route path="/" exact component={Home} />
         <Route path="/order" exact component={Order} />
         <Route path="/order/fav-pizza" exact component={FavoritPizzas} />
         <Route path="/order/create-pizza" exact component={CreatePizza} />
