@@ -48,11 +48,21 @@ body {
 }
 
 /* ************************* PAGE HOME *************************  */
+.pizza-button-container {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.pizza-link {
+  width: 100%;
+}
 
 .pizza {
-  max-width: 500px;
-  height: auto;
-  margin-top: -250px;
+  margin-top: -40vw;
+}
+
+.rounded-text {
+  z-index: 3;
 }
 
 .curved-text {
@@ -61,6 +71,12 @@ body {
   @apply font-extrabold;
   font-family: arial;
   fill: var(--tomato-color);
+  width: 100px;
+  height: 80px;
+}
+
+#curve {
+  width: 80vw;
 }
 
 /* ************************* PIZZACHANGE *************************  */
@@ -69,6 +85,7 @@ body {
   height: 90vw;
   margin: 5vw auto;
   position: relative;
+  overflow: hidden;
 }
 
 .img-pizza-construction {
@@ -80,18 +97,18 @@ body {
 }
 
 .ingredientsList {
+  display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
 }
 
 .ingredient {
-  display: inline-block;
-  margin: 20px;
+  margin: 10px;
   background: rgba(255, 255, 255, 0.3);
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
-  vertical-align: top;
+  @apply flex flex-col m-2;
 }
 
 /* ************************* PIZZACOMPOSITION *************************  */
@@ -162,19 +179,82 @@ body {
   border-bottom-right-radius: 10px;
 }
 
-/* ************************* MEDIA QUERIES *************************  */
+/* ************************* OrdersRecap *************************  */
+#orders-recap {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  margin: 20px auto;
+}
 
+#orders-recap td,
+#orders-recap th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#orders-recap tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#orders-recap tr:hover {
+  background-color: #ddd;
+}
+
+#orders-recap th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: var(--tomato-color);
+  color: white;
+}
+
+/* ************************* MEDIA QUERIES *************************  */
 @media screen and (min-width: 640px) {
+  .pizza-button-container {
+    width: 40vw;
+    height: 45vw;
+  }
   .pizza-mockup-container {
-    width: 630px;
-    height: 630px;
+    width: 300px;
+    height: 300px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .pizza-button-container {
+    width: 300px;
+  }
+
+  .pizza-with-ingredients {
+    display: flex;
+  }
+  .pizza-mockup-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .pizza {
+    margin-top: -150px;
   }
 
   .ingredientsList {
+    overflow-x: visible;
     @apply flex flex-wrap justify-evenly;
   }
-  .ingredient {
-    @apply flex flex-col m-6;
+}
+
+@media screen and (min-width: 1280px) {
+  .pizza-button-container {
+    width: 500px;
+  }
+
+  .pizza-mockup-container {
+    width: 500px;
+    height: 500px;
+  }
+
+  .pizza {
+    margin-top: -250px;
   }
 }
 
@@ -246,34 +326,4 @@ body {
   .Cards:active .Card {
     transform: rotateY(180deg);
   }
-}
-
-/* ************************* OrdersRecap *************************  */
-#orders-recap {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 80%;
-  margin: 20px auto;
-}
-
-#orders-recap td,
-#orders-recap th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#orders-recap tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-#orders-recap tr:hover {
-  background-color: #ddd;
-}
-
-#orders-recap th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: var(--tomato-color);
-  color: white;
 }
