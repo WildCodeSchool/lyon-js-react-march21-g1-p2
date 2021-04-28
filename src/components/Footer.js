@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="badge" id="edamam-badge" data-color="transparent" />
       <div className="text-xs text-right">
         <a id="attribution" href="https://all-free-download.com/">
-          🍕 design provided by All Free Download
+          🍕 design baked for you by All Free Download
         </a>
         <p>Ham and pineapple designed by Freepik</p>
       </div>
