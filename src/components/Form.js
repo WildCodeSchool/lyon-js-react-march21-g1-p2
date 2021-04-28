@@ -13,7 +13,7 @@ export default function Form() {
     event.preventDefault();
     setuserInput('');
     setuserPseudo('');
-    setMessages([...messages, `${userInput}: ${userPseudo}`]);
+    setMessages([...messages, `${userPseudo}: ${userInput}`]);
   };
 
   return (
@@ -37,20 +37,26 @@ export default function Form() {
           className="bg-blue text-center max-w-lg px-3 py-4 text-black mx-auto rounded"
           onSubmit={handleSubmit}
         >
+          <h2 className="bg-blue text-center max-w-lg px-3 py-4 text-black mx-auto rounded">
+            laissez nous vos messages
+          </h2>
           <input
             type="text"
-            className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl"
-            required
-            value={userInput}
-            onChange={(event) => setuserInput(event.target.value)}
-          />
-          <input
-            type="text"
+            placeholder="Votre pseudo"
             className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl"
             required
             value={userPseudo}
             onChange={(event) => setuserPseudo(event.target.value)}
           />
+          <input
+            type="text"
+            placeholder="Votre message"
+            className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl"
+            required
+            value={userInput}
+            onChange={(event) => setuserInput(event.target.value)}
+          />
+
           <button
             value="Envoyer"
             type="submit"
