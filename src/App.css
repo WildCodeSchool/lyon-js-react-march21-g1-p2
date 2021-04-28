@@ -85,6 +85,7 @@ body {
   height: 90vw;
   margin: 5vw auto;
   position: relative;
+  overflow: hidden;
 }
 
 .img-pizza-construction {
@@ -96,6 +97,7 @@ body {
 }
 
 .ingredientsList {
+  display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
@@ -103,9 +105,9 @@ body {
 
 .ingredient {
   display: inline-block;
-  margin: 20px;
+  margin: 10px;
   background: rgba(255, 255, 255, 0.3);
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   vertical-align: top;
 }
@@ -178,6 +180,36 @@ body {
   border-bottom-right-radius: 10px;
 }
 
+/* ************************* OrdersRecap *************************  */
+#orders-recap {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  margin: 20px auto;
+}
+
+#orders-recap td,
+#orders-recap th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#orders-recap tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#orders-recap tr:hover {
+  background-color: #ddd;
+}
+
+#orders-recap th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: var(--tomato-color);
+  color: white;
+}
+
 /* ************************* MEDIA QUERIES *************************  */
 
 @media screen and (min-width: 640px) {
@@ -185,9 +217,12 @@ body {
     width: 500px;
   }
 
+  .pizza-with-ingredients {
+    display: flex;
+  }
   .pizza-mockup-container {
-    width: 630px;
-    height: 630px;
+    width: 500px;
+    height: 500px;
   }
 
   .pizza {
@@ -195,10 +230,12 @@ body {
   }
 
   .ingredientsList {
+    overflow-x: visible;
     @apply flex flex-wrap justify-evenly;
   }
+
   .ingredient {
-    @apply flex flex-col m-6;
+    @apply flex flex-col m-2;
   }
 }
 
@@ -270,34 +307,4 @@ body {
   .Cards:active .Card {
     transform: rotateY(180deg);
   }
-}
-
-/* ************************* OrdersRecap *************************  */
-#orders-recap {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 80%;
-  margin: 20px auto;
-}
-
-#orders-recap td,
-#orders-recap th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#orders-recap tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-#orders-recap tr:hover {
-  background-color: #ddd;
-}
-
-#orders-recap th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: var(--tomato-color);
-  color: white;
 }
