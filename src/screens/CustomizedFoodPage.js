@@ -1,79 +1,122 @@
 import { useState, useEffect } from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
-import pizzabox from '../assets/pizzabox.png';
+import API from '../APIClient';
 
+import pizzabox from '../assets/pizzabox.png';
+import PizzaChange from '../components/PizzaChange';
 import {
-  ingrForRequests,
+  // ingrForRequests,
   initialIngredientsList,
 } from '../components/IngredientsBase';
 
-import PizzaChange from '../components/PizzaChange';
-
 require('dotenv').config();
 
-const populateingredients = (array) => {
-  return array.map((ingredient) => {
-    return axios
-      .get(
-        `https://api.edamam.com/api/food-database/v2/parser?app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_SECRET_API_KEY}&category=generic-foods&ingr=${ingredient.ingr}`
-      )
-      .then((response) => response.data)
-      .then((data) => {
-        return {
-          ...ingredient,
-          kcal100: data.parsed[0].food.nutrients.ENERC_KCAL,
-          quantity: 0,
-        };
-      });
-  });
-};
+const { CancelToken } = axios;
+
+// const populateingredients = (array) => {
+//   return array.map((ingredient) => {
+//     return axios
+//       .get(
+//         `https://api.edamam.com/api/food-database/v2/parser?app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_SECRET_API_KEY}&category=generic-foods&ingr=${ingredient.ingr}`
+//       )
+//       .then((response) => response.data)
+//       .then((data) => {
+//         return {
+//           ...ingredient,
+//           kcal100: data.parsed[0].food.nutrients.ENERC_KCAL,
+//           quantity: 0,
+//         };
+//       });
+//   });
+// };
 
 const ingredientsList = [...initialIngredientsList];
 
 export default function CustomizedFoodPage() {
-  const location = useLocation();
-
+  // const [ingredientsListDB, setIngredientsListDB] = useState([]);
   const [ingredientsKcal, setIngredientsKcal] = useState([]);
+  const [error, setError] = useState('');
+  const [loadingIngredientsListDB, setLoadingIngredientsListDB] = useState(
+    false
+  );
+
+  // const location = useLocation();
+
   const [chosenIngredientsList, setChosenIngredientsList] = useState(
     ingredientsList
   );
-  const selectedIngredients =
-    location.state != null ? location.state.selectIngredients : [];
+
+  const handleError = (err) => {
+    if (!axios.isCancel(err))
+      setError(
+        'We were not able to recover the data, sorry for the inconvenience'
+      );
+  };
+
+  useEffect(() => {
+    const source = CancelToken.source();
+    setLoadingIngredientsListDB(true);
+    console.log('loadingIngredientsListDB  ', loadingIngredientsListDB);
+
+    API.get('/order/create-pizza', { cancelToken: source.token })
+      .then((res) => setIngredientsKcal(res.data))
+      .catch(handleError)
+      .finally(() => {
+        if (
+          !(
+            source.token.reason &&
+            source.token.reason.message === 'request cancelled'
+          )
+        )
+          setLoadingIngredientsListDB(false);
+      });
+    return () => {
+      source.cancel('request cancelled');
+    };
+  }, []);
+
+  // const selectedIngredients =
+  //   location.state != null ? location.state.selectIngredients : [];
+
+  // using Webpack require.context to dynamically import images
+  const requestImageFile = require.context('../assets', true, /.*/);
 
   /* Execution of the request to the API */
-  useEffect(() => {
-    Promise.all(populateingredients(ingrForRequests)).then((newingredients) => {
-      setIngredientsKcal(newingredients);
-    });
-  }, []);
+  // useEffect(() => {
+  //   Promise.all(populateingredients(ingrForRequests)).then((newingredients) => {
+  //     setIngredientsKcal(newingredients);
+  //   });
+  // }, []);
+
+  /* ************************************************************************ */
 
   /* Construction of the basic list of ingredients (= at least pizza dough + tomato sauce if "customization from scratch"
      +/- the ingredients selected by the predefined pizza, if they exist) */
-  useEffect(() => {
-    if (ingredientsKcal.length > 0) {
-      const selectedIngredkcal = selectedIngredients.map((ingred) => {
-        const ingredToSelect = ingredientsKcal.find(
-          (ingredientKcal) => ingredientKcal.name === ingred[0]
-        );
+  // useEffect(() => {
+  //   if (ingredientsKcal.length > 0) {
+  //     const selectedIngredkcal = selectedIngredients.map((ingred) => {
+  //       const ingredToSelect = ingredientsKcal.find(
+  //         (ingredientKcal) => ingredientKcal.name === ingred[0]
+  //       );
 
-        return {
-          id: ingredToSelect.id,
-          name: ingredToSelect.name,
-          imgsrc: ingredToSelect.imglayer,
-          quantity: ingred[1],
-          serving: ingredToSelect.serving,
-          kcal100: ingredToSelect.kcal100,
-          price: ingredToSelect.price,
-        };
-      });
-      setChosenIngredientsList((IngredientsList) => [
-        ...IngredientsList,
-        ...selectedIngredkcal,
-      ]);
-    }
-  }, [ingredientsKcal]);
+  //       return {
+  //         id: ingredToSelect.id,
+  //         name: ingredToSelect.name,
+  //         imgsrc: ingredToSelect.imglayer,
+  //         quantity: ingred[1],
+  //         serving: ingredToSelect.serving,
+  //         kcal100: ingredToSelect.kcal100,
+  //         price: ingredToSelect.price,
+  //       };
+  //     });
+  //     console.log('selectedIngredkcal   ', selectedIngredkcal);
+  //     setChosenIngredientsList((IngredientsList) => [
+  //       ...IngredientsList,
+  //       ...selectedIngredkcal,
+  //     ]);
+  //   }
+  // }, [ingredientsKcal]);
 
   /* Updating the rendering of the quantity of each ingredient */
   const setServingQuantity = (ingredientId) => {
@@ -90,6 +133,7 @@ export default function CustomizedFoodPage() {
 
   /* */
   const handleChangeQuantity = (id, operator) => {
+    console.log('handleChangeQuantity   ');
     const ingredToUpdate = chosenIngredientsList.filter(
       (ingred) => ingred.id === id
     );
@@ -145,6 +189,11 @@ export default function CustomizedFoodPage() {
     }
   };
 
+  console.log(error);
+  console.log('loadingIngredientsListDB end   ', loadingIngredientsListDB);
+  console.log(ingredientsKcal);
+  console.log(ingredientsList);
+
   return (
     <div>
       <div className="pizza-with-ingredients">
@@ -168,58 +217,66 @@ export default function CustomizedFoodPage() {
 
           <PizzaChange {...chosenIngredientsList} />
         </div>
-
-        <ul className="ingredientsList">
-          {ingredientsKcal
-            .filter((ingredient) => ingredient.category === 'Ingredient')
-            .map((ingr) => (
-              <li key={ingr.id} className="ingredient">
-                <div className="mb-1 font-bold text-2xl text-center">
-                  {ingr.name}
-                </div>
-                <button
-                  type="button"
-                  className="m-auto w-full"
-                  onClick={() => handleChangeQuantity(ingr.id, 'add')}
-                >
-                  <img
-                    id={ingr.id}
-                    src={ingr.imgsrc}
-                    alt={ingr.name}
-                    className="sm:w-24 w-16 m-auto"
-                  />
-                </button>
-                <div className="mt-1 font-bold text-l text-center">
-                  1 Portion :
-                </div>
-                <div className="text-l text-center">
-                  {`${ingr.serving} g - ${
-                    (ingr.kcal100 * ingr.serving) / 100
-                  } kcal - ${ingr.price} €`}
-                </div>
-
-                <div className="text-l text-center">
+        {error && <h3>{error}</h3>}
+        {loadingIngredientsListDB ? (
+          <div className="flex justify-center  pt-3">Loading in progress</div>
+        ) : (
+          <ul className="ingredientsList">
+            <li>Test</li>
+            {ingredientsKcal
+              .filter(
+                (ingredient, index) =>
+                  ingredient[index].category === 'Ingredient'
+              )
+              .map((ingr) => (
+                <li key={ingr.id} className="ingredient">
+                  <div className="mb-1 font-bold text-2xl text-center">
+                    {ingr.name}
+                  </div>
                   <button
-                    id={ingr.id}
                     type="button"
-                    className="bg-green-500 text-white font-bold w-8 h-8 m-2 rounded"
+                    className="m-auto w-full"
                     onClick={() => handleChangeQuantity(ingr.id, 'add')}
                   >
-                    +
+                    <img
+                      id={ingr.id}
+                      src={requestImageFile(`./${ingr.imgsrc}`).default}
+                      alt={ingr.name}
+                      className="sm:w-24 w-16 m-auto"
+                    />
                   </button>
-                  {setServingQuantity(ingr.id)}
-                  portion(s)
-                  <button
-                    type="button"
-                    className="bg-red-500 text-white font-bold w-8 h-8 m-2 rounded"
-                    onClick={() => handleChangeQuantity(ingr.id, 'remove')}
-                  >
-                    -
-                  </button>
-                </div>
-              </li>
-            ))}
-        </ul>
+                  <div className="mt-1 font-bold text-l text-center">
+                    1 Portion :
+                  </div>
+                  <div className="text-l text-center">
+                    {`${ingr.serving} g - ${
+                      (ingr.kcal100 * ingr.serving) / 100
+                    } kcal - ${ingr.price} €`}
+                  </div>
+
+                  <div className="text-l text-center">
+                    <button
+                      id={ingr.id}
+                      type="button"
+                      className="bg-green-500 text-white font-bold w-8 h-8 m-2 rounded"
+                      onClick={() => handleChangeQuantity(ingr.id, 'add')}
+                    >
+                      +
+                    </button>
+                    {setServingQuantity(ingr.id)}
+                    portion(s)
+                    <button
+                      type="button"
+                      className="bg-red-500 text-white font-bold w-8 h-8 m-2 rounded"
+                      onClick={() => handleChangeQuantity(ingr.id, 'remove')}
+                    >
+                      -
+                    </button>
+                  </div>
+                </li>
+              ))}
+          </ul>
+        )}
       </div>
     </div>
   );

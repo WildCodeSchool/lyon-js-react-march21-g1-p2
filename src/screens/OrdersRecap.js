@@ -17,6 +17,7 @@ export default function OrdersRecap() {
   useEffect(() => {
     const source = CancelToken.source();
     setLoadingOrders(true);
+    console.log('loadingOrders  ', loadingOrders);
     API.get('/orders', { cancelToken: source.token })
       .then((res) => setOrders(res.data))
       .catch(handleError)
@@ -33,6 +34,10 @@ export default function OrdersRecap() {
       source.cancel('request cancelled');
     };
   }, []);
+
+  console.log(error);
+  console.log(loadingOrders);
+  console.log(orders);
 
   return (
     <div>
