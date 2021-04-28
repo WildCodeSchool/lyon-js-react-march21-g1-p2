@@ -1,27 +1,29 @@
 // import './formStyles.css';
 import React from 'react';
 
+// livre d'or
 export default function Form() {
-  const [messages, setUserMessageInput] = React.useState(['Great Work !']);
-  const [pseudos, setPseudos] = React.useState(['Nicely done !']);
-  const [userIdInput, setUserIdInput] = React.useState('');
+  const [messages, setMessages] = React.useState(['Great Work !']);
+  const [userInput, setuserInput] = React.useState('');
+  const [userPseudo, setuserPseudo] = React.useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setUserIdInput('');
-    setPseudos([...pseudos, userIdInput]);
-    // setMessages([...messages, setUserMessageInput]);
+    setuserInput('');
+    setuserPseudo('');
+    setMessages([...messages, `${userInput}: ${userPseudo}`]);
   };
 
   return (
     <div>
-      <h2>Your last advices :</h2>
+      <h2>Vos derniers messages :</h2>
       <div className="chat-box ">
         <ul className="messages">
           <>
-            {pseudos.map((pseudo) => (
-              <li key={pseudo} className="message">
-                {pseudo}
+            {messages.map((message, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={index} className="message">
+                {message}
               </li>
             ))}
           </>
@@ -30,33 +32,29 @@ export default function Form() {
 
       <div className="container">
         <form
-          className="bg-blue text-center max-w-lg px-3 py-4 text-white mx-auto rounded"
+          className="bg-blue text-center max-w-lg px-3 py-4 text-black mx-auto rounded"
           onSubmit={handleSubmit}
         >
           <input
             type="text"
-            placeholder="Username"
             className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl"
-            id="usePseudo"
             required
-            value={pseudos}
-            onChange={(event) => setUserIdInput(event.target.value)}
+            value={userInput}
+            onChange={(event) => setuserInput(event.target.value)}
           />
           <input
             type="text"
-            placeholder="Password"
-            className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl my-3"
-            id="userMessage"
+            className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl"
             required
-            value={messages}
-            onChange={(event) => setUserMessageInput(event.taget.value)}
+            value={userPseudo}
+            onChange={(event) => setuserPseudo(event.target.value)}
           />
           <button
-            id="submit"
+            value="Envoyer"
             type="submit"
             className="bg-blue text-white font-bold py-2 px-4 rounded-2xl border block mx-auto w-full"
           >
-            Login
+            Envoyer
           </button>
         </form>
       </div>
