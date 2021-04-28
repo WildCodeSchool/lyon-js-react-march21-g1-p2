@@ -1,0 +1,26 @@
+.stylingInFlex {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+}
+
+.stylingOrderButton:hover {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .stylingInFlex {
+    flex-direction: column;
+  }
+}
+
+.stylingOrderButton {
+  background-color: #de812b;
+  margin: 5px;
+  text-decoration: none;
+}
+
+.stylingOrderButton a {
+  background-color: #de812b;
+}

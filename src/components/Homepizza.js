@@ -1,10 +1,6 @@
 import React from 'react';
-import pizza from './pizza.png';
+import pizza from '../assets/pizza.png';
 
 export default function Homepizza() {
-  return (
-    <div>
-      return <img src={pizza} alt="Logo" />
-    </div>
-  );
+  return <img className="pizza" src={pizza} alt="pizza drawing" />;
 }
