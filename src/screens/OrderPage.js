@@ -7,16 +7,22 @@ const ourPizza = 'Nos Pizzas';
 
 export default function OrderPage() {
   return (
-    <div className="stylingInFlex">
-      <BtnLink className="stylingOrderButton" to="/order/fav-pizza">
-        {favoritePizza}
-      </BtnLink>
-      <BtnLink className="stylingOrderButton" to="/order/create-pizza">
-        {createPizza}
-      </BtnLink>
-      <BtnLink className="stylingOrderButton" to="/order/pizza-list">
-        {ourPizza}
-      </BtnLink>
+    <div
+      style={{
+        height: '90vh',
+      }}
+    >
+      <div className="stylingInFlex">
+        <BtnLink className="stylingOrderButton" to="/order/fav-pizza">
+          {favoritePizza}
+        </BtnLink>
+        <BtnLink className="stylingOrderButton" to="/order/create-pizza">
+          {createPizza}
+        </BtnLink>
+        <BtnLink className="stylingOrderButton" to="/order/pizza-list">
+          {ourPizza}
+        </BtnLink>
+      </div>
     </div>
   );
 }

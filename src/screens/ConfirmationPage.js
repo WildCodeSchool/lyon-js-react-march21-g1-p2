@@ -51,7 +51,11 @@ export default function ConfirmationPage() {
   }, []);
 
   return (
-    <>
+    <div
+      style={{
+        height: '90vh',
+      }}
+    >
       <p>
         {orderData
           .slice(2, orderData.length)
@@ -65,6 +69,6 @@ export default function ConfirmationPage() {
       <p>Prix total : {totalPrice} €</p>
       {error && <h3>{error}</h3>}
       {success && <h3>Votre commande a bien été enregistrée !</h3>}
-    </>
+    </div>
   );
 }

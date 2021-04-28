@@ -35,7 +35,11 @@ export default function OrdersRecap() {
   }, []);
 
   return (
-    <div>
+    <div
+      style={{
+        height: '90vh',
+      }}
+    >
       <h2 className="text-3xl text-center font-bold m-3">
         Historique des commandes
       </h2>
