@@ -14,7 +14,11 @@ export default function Form() {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        height: '90vh',
+      }}
+    >
       <h2>Last messages</h2>
       <table>
         <thead>
