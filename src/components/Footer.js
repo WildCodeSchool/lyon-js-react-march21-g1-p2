@@ -7,6 +7,9 @@ export default function Footer() {
           🍕 design baked for you by All Free Download
         </a>
         <p>Ham and pineapple designed by Freepik</p>
+        <a href="https://fr.vecteezy.com/vecteur-libre/construction">
+          Construction Vecteurs par Vecteezy
+        </a>
       </div>
     </footer>
   );
