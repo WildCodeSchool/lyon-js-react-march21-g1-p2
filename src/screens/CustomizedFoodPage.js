@@ -148,7 +148,7 @@ export default function CustomizedFoodPage() {
   return (
     <div>
       <div className="pizza-with-ingredients">
-        <div className="m-auto">
+        <div className="mx-4 flex justify-center flex-col items-center">
           <NavLink
             to={{
               pathname: '/order/confirmation',
