@@ -35,7 +35,7 @@ export const ingrForRequests = [
     imglayer: PizzaDough,
     ingr: 'pizza%20dough',
     category: 'Base',
-    price: '2',
+    price: 2,
     serving: 228,
   },
   {
@@ -45,7 +45,7 @@ export const ingrForRequests = [
     imglayer: PizzaSauce,
     ingr: 'tomato%20sauce',
     category: 'Base',
-    price: '2',
+    price: 2,
     serving: 50,
   },
   {
@@ -55,7 +55,7 @@ export const ingrForRequests = [
     imglayer: TomatoLayer,
     ingr: 'tomato',
     category: 'Ingredient',
-    price: '2',
+    price: 2,
     serving: 200,
   },
   {
@@ -65,7 +65,7 @@ export const ingrForRequests = [
     imglayer: ChorizoLayer,
     ingr: 'chorizo',
     category: 'Ingredient',
-    price: '3',
+    price: 3,
     serving: 50,
   },
   {
@@ -75,7 +75,7 @@ export const ingrForRequests = [
     imglayer: EmmentalLayer,
     ingr: 'emmental',
     category: 'Ingredient',
-    price: '4',
+    price: 4,
     serving: 100,
   },
   {
@@ -85,7 +85,7 @@ export const ingrForRequests = [
     imglayer: OnionLayer,
     ingr: 'onion',
     category: 'Ingredient',
-    price: '1',
+    price: 1,
     serving: 200,
   },
   {
@@ -95,7 +95,7 @@ export const ingrForRequests = [
     imglayer: OliveLayer,
     ingr: 'olive',
     category: 'Ingredient',
-    price: '2',
+    price: 2,
     serving: 200,
   },
   {
@@ -105,7 +105,7 @@ export const ingrForRequests = [
     imglayer: PeppersLayer,
     ingr: 'peppers',
     category: 'Ingredient',
-    price: '2',
+    price: 2,
     serving: 200,
   },
   {
@@ -115,7 +115,7 @@ export const ingrForRequests = [
     imglayer: MushroomLayer,
     ingr: 'mushroom',
     category: 'Ingredient',
-    price: '2',
+    price: 2,
     serving: 200,
   },
   {
@@ -125,7 +125,7 @@ export const ingrForRequests = [
     imglayer: HamLayer,
     ingr: 'ham',
     category: 'Ingredient',
-    price: '2',
+    price: 2,
     serving: 200,
   },
   {
@@ -135,7 +135,7 @@ export const ingrForRequests = [
     imglayer: AnchovyLayer,
     ingr: 'anchovies',
     category: 'Ingredient',
-    price: '2',
+    price: 2,
     serving: 200,
   },
   {
@@ -145,7 +145,7 @@ export const ingrForRequests = [
     imglayer: MozzarellaLayer,
     ingr: 'mozzarella',
     category: 'Ingredient',
-    price: '2',
+    price: 2,
     serving: 200,
   },
   {
@@ -155,7 +155,7 @@ export const ingrForRequests = [
     imglayer: ArugulaLayer,
     ingr: 'arugula',
     category: 'Ingredient',
-    price: '2',
+    price: 2,
     serving: 200,
   },
   {
@@ -165,7 +165,7 @@ export const ingrForRequests = [
     imglayer: PineappleLayer,
     ingr: 'pineapple',
     category: 'Ingredient',
-    price: '2',
+    price: 2,
     serving: 200,
   },
 ];
@@ -174,17 +174,19 @@ export const initialIngredientsList = [
   {
     id: ingrForRequests[0].id,
     name: 'Pâte à pizza',
-    imgsrc: PizzaDough,
+    imgsrc: ingrForRequests[0].imgsrc,
     quantity: 1,
-    serving: 228,
+    serving: ingrForRequests[0].serving,
     kcal100: 200,
+    price: ingrForRequests[0].price,
   },
   {
     id: ingrForRequests[1].id,
     name: 'Sauce tomate',
-    imgsrc: PizzaSauce,
+    imgsrc: ingrForRequests[1].imgsrc,
     quantity: 1,
-    serving: 50,
+    serving: ingrForRequests[1].serving,
     kcal100: 18,
+    price: ingrForRequests[1].price,
   },
 ];

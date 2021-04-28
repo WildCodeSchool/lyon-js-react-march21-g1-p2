@@ -18,6 +18,7 @@
 .stylingOrderButton {
   background-color: #de812b;
   margin: 5px;
+  text-decoration: none;
 }
 
 .stylingOrderButton a {
