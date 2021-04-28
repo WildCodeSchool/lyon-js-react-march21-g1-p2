@@ -16,6 +16,7 @@ export default function Main() {
     <main>
       <Switch>
         <Switch>
+          <Route path="/" exact component={Home} />
           <Route path="/home" exact component={Home} />
           <Route path="/order" exact component={Order} />
           <Route path="/order/fav-pizza" exact component={FavoriteFood} />
