@@ -6,7 +6,6 @@ import Order from '../screens/OrderPage';
 import SignUp from '../screens/SignUpPage';
 import SignIn from '../screens/SignInPage';
 import FavoriteFood from '../screens/FavoriteFoodPage';
-
 import CustomizedFood from '../screens/CustomizedFoodPage';
 import PredefinedFood from '../screens/PredefinedFoodPage';
 import OrderConf from '../screens/ConfirmationPage';
