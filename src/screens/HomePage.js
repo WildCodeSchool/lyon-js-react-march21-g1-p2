@@ -29,7 +29,6 @@ export default function HomePage() {
             viewBox="0 0 500 350"
             preserveAspectRatio="none"
           >
-            >
             <path id="curve" fill="transparent" d="M0,350 C0,0 500,0 500,350" />
             <text className="curved-text">
               <textPath
