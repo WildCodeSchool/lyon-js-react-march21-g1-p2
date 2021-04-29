@@ -250,9 +250,6 @@ body {
     overflow-x: visible;
     @apply flex flex-wrap justify-evenly;
   }
-  .construction-cone {
-    display: none;
-  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -356,12 +353,6 @@ body {
   }
 
   .under-construction {
-    display: none;
-  }
-
-  .construction-cone {
-    margin: auto;
-    margin-top: 10vh;
-    max-height: 40vw;
+    max-width: 100vw;
   }
 }

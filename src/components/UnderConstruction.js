@@ -1,6 +1,5 @@
 import React from 'react';
 import underconstruction from '../assets/under-construction.jpg';
-import constructioncone from '../assets/cone.png';
 
 const UnderConstruction = () => {
   return (
@@ -12,11 +11,6 @@ const UnderConstruction = () => {
         src={underconstruction}
         alt="under construction"
         className="under-construction"
-      />
-      <img
-        src={constructioncone}
-        alt="construction cone"
-        className="construction-cone"
       />
     </div>
   );
