@@ -4,19 +4,20 @@ import Homepizza from '../components/Homepizza';
 export default function HomePage() {
   return (
     <div>
-      <div>
-        <h1 className="m-6 font-bold text-lg text-center">
+      <div className="mx-4 home-text">
+        <h1 className="my-2 font-semibold text-lg text-center">
           Serez-vous notre pizzaïolo du mois ?
         </h1>
-        <p>
-          Chez U’Pizz, nous vous proposons depuis notre fidèle Food Truck toutes
-          les saveurs de l’Italie dans nos pizzas, et vous pourrez mettre la
-          main à la pâte en ajoutant les ingrédients de votre choix de la liste
-          de produits frais mis à votre disposition. <br />
-          Notre emplacement à Confluence vous offre un magnifique écrin de
-          verdure au cœur de la ville, de jour comme de nuit. <br />
+        <p className="my-1 text-base text-center">
+          L'équipage <strong>U’Pizz</strong> avec son fidèle Food Truck vous
+          propose toutes les saveurs de l’Italie dans ses pizzas,
+          <br /> Vous pourrez aussi mettre la main à la pâte en ajoutant les
+          ingrédients de votre choix depuis la liste de produits frais mis à
+          disposition.
+          <br /> Notre emplacement à Confluence vous offre un magnifique écrin
+          de verdure au cœur de la ville, de jour comme de nuit.
         </p>
-        <h2 className="font-bold text-lg text-left">
+        <h2 className="mb-0 mt-2 font-semibold text-center">
           Prenez place sur notre terrasse au bord du fleuve ! <br />A vos
           papilles !
         </h2>
