@@ -1,51 +1,24 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import API from '../APIClient';
 
 import pizzabox from '../assets/pizzabox.png';
 import PizzaChange from '../components/PizzaChange';
-import {
-  // ingrForRequests,
-  initialIngredientsList,
-} from '../components/IngredientsBase';
 
 require('dotenv').config();
 
 const { CancelToken } = axios;
 
-// const populateingredients = (array) => {
-//   return array.map((ingredient) => {
-//     return axios
-//       .get(
-//         `https://api.edamam.com/api/food-database/v2/parser?app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_SECRET_API_KEY}&category=generic-foods&ingr=${ingredient.ingr}`
-//       )
-//       .then((response) => response.data)
-//       .then((data) => {
-//         return {
-//           ...ingredient,
-//           kcal100: data.parsed[0].food.nutrients.ENERC_KCAL,
-//           quantity: 0,
-//         };
-//       });
-//   });
-// };
-
-const ingredientsList = [...initialIngredientsList];
-
 export default function CustomizedFoodPage() {
-  // const [ingredientsListDB, setIngredientsListDB] = useState([]);
   const [ingredientsKcal, setIngredientsKcal] = useState([]);
   const [error, setError] = useState('');
   const [loadingIngredientsListDB, setLoadingIngredientsListDB] = useState(
     false
   );
 
-  // const location = useLocation();
-
-  const [chosenIngredientsList, setChosenIngredientsList] = useState(
-    ingredientsList
-  );
+  const location = useLocation();
+  const [chosenIngredientsList, setChosenIngredientsList] = useState([]);
 
   const handleError = (err) => {
     if (!axios.isCancel(err))
@@ -54,13 +27,19 @@ export default function CustomizedFoodPage() {
       );
   };
 
+  // Retrieving the list of ingredients from the database
   useEffect(() => {
     const source = CancelToken.source();
     setLoadingIngredientsListDB(true);
-    console.log('loadingIngredientsListDB  ', loadingIngredientsListDB);
-
     API.get('/order/create-pizza', { cancelToken: source.token })
-      .then((res) => setIngredientsKcal(res.data))
+      .then((res) => {
+        setIngredientsKcal(res.data);
+        setChosenIngredientsList(
+          res.data.slice(0, 2).map((ingred) => {
+            return { ...ingred, quantity: 1 };
+          })
+        );
+      })
       .catch(handleError)
       .finally(() => {
         if (
@@ -76,49 +55,40 @@ export default function CustomizedFoodPage() {
     };
   }, []);
 
-  // const selectedIngredients =
-  //   location.state != null ? location.state.selectIngredients : [];
+  // List of preselected ingredients (if any) from page of predefined pizzas
+  const selectedIngredients =
+    location.state != null ? location.state.selectIngredients : [];
 
-  // using Webpack require.context to dynamically import images
+  // using Webpack require.context to dynamically import images from the names of files recorded in the database
   const requestImageFile = require.context('../assets', true, /.*/);
-
-  /* Execution of the request to the API */
-  // useEffect(() => {
-  //   Promise.all(populateingredients(ingrForRequests)).then((newingredients) => {
-  //     setIngredientsKcal(newingredients);
-  //   });
-  // }, []);
-
-  /* ************************************************************************ */
 
   /* Construction of the basic list of ingredients (= at least pizza dough + tomato sauce if "customization from scratch"
      +/- the ingredients selected by the predefined pizza, if they exist) */
-  // useEffect(() => {
-  //   if (ingredientsKcal.length > 0) {
-  //     const selectedIngredkcal = selectedIngredients.map((ingred) => {
-  //       const ingredToSelect = ingredientsKcal.find(
-  //         (ingredientKcal) => ingredientKcal.name === ingred[0]
-  //       );
+  useEffect(() => {
+    if (ingredientsKcal.length > 0) {
+      const selectedIngredkcal = selectedIngredients.map((ingred) => {
+        const ingredToSelect = ingredientsKcal.find(
+          (ingredientKcal) => ingredientKcal.name === ingred[0]
+        );
 
-  //       return {
-  //         id: ingredToSelect.id,
-  //         name: ingredToSelect.name,
-  //         imgsrc: ingredToSelect.imglayer,
-  //         quantity: ingred[1],
-  //         serving: ingredToSelect.serving,
-  //         kcal100: ingredToSelect.kcal100,
-  //         price: ingredToSelect.price,
-  //       };
-  //     });
-  //     console.log('selectedIngredkcal   ', selectedIngredkcal);
-  //     setChosenIngredientsList((IngredientsList) => [
-  //       ...IngredientsList,
-  //       ...selectedIngredkcal,
-  //     ]);
-  //   }
-  // }, [ingredientsKcal]);
+        return {
+          id: ingredToSelect.id,
+          name: ingredToSelect.name,
+          imgsrc: ingredToSelect.imglayer,
+          quantity: ingred[1],
+          serving: ingredToSelect.serving,
+          kcal100: ingredToSelect.kcal100,
+          price: ingredToSelect.price,
+        };
+      });
+      setChosenIngredientsList((IngredientsList) => [
+        ...IngredientsList,
+        ...selectedIngredkcal,
+      ]);
+    }
+  }, [ingredientsKcal]);
 
-  /* Updating the rendering of the quantity of each ingredient */
+  /* function to update the rendering of the quantity of each ingredient */
   const setServingQuantity = (ingredientId) => {
     const ingredExists = chosenIngredientsList.filter(
       (ingred) => ingred.id === ingredientId
@@ -131,9 +101,8 @@ export default function CustomizedFoodPage() {
     );
   };
 
-  /* */
+  /* function to manage the adding/removing of ingredients on the customized pizza */
   const handleChangeQuantity = (id, operator) => {
-    console.log('handleChangeQuantity   ');
     const ingredToUpdate = chosenIngredientsList.filter(
       (ingred) => ingred.id === id
     );
@@ -154,6 +123,7 @@ export default function CustomizedFoodPage() {
             quantity: 1,
             serving: ingredToAdd[0].serving,
             kcal100: ingredToAdd[0].kcal100,
+            price: ingredToAdd[0].price,
           },
         ]);
       } else {
@@ -189,11 +159,6 @@ export default function CustomizedFoodPage() {
     }
   };
 
-  console.log(error);
-  console.log('loadingIngredientsListDB end   ', loadingIngredientsListDB);
-  console.log(ingredientsKcal);
-  console.log(ingredientsList);
-
   return (
     <div>
       <div className="pizza-with-ingredients">
@@ -214,20 +179,15 @@ export default function CustomizedFoodPage() {
               Ajouter au panier
             </button>
           </NavLink>
-
           <PizzaChange {...chosenIngredientsList} />
         </div>
         {error && <h3>{error}</h3>}
         {loadingIngredientsListDB ? (
-          <div className="flex justify-center  pt-3">Loading in progress</div>
+          <div className="flex justify-center pt-3">Loading in progress</div>
         ) : (
           <ul className="ingredientsList">
-            <li>Test</li>
             {ingredientsKcal
-              .filter(
-                (ingredient, index) =>
-                  ingredient[index].category === 'Ingredient'
-              )
+              .filter((ingredient) => ingredient.category === 'Ingredient')
               .map((ingr) => (
                 <li key={ingr.id} className="ingredient">
                   <div className="mb-1 font-bold text-2xl text-center">

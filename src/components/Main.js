@@ -10,14 +10,12 @@ import CustomizedFood from '../screens/CustomizedFoodPage';
 import PredefinedFood from '../screens/PredefinedFoodPage';
 import OrderConf from '../screens/ConfirmationPage';
 import OrdersRecap from '../screens/OrdersRecap';
-import Test from '../screens/Test';
 
 export default function Main() {
   return (
     <main>
       <Switch>
         <Switch>
-          <Route path="/test" exact component={Test} />
           <Route path="/" exact component={Home} />
           <Route path="/home" exact component={Home} />
           <Route path="/order" exact component={Order} />
