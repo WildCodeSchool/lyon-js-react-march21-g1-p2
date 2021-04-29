@@ -53,19 +53,39 @@ export default function ConfirmationPage() {
 
   return (
     <>
-      <p>
-        {orderData
-          .slice(2, orderData.length)
-          .reduce(
-            (listOfIngredients, ingredient) =>
-              `${listOfIngredients} ${ingredient.name},`,
-            ''
-          )
-          .replace(/,\s*$/, '')}
-      </p>
-      <p>Prix total : {totalPrice} €</p>
-      {error && <h3>{error}</h3>}
-      {success && <h3>Votre commande a bien été enregistrée !</h3>}
+      <h2 className="text-3xl text-center font-bold m-3">
+        Récapitulatif de votre commande
+      </h2>
+      <table id="orders-recap">
+        <thead>
+          <tr>
+            <th>Ingrédients</th>
+            <th>Prix total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {orderData
+                .slice(2, orderData.length)
+                .reduce(
+                  (listOfIngredients, ingredient) =>
+                    `${listOfIngredients} ${ingredient.name},`,
+                  ''
+                )
+                .replace(/,\s*$/, '')}
+            </td>
+            <td>{totalPrice} €</td>
+          </tr>
+        </tbody>
+      </table>
+
+      {error && <h3 className="text-2xl font-bold m-3">{error}</h3>}
+      {success && (
+        <h3 className="text-2xl font-bold m-3">
+          Votre commande a bien été enregistrée !
+        </h3>
+      )}
     </>
   );
 }

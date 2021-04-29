@@ -5,6 +5,7 @@ import API from '../APIClient';
 
 import pizzabox from '../assets/pizzabox.png';
 import PizzaChange from '../components/PizzaChange';
+import emptyPizza from '../assets/empty-pizza.png';
 
 require('dotenv').config();
 
@@ -159,6 +160,10 @@ export default function CustomizedFoodPage() {
     }
   };
 
+  const handleEmptyingPizza = () => {
+    setChosenIngredientsList(chosenIngredientsList.slice(0, 2));
+  };
+
   return (
     <div>
       <div className="pizza-with-ingredients">
@@ -172,13 +177,21 @@ export default function CustomizedFoodPage() {
             }}
           >
             <button
-              className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex justify-center "
+              className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex m-4"
               type="button"
             >
               <img src={pizzabox} alt="pizzabox" className="h-6 w-6 mr-2" />
               Ajouter au panier
             </button>
           </NavLink>
+          <button
+            className="bg-red-500 hover:bg-red-900 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex "
+            type="button"
+            onClick={handleEmptyingPizza}
+          >
+            <img src={emptyPizza} alt="emptyPizza" className="h-6 w-6 mr-2" />
+            Vider la pizza
+          </button>
           <PizzaChange {...chosenIngredientsList} />
         </div>
         {error && <h3>{error}</h3>}
