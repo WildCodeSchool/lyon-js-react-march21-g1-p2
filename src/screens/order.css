@@ -24,3 +24,12 @@
 .stylingOrderButton a {
   background-color: #de812b;
 }
+
+@media screen and (max-width: 640px) {
+  .orderGrid {
+    display: block;
+  }
+  .orderGridCase {
+    margin-bottom: 10px;
+  }
+}

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&display=swap');
 
 /* ************************* GENERALITES *************************  */
 
@@ -12,6 +13,7 @@
   --dark-color: black;
   --light-color: #f8f8ff;
   --tomato-color: #d64933;
+  --text-content: 'Comfortaa', cursive;
 }
 
 a {
@@ -47,6 +49,11 @@ body {
 }
 
 /* ************************* PAGE HOME *************************  */
+.home-text {
+  font-family: var(--text-content);
+}
+
+
 .pizza-button-container {
   width: 80vw;
   margin: 0 auto;
@@ -227,6 +234,9 @@ body {
   .pizza-mockup-container {
     width: 300px;
     height: 300px;
+  }
+  .pizza {
+    margin-top: -20vw;
   }
 }
 @media screen and (min-width: 1024px) {
