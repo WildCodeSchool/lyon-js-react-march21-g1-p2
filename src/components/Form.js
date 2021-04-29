@@ -19,7 +19,7 @@ export default function Form() {
   return (
     <div>
       <h2>Vos derniers messages :</h2>
-      <div className="chat-box ">
+      <div>
         <ul className="messages">
           <>
             {messages.map((message, index) => (
