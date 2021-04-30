@@ -1,14 +1,10 @@
+import UnderConstruction from '../components/UnderConstruction';
+
 export default function SignUpPage() {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '90vh',
-      }}
-    >
-      <h1>SignUpPage</h1>
+    <div className="text-center">
+      <h1 className="font-bold m-2 text-center">SignUpPage</h1>
+      <UnderConstruction />
     </div>
   );
 }
