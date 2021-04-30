@@ -35,25 +35,36 @@ body {
   font-family: var(--main-font), cursive;
   background: var(--primary-color);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
+main {
+  min-height: 100vh;
+  flex-grow: 1;
+}
+
 .footer {
   width: 100%;
   background-color: var(--header-footer-bg-color);
-  text-align: center;
   padding: 10px;
   color: var(--primary-color);
-  bottom: 0;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100vh;
 }
 
 /* ************************* PAGE HOME *************************  */
 .home-text {
   font-family: var(--text-content);
 }
-
 
 .pizza-button-container {
   width: 80vw;
@@ -66,6 +77,7 @@ body {
 
 .pizza {
   margin-top: -40vw;
+  padding-bottom: 2em;
 }
 
 .rounded-text {
@@ -125,13 +137,13 @@ body {
   padding-top: 1em;
 }
 
-.PizzaList.img {
-  padding-left: 10px;
+.PizzaList img {
+  padding-left: 20px;
 }
 
 .Figcaption {
   height: 250px;
-  width: 50vw;
+  width: 30em;
 }
 
 .Ingredients {
@@ -215,7 +227,18 @@ body {
   background-color: var(--tomato-color);
   color: white;
 }
+/************************** UNDERCONSTRUCTION ************************ */
+.under-construction {
+  margin: auto;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  border-radius: 12px;
+  align-items: center;
+}
 
+.workinprogress {
+  max-width: 100%;
+}
 /* ************************* MEDIA QUERIES *************************  */
 @media screen and (min-width: 640px) {
   .pizza-button-container {
@@ -307,6 +330,7 @@ body {
 
   .PizzaList img {
     backface-visibility: hidden;
+    padding-left: 10px;
   }
 
   .Cardfront {
@@ -335,5 +359,25 @@ body {
 
   .Cards:active .Card {
     transform: rotateY(180deg);
+  }
+
+  .footer {
+    max-height: 10vh;
+    margin-top: 1em;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .footer .attributions {
+    margin-top: 4em;
+    margin-bottom: 0;
+    font-size: 0.2rem;
+    line-height: 0.5rem;
+  }
+
+  .workinprogress {
+    margin-top: 10vh;
+    width: 100vh;
   }
 }
