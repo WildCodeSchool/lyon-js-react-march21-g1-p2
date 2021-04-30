@@ -1,51 +1,67 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import axios from 'axios';
+import API from '../APIClient';
 
-import {
-  ingrForRequests,
-  initialIngredientsList,
-} from '../components/IngredientsBase';
-
+import pizzabox from '../assets/pizzabox.png';
 import PizzaChange from '../components/PizzaChange';
+import emptyPizza from '../assets/empty-pizza.png';
 
 require('dotenv').config();
 
-const populateingredients = (array) => {
-  return array.map((ingredient) => {
-    return axios
-      .get(
-        `https://api.edamam.com/api/food-database/v2/parser?app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_SECRET_API_KEY}&category=generic-foods&ingr=${ingredient.ingr}`
-      )
-      .then((response) => response.data)
-      .then((data) => {
-        return {
-          ...ingredient,
-          kcal100: data.parsed[0].food.nutrients.ENERC_KCAL,
-          quantity: 0,
-        };
-      });
-  });
-};
-
-const ingredientsList = [...initialIngredientsList];
+const { CancelToken } = axios;
 
 export default function CustomizedFoodPage() {
-  const location = useLocation();
-
   const [ingredientsKcal, setIngredientsKcal] = useState([]);
-  const [chosenIngredientsList, setChosenIngredientsList] = useState(
-    ingredientsList
+  const [error, setError] = useState('');
+  const [loadingIngredientsListDB, setLoadingIngredientsListDB] = useState(
+    false
   );
+
+  const location = useLocation();
+  const [chosenIngredientsList, setChosenIngredientsList] = useState([]);
+
+  const handleError = (err) => {
+    if (!axios.isCancel(err))
+      setError(
+        'We were not able to recover the data, sorry for the inconvenience'
+      );
+  };
+
+  // Retrieving the list of ingredients from the database
+  useEffect(() => {
+    const source = CancelToken.source();
+    setLoadingIngredientsListDB(true);
+    API.get('/order/create-pizza', { cancelToken: source.token })
+      .then((res) => {
+        setIngredientsKcal(res.data);
+        setChosenIngredientsList(
+          res.data.slice(0, 2).map((ingred) => {
+            return { ...ingred, quantity: 1 };
+          })
+        );
+      })
+      .catch(handleError)
+      .finally(() => {
+        if (
+          !(
+            source.token.reason &&
+            source.token.reason.message === 'request cancelled'
+          )
+        )
+          setLoadingIngredientsListDB(false);
+      });
+    return () => {
+      source.cancel('request cancelled');
+    };
+  }, []);
+
+  // List of preselected ingredients (if any) from page of predefined pizzas
   const selectedIngredients =
     location.state != null ? location.state.selectIngredients : [];
 
-  /* Execution of the request to the API */
-  useEffect(() => {
-    Promise.all(populateingredients(ingrForRequests)).then((newingredients) => {
-      setIngredientsKcal(newingredients);
-    });
-  }, []);
+  // using Webpack require.context to dynamically import images from the names of files recorded in the database
+  const requestImageFile = require.context('../assets', true, /.*/);
 
   /* Construction of the basic list of ingredients (= at least pizza dough + tomato sauce if "customization from scratch"
      +/- the ingredients selected by the predefined pizza, if they exist) */
@@ -63,6 +79,7 @@ export default function CustomizedFoodPage() {
           quantity: ingred[1],
           serving: ingredToSelect.serving,
           kcal100: ingredToSelect.kcal100,
+          price: ingredToSelect.price,
         };
       });
       setChosenIngredientsList((IngredientsList) => [
@@ -72,7 +89,7 @@ export default function CustomizedFoodPage() {
     }
   }, [ingredientsKcal]);
 
-  /* Updating the rendering of the quantity of each ingredient */
+  /* function to update the rendering of the quantity of each ingredient */
   const setServingQuantity = (ingredientId) => {
     const ingredExists = chosenIngredientsList.filter(
       (ingred) => ingred.id === ingredientId
@@ -85,7 +102,7 @@ export default function CustomizedFoodPage() {
     );
   };
 
-  /* */
+  /* function to manage the adding/removing of ingredients on the customized pizza */
   const handleChangeQuantity = (id, operator) => {
     const ingredToUpdate = chosenIngredientsList.filter(
       (ingred) => ingred.id === id
@@ -107,6 +124,7 @@ export default function CustomizedFoodPage() {
             quantity: 1,
             serving: ingredToAdd[0].serving,
             kcal100: ingredToAdd[0].kcal100,
+            price: ingredToAdd[0].price,
           },
         ]);
       } else {
@@ -142,61 +160,97 @@ export default function CustomizedFoodPage() {
     }
   };
 
+  const handleEmptyingPizza = () => {
+    setChosenIngredientsList(chosenIngredientsList.slice(0, 2));
+  };
+
   return (
     <div>
-      <div className="m-auto">
-        <PizzaChange {...chosenIngredientsList} />
-      </div>
+      <div className="pizza-with-ingredients">
+        <div className="mx-4 flex justify-center flex-col items-center">
+          <NavLink
+            to={{
+              pathname: '/order/confirmation',
+              state: {
+                chosenIngredientsList,
+              },
+            }}
+          >
+            <button
+              className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex m-4"
+              type="button"
+            >
+              <img src={pizzabox} alt="pizzabox" className="h-6 w-6 mr-2" />
+              Ajouter au panier
+            </button>
+          </NavLink>
+          <button
+            className="bg-red-500 hover:bg-red-900 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex "
+            type="button"
+            onClick={handleEmptyingPizza}
+          >
+            <img src={emptyPizza} alt="emptyPizza" className="h-6 w-6 mr-2" />
+            Vider la pizza
+          </button>
+          <PizzaChange {...chosenIngredientsList} />
+        </div>
+        {error && <h3>{error}</h3>}
+        {loadingIngredientsListDB ? (
+          <div className="flex justify-center pt-3">Loading in progress</div>
+        ) : (
+          <ul className="ingredientsList">
+            {ingredientsKcal
+              .filter((ingredient) => ingredient.category === 'Ingredient')
+              .map((ingr) => (
+                <li key={ingr.id} className="ingredient">
+                  <div className="mb-1 font-bold text-2xl text-center">
+                    {ingr.name}
+                  </div>
+                  <button
+                    type="button"
+                    className="m-auto w-full"
+                    onClick={() => handleChangeQuantity(ingr.id, 'add')}
+                  >
+                    <img
+                      id={ingr.id}
+                      src={requestImageFile(`./${ingr.imgsrc}`).default}
+                      alt={ingr.name}
+                      className="sm:w-24 w-16 m-auto"
+                    />
+                  </button>
+                  <div className="mt-1 font-bold text-l text-center">
+                    1 Portion :
+                  </div>
+                  <div className="text-l text-center">
+                    {`${ingr.serving} g - ${
+                      (ingr.kcal100 * ingr.serving) / 100
+                    } kcal - ${ingr.price} €`}
+                  </div>
 
-      <ul className="ingredientsList">
-        {ingredientsKcal
-          .filter((ingredient) => ingredient.category === 'Ingredient')
-          .map((ingr) => (
-            <li key={ingr.id} className="ingredient">
-              <div className="m-6 font-bold text-2xl text-center">
-                {ingr.name}
-              </div>
-              <button
-                type="button"
-                className="m-auto w-full"
-                onClick={() => handleChangeQuantity(ingr.id, 'add')}
-              >
-                <img
-                  id={ingr.id}
-                  src={ingr.imgsrc}
-                  alt={ingr.name}
-                  className="sm:w-48 w-28 m-auto"
-                />
-              </button>
-              <div className="mt-4 font-bold text-l text-center">
-                Portion : {ingr.serving}g
-              </div>
-              <div className="text-l text-center">
-                {(ingr.kcal100 * ingr.serving) / 100} kcal par portion
-              </div>
-              <div className="text-l text-center">{ingr.price}€ la portion</div>
-              <div className="text-l text-center">
-                <button
-                  id={ingr.id}
-                  type="button"
-                  className="bg-green-500 text-white font-bold w-8 h-8 m-2 rounded"
-                  onClick={() => handleChangeQuantity(ingr.id, 'add')}
-                >
-                  +
-                </button>
-                {setServingQuantity(ingr.id)}
-                portion(s)
-                <button
-                  type="button"
-                  className="bg-red-500 text-white font-bold w-8 h-8 m-2 rounded"
-                  onClick={() => handleChangeQuantity(ingr.id, 'remove')}
-                >
-                  -
-                </button>
-              </div>
-            </li>
-          ))}
-      </ul>
+                  <div className="text-l text-center">
+                    <button
+                      id={ingr.id}
+                      type="button"
+                      className="bg-green-500 text-white font-bold w-8 h-8 m-2 rounded"
+                      onClick={() => handleChangeQuantity(ingr.id, 'add')}
+                    >
+                      +
+                    </button>
+                    {setServingQuantity(ingr.id)}
+                    portion(s)
+                    <button
+                      type="button"
+                      className="bg-red-500 text-white font-bold w-8 h-8 m-2 rounded"
+                      onClick={() => handleChangeQuantity(ingr.id, 'remove')}
+                    >
+                      -
+                    </button>
+                  </div>
+                </li>
+              ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

@@ -8,12 +8,15 @@ import SignIn from '../screens/SignInPage';
 import FavoriteFood from '../screens/FavoriteFoodPage';
 import CustomizedFood from '../screens/CustomizedFoodPage';
 import PredefinedFood from '../screens/PredefinedFoodPage';
+import OrderConf from '../screens/ConfirmationPage';
+import OrdersRecap from '../screens/OrdersRecap';
 
 export default function Main() {
   return (
     <main>
       <Switch>
         <Switch>
+          <Route path="/" exact component={Home} />
           <Route path="/home" exact component={Home} />
           <Route path="/order" exact component={Order} />
           <Route path="/order/fav-pizza" exact component={FavoriteFood} />
@@ -22,6 +25,8 @@ export default function Main() {
           <Route path="/contact" exact component={Contact} />
           <Route path="/sign-up" exact component={SignUp} />
           <Route path="/sign-in" exact component={SignIn} />
+          <Route path="/order/confirmation" exact component={OrderConf} />
+          <Route path="/order/ordersrecap" exact component={OrdersRecap} />
         </Switch>
       </Switch>
     </main>

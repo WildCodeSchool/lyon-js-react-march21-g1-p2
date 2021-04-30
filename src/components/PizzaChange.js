@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function PizzaChange(props) {
   const chosenIngredientsList = Object.keys(props).map((i) => props[i]);
+  const requestImageFile = require.context('../assets', true, /.*/);
 
   /* Creating a new array with as much as items as the total quantity of servings, and then shuffling it so the ingredients will be "mixed" on the pizza image */
   const imagesForPizza = [];
@@ -27,7 +28,7 @@ export default function PizzaChange(props) {
         {shuffledImagesForPizza.map((ingr, index) => (
           <img
             key={ingr.id}
-            src={ingr.imgsrc}
+            src={requestImageFile(`./${ingr.imgsrc}`).default}
             alt={ingr.name}
             className="img-pizza-construction"
             style={{
