@@ -3,19 +3,42 @@ import React from 'react';
 // import axios from 'axios';
 // import API from '../APIClient';
 
+// email
+
+const emailer = require('./emailer');
+
 // livre d'or
 export default function Form() {
   const [messages, setMessages] = React.useState(['Great Work !']);
-  const [userInput, setuserInput] = React.useState('');
-  const [userPseudo, setuserPseudo] = React.useState('');
+  const [userInput, setUserInput] = React.useState('');
+  const [userPseudo, setUserPseudo] = React.useState('');
+
+  const [emailFname, setEmailFname] = React.useState('');
+  const [emailLname, setEmailLname] = React.useState('');
+  const [emailEmail, setEmailEmail] = React.useState('');
+  const [emailMessage, setEmailMessage] = React.useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setuserInput('');
-    setuserPseudo('');
+    setUserInput('');
+    setUserPseudo('');
     setMessages([...messages, `${userPseudo}: ${userInput}`]);
   };
-
+  const handleEmailSubmit = () => {
+    emailer.sendMail(
+      {
+        from: `${emailEmail}`,
+        to: 'maupied69@hotmail.com',
+        subject: "Vous avez recu un message de la part d'un utilisateur",
+        text: `${emailFname}${emailLname}\n${emailMessage}`,
+        html: `<p>${emailFname}${emailLname}\n${emailMessage}</p>`,
+      },
+      (err, info) => {
+        if (err) console.error(err);
+        else console.log(info);
+      }
+    );
+  };
   return (
     <div>
       <h2>Vos derniers messages :</h2>
@@ -31,7 +54,6 @@ export default function Form() {
           </>
         </ul>
       </div>
-
       <div className="container">
         <form
           className="bg-blue text-center max-w-lg px-3 py-4 text-black mx-auto rounded"
@@ -46,7 +68,7 @@ export default function Form() {
             className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl"
             required
             value={userPseudo}
-            onChange={(event) => setuserPseudo(event.target.value)}
+            onChange={(event) => setUserPseudo(event.target.value)}
           />
           <input
             type="text"
@@ -54,7 +76,7 @@ export default function Form() {
             className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl"
             required
             value={userInput}
-            onChange={(event) => setuserInput(event.target.value)}
+            onChange={(event) => setUserInput(event.target.value)}
           />
 
           <button
@@ -81,6 +103,8 @@ export default function Form() {
                   id="grid-first-name"
                   type="text"
                   placeholder="Jane"
+                  onChange={(event) => setEmailFname(event.target.value)}
+                  value={emailFname}
                 />
               </label>
 
@@ -99,6 +123,8 @@ export default function Form() {
                   id="grid-last-name"
                   type="text"
                   placeholder="Doe"
+                  onChange={(event) => setEmailLname(event.target.value)}
+                  value={emailLname}
                 />
               </label>
             </div>
@@ -114,6 +140,8 @@ export default function Form() {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="email"
                   type="email"
+                  onChange={(event) => setEmailEmail(event.target.value)}
+                  value={emailEmail}
                 />
               </label>
 
@@ -132,6 +160,8 @@ export default function Form() {
                 <textarea
                   className=" resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
                   id="message"
+                  onChange={(event) => setEmailMessage(event.target.value)}
+                  value={emailMessage}
                 />
               </label>
             </div>
@@ -141,6 +171,7 @@ export default function Form() {
               <button
                 className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                 type="button"
+                onSubmit={handleEmailSubmit}
               >
                 Send
               </button>
