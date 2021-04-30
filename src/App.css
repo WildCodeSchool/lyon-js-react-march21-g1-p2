@@ -253,6 +253,7 @@ body,
     margin-top: -20vw;
   }
 }
+
 @media screen and (min-width: 1024px) {
   .pizza-button-container {
     width: 300px;
