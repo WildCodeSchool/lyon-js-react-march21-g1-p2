@@ -24,10 +24,11 @@ export default function Form() {
     setUserPseudo('');
     setMessages([...messages, `${userPseudo}: ${userInput}`]);
   };
-  const handleEmailSubmit = () => {
+  const handleEmailSubmit = (event) => {
+    event.preventDefault();
     emailer.sendMail(
       {
-        from: `${emailEmail}`,
+        from: 'maupied69@hotmail.com',
         to: 'maupied69@hotmail.com',
         subject: "Vous avez recu un message de la part d'un utilisateur",
         text: `${emailFname}${emailLname}\n${emailMessage}`,
@@ -90,7 +91,7 @@ export default function Form() {
       </div>
 
       <>
-        <form className="w-full max-w-lg mx-auto">
+        <form className="w-full max-w-lg mx-auto" onSubmit={handleEmailSubmit}>
           <div className="flex flex-wrap -mx-3 mb-6 ">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
@@ -170,8 +171,7 @@ export default function Form() {
             <div className="md:w-1/3">
               <button
                 className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                type="button"
-                onSubmit={handleEmailSubmit}
+                type="submit"
               >
                 Send
               </button>
