@@ -1,11 +1,10 @@
-// import './formStyles.css';
 import React from 'react';
 // import axios from 'axios';
 // import API from '../APIClient';
 
 // email
 
-const emailer = require('./emailer');
+const emailer = require('./emailer.js');
 
 // livre d'or
 export default function Form() {
