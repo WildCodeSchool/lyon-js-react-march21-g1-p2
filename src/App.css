@@ -117,6 +117,34 @@ body {
   @apply flex flex-col m-2;
 }
 
+.gauge-container {
+  position: relative;
+  height: 50px;
+  margin: 0 auto;
+}
+
+.gauge-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 20px;
+  border-radius: 10px;
+  background: linear-gradient(to right, green, yellow, red);
+  opacity: 0.2;
+}
+
+.gauge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 20px;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, green, yellow, red);
+  clip-path: inset(0 50px 0 0);
+}
+
 /* ************************* PIZZACOMPOSITION *************************  */
 .PizzaList {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);

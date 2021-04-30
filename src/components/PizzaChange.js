@@ -60,6 +60,10 @@ export default function PizzaChange(props) {
         )}{' '}
         kcal
       </div>
+      <div className="gauge-container">
+        <div className="gauge-bg" />
+        <div className="gauge" />
+      </div>
     </div>
   );
 }
