@@ -5,11 +5,11 @@ import API from '../APIClient';
 export default function ConfirmationPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
-
   const location = useLocation();
   const chosenIngredientsList =
     location.state != null ? location.state.chosenIngredientsList : [];
 
+  // Formating the data for the order confirmation (and update of database) from the data released by customizedFoodPage
   const orderData = chosenIngredientsList.map((ingred) => {
     return {
       name: ingred.name,
@@ -40,6 +40,7 @@ export default function ConfirmationPage() {
     price: totalPrice,
   };
 
+  // Adding this order data to the database
   useEffect(() => {
     API.post('/orders', data)
       .then(() => {
