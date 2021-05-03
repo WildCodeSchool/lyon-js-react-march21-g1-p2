@@ -23,7 +23,7 @@ export default function HomePage() {
         </h2>
       </div>
       <div className="pizza-button-container flex flex-col justify-center items-center ">
-        <NavLink className="pizza-link" to="/order/create-pizza">
+        <NavLink className="pizza-link" to="/order">
           <svg
             className="rounded-text"
             width="100%"
