@@ -177,7 +177,7 @@ export default function CustomizedFoodPage() {
             }}
           >
             <button
-              className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex m-4"
+              className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex m-2"
               type="button"
             >
               <img src={pizzabox} alt="pizzabox" className="h-6 w-6 mr-2" />

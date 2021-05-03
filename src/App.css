@@ -88,8 +88,8 @@ body {
 /* ************************* PIZZACHANGE *************************  */
 .pizza-mockup-container {
   width: 80vw;
-  height: 90vw;
-  margin: 5vw auto;
+  height: 80vw;
+  margin: 0 auto;
   position: relative;
   overflow: hidden;
 }
@@ -117,32 +117,59 @@ body {
   @apply flex flex-col m-2;
 }
 
-.gauge-container {
-  position: relative;
-  height: 50px;
+.gauges {
   margin: 0 auto;
 }
 
-.gauge-bg {
+.gauge-container {
+  position: relative;
+  width: 200px;
+  height: 40px;
+  margin: 10px auto;
+}
+
+.gauge-position {
   position: absolute;
   top: 0;
   left: 0;
   width: 200px;
   height: 20px;
+}
+
+.gauge-bg {
   border-radius: 10px;
-  background: linear-gradient(to right, green, yellow, red);
-  opacity: 0.2;
+  background: grey;
+  opacity: 0.3;
+}
+
+.clip-path-cont {
+  position: absolute;
+  top: 15px;
+  left: 50px;
 }
 
 .gauge {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 20px;
   border-radius: 10px;
   background-image: linear-gradient(to right, green, yellow, red);
-  clip-path: inset(0 50px 0 0);
+  clip-path: url(#clip-path-full-pizza);
+}
+
+.gauge-legend {
+  position: absolute;
+  top: 16px;
+}
+
+.kcal-val {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  line-height: 17px;
+}
+
+.gauge-quarter {
+  border-radius: 10px;
+  background-image: linear-gradient(to right, green, yellow, red);
+  clip-path: url(#clip-path-quarter-pizza);
 }
 
 /* ************************* PIZZACOMPOSITION *************************  */
@@ -172,6 +199,7 @@ body {
 .Cards {
   margin: auto;
 }
+
 /* ************************* FORM *************************  */
 .messages {
   margin-top: 30px;
@@ -201,6 +229,7 @@ body {
   background: #eee;
   border-bottom-right-radius: 15px;
 }
+
 .message:last-child::after {
   content: '';
   position: absolute;
@@ -259,7 +288,7 @@ body {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1090px) {
   .pizza-button-container {
     width: 300px;
   }
@@ -278,7 +307,7 @@ body {
 
   .ingredientsList {
     overflow-x: visible;
-    @apply flex flex-wrap justify-evenly;
+    @apply flex flex-wrap justify-center;
   }
 }
 
@@ -329,7 +358,6 @@ body {
     box-shadow: none;
     width: 20rem;
     max-height: fit-content;
-
     margin-top: 60px;
     padding-top: 10px;
   }
