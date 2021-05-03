@@ -168,30 +168,32 @@ export default function CustomizedFoodPage() {
     <div>
       <div className="pizza-with-ingredients">
         <div className="mx-4 flex justify-center flex-col items-center">
-          <NavLink
-            to={{
-              pathname: '/order/confirmation',
-              state: {
-                chosenIngredientsList,
-              },
-            }}
-          >
-            <button
-              className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex m-2"
-              type="button"
+          <div className="flex flex-wrap justify-center">
+            <NavLink
+              to={{
+                pathname: '/order/confirmation',
+                state: {
+                  chosenIngredientsList,
+                },
+              }}
             >
-              <img src={pizzabox} alt="pizzabox" className="h-6 w-6 mr-2" />
-              Ajouter au panier
+              <button
+                className="bg-yellow-800 hover:bg-red-600 text-gray-200 text-sm sm:text-base font-bold py-2 px-2 sm:px-4 border border-gray-400 rounded shadow inline-flex m-1 sm:m-8"
+                type="button"
+              >
+                <img src={pizzabox} alt="pizzabox" className="h-6 w-6 mr-2" />
+                Ajouter au panier
+              </button>
+            </NavLink>
+            <button
+              className="bg-red-500 hover:bg-red-900 text-gray-200 text-sm sm:text-base font-bold py-2 px-2 sm:px-4 border border-gray-400 rounded shadow inline-flex m-1 sm:m-8"
+              type="button"
+              onClick={handleEmptyingPizza}
+            >
+              <img src={emptyPizza} alt="emptyPizza" className="h-6 w-6 mr-2" />
+              Vider la pizza
             </button>
-          </NavLink>
-          <button
-            className="bg-red-500 hover:bg-red-900 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex "
-            type="button"
-            onClick={handleEmptyingPizza}
-          >
-            <img src={emptyPizza} alt="emptyPizza" className="h-6 w-6 mr-2" />
-            Vider la pizza
-          </button>
+          </div>{' '}
           <PizzaChange {...chosenIngredientsList} />
         </div>
         {error && <h3>{error}</h3>}

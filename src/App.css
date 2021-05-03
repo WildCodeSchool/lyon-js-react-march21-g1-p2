@@ -76,8 +76,7 @@ body,
 }
 
 .pizza {
-  margin-top: -40vw;
-  padding-bottom: 2em;
+  margin: -40vw auto 2em;
 }
 
 .rounded-text {
@@ -299,34 +298,35 @@ body,
 /* ************************* MEDIA QUERIES *************************  */
 @media screen and (min-width: 640px) {
   .pizza-button-container {
-    width: 40vw;
-    height: 45vw;
-  }
-  .pizza-mockup-container {
-    width: 300px;
-    height: 300px;
+    width: 60vw;
   }
 
   .pizza {
-    margin-top: -20vw;
+    margin-top: -30vw;
+  }
+
+  .pizza-mockup-container {
+    width: 300px;
+    height: 300px;
   }
 }
 
 @media screen and (min-width: 1090px) {
   .pizza-button-container {
-    width: 300px;
+    width: 500px;
+  }
+
+  .pizza {
+    margin-top: -250px;
   }
 
   .pizza-with-ingredients {
     display: flex;
   }
+
   .pizza-mockup-container {
     width: 300px;
     height: 300px;
-  }
-
-  .pizza {
-    margin-top: -150px;
   }
 
   .ingredientsList {
@@ -336,17 +336,9 @@ body,
 }
 
 @media screen and (min-width: 1280px) {
-  .pizza-button-container {
-    width: 500px;
-  }
-
   .pizza-mockup-container {
     width: 500px;
     height: 500px;
-  }
-
-  .pizza {
-    margin-top: -250px;
   }
 }
 

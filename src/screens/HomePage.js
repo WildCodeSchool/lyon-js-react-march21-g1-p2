@@ -4,13 +4,13 @@ import Homepizza from '../components/Homepizza';
 export default function HomePage() {
   return (
     <div>
-      <div className="mx-4 home-text">
+      <div className="mx-4 mt-4 home-text">
         <h1 className="my-2 font-semibold text-lg text-center">
-          Serez-vous notre pizzaïolo du mois ?
+          Serez-vous notre pizzaïolo du mois&nbsp;?
         </h1>
         <p className="my-1 text-base text-center">
           L'équipage <strong>U’Pizz</strong> avec son fidèle Food Truck vous
-          propose toutes les saveurs de l’Italie dans ses pizzas,
+          propose toutes les saveurs de l’Italie dans ses pizzas.
           <br /> Vous pourrez aussi mettre la main à la pâte en ajoutant les
           ingrédients de votre choix depuis la liste de produits frais mis à
           disposition.
@@ -18,8 +18,8 @@ export default function HomePage() {
           de verdure au cœur de la ville, de jour comme de nuit.
         </p>
         <h2 className="mb-0 mt-2 font-semibold text-center">
-          Prenez place sur notre terrasse au bord du fleuve ! <br />A vos
-          papilles !
+          Prenez place sur notre terrasse au bord du fleuve&nbsp;! <br />A vos
+          papilles&nbsp;!
         </h2>
       </div>
       <div className="pizza-button-container flex flex-col justify-center items-center ">
