@@ -31,7 +31,7 @@ export default function Form() {
     e.preventDefault();
     // destructure from inputs
     const { email, name, subject, description } = emailInputs;
-    axios.post('/sendtome', {
+    axios.post('/contact', {
       // make an object to be handled from req.body on the backend.
       email,
       name,
