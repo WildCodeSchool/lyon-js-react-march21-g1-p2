@@ -130,19 +130,16 @@ body,
 }
 
 /* ************************* PIZZACOMPOSITION *************************  */
-.PizzaList {
+.cardfront {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
   border-radius: 34px;
   padding-top: 1em;
 }
 
-.PizzaList img {
-  padding-left: 20px;
-}
-
-.Figcaption {
+.cardback {
   height: 250px;
   width: 30em;
+  border-radius: 34px;
 }
 
 .Ingredients {
@@ -153,9 +150,10 @@ body,
   width: 15em;
 }
 
-.Cards {
+.Card {
   margin: auto;
 }
+
 /* ************************* FORM *************************  */
 .messages {
   margin-top: 30px;
@@ -294,59 +292,50 @@ body,
 
 /* Small screens */
 @media only screen and (max-width: 640px) {
-  .Pizzacontainer {
-    justify-content: center;
-    text-align: center;
-  }
-
   .Pizzaname {
     padding-top: 2px;
   }
 
-  .Cards {
-    width: 300px;
-    height: 300px;
-    margin-bottom: 60px;
-    margin-left: 0em;
-  }
+  /*BEGINNING ANIMATION */
 
   .Card {
-    width: fit-content;
-    height: fit-content;
+    width: 300px;
+    height: 300px;
     transition: transform 0.8s;
     transform-style: preserve-3d;
-    padding-bottom: 10px;
-    border: 2px solid black;
   }
 
-  .PizzaList {
+  .cardfront,
+  .cardback {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    transition: transform 0.6s linear;
+  }
+
+  .cardfront {
     display: flex;
     justify-content: center;
     align-content: center;
     box-shadow: none;
-    width: 20rem;
-    max-height: fit-content;
-    margin-top: 60px;
     padding-top: 10px;
+    transform: rotateY(0deg);
   }
 
-  .PizzaList img {
-    backface-visibility: hidden;
-    padding-left: 10px;
-  }
-
-  .Figcaption {
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
+  .cardback {
     align-content: center;
     justify-content: center;
     padding-top: 20px;
-    position: absolute;
-    width: 100%;
+    transform: rotateY(-180deg);
   }
 
-  .Cards:active .Card {
+  .Card.rotated > .cardfront {
     transform: rotateY(180deg);
+  }
+  .Card.rotated > .cardback {
+    transform: rotateY(0deg);
   }
 
   /**** END OF ANIMATION ****/
