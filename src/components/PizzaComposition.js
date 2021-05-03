@@ -15,7 +15,7 @@ const PizzaComposition = ({
   const onRotate = () => setIsRotated((rotated) => !rotated);
   return (
     <div
-      className={`Card mb-6 ${isRotated ? 'rotated' : ''}`}
+      className={`Card sm:bg-yellow-100 mb-6 ${isRotated ? 'rotated' : ''}`}
       onClick={onRotate}
     >
       <div className="cardfront bg-yellow-100">
@@ -25,7 +25,7 @@ const PizzaComposition = ({
         <div className="text-yellow-900 font-bold text-2xl text-center">
           {name}
         </div>
-        <div className="Ingredients italic text-m text-center m-auto">
+        <div className="Ingredients italic text-m m-auto">
           {selectedIngredients
             .reduce(
               (listOfIngredients, ingredient) =>
@@ -46,6 +46,7 @@ const PizzaComposition = ({
           </button>
 
           <NavLink
+            className="block"
             to={{
               pathname: '/order/create-pizza',
               state: {
