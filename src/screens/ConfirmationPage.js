@@ -5,11 +5,11 @@ import API from '../APIClient';
 export default function ConfirmationPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
-
   const location = useLocation();
   const chosenIngredientsList =
     location.state != null ? location.state.chosenIngredientsList : [];
 
+  // Formating the data for the order confirmation (and update of database) from the data released by customizedFoodPage
   const orderData = chosenIngredientsList.map((ingred) => {
     return {
       name: ingred.name,
@@ -40,6 +40,7 @@ export default function ConfirmationPage() {
     price: totalPrice,
   };
 
+  // Adding this order data to the database
   useEffect(() => {
     API.post('/orders', data)
       .then(() => {
@@ -52,19 +53,39 @@ export default function ConfirmationPage() {
 
   return (
     <>
-      <p>
-        {orderData
-          .slice(2, orderData.length)
-          .reduce(
-            (listOfIngredients, ingredient) =>
-              `${listOfIngredients} ${ingredient.name},`,
-            ''
-          )
-          .replace(/,\s*$/, '')}
-      </p>
-      <p>Prix total : {totalPrice} €</p>
-      {error && <h3>{error}</h3>}
-      {success && <h3>Votre commande a bien été enregistrée !</h3>}
+      <h2 className="text-3xl text-center font-bold m-3">
+        Récapitulatif de votre commande
+      </h2>
+      <table id="orders-recap">
+        <thead>
+          <tr>
+            <th>Ingrédients</th>
+            <th>Prix total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {orderData
+                .slice(2, orderData.length)
+                .reduce(
+                  (listOfIngredients, ingredient) =>
+                    `${listOfIngredients} ${ingredient.name},`,
+                  ''
+                )
+                .replace(/,\s*$/, '')}
+            </td>
+            <td>{totalPrice} €</td>
+          </tr>
+        </tbody>
+      </table>
+
+      {error && <h3 className="text-2xl font-bold m-3">{error}</h3>}
+      {success && (
+        <h3 className="text-2xl font-bold m-3">
+          Votre commande a bien été enregistrée !
+        </h3>
+      )}
     </>
   );
 }

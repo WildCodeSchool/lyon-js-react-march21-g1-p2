@@ -35,18 +35,30 @@ body {
   font-family: var(--main-font), cursive;
   background: var(--primary-color);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
+main {
+  min-height: 80vh;
+  flex-grow: 1;
+}
+
 .footer {
   width: 100%;
   background-color: var(--header-footer-bg-color);
-  text-align: center;
   padding: 10px;
   color: var(--primary-color);
   bottom: 0;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
 }
 
 /* ************************* PAGE HOME *************************  */
@@ -64,7 +76,7 @@ body {
 }
 
 .pizza {
-  margin-top: -40vw;
+  margin: -40vw auto 2em;
 }
 
 .rounded-text {
@@ -88,8 +100,8 @@ body {
 /* ************************* PIZZACHANGE *************************  */
 .pizza-mockup-container {
   width: 80vw;
-  height: 90vw;
-  margin: 5vw auto;
+  height: 80vw;
+  margin: 0 auto;
   position: relative;
   overflow: hidden;
 }
@@ -117,33 +129,92 @@ body {
   @apply flex flex-col m-2;
 }
 
+.gauges {
+  margin: 0 auto;
+}
+
+.gauge-container {
+  position: relative;
+  width: 200px;
+  height: 40px;
+  margin: 10px auto;
+}
+
+.gauge-position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 20px;
+}
+
+.gauge-bg {
+  border-radius: 10px;
+  background: grey;
+  opacity: 0.3;
+}
+
+.clip-path-cont {
+  position: absolute;
+  top: 15px;
+  left: 50px;
+}
+
+.gauge {
+  border-radius: 10px;
+  background-image: linear-gradient(to right, green, yellow, red);
+  clip-path: url(#clip-path-full-pizza);
+}
+
+.gauge-legend {
+  position: absolute;
+  top: 16px;
+}
+
+.kcal-val {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  line-height: 17px;
+}
+
+.gauge-quarter {
+  border-radius: 10px;
+  background-image: linear-gradient(to right, green, yellow, red);
+  clip-path: url(#clip-path-quarter-pizza);
+}
+
 /* ************************* PIZZACOMPOSITION *************************  */
-.PizzaList {
+.Card {
+  display: flex;
+  width: 70vw;
+  border-radius: 34px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.cardfront {
   border-radius: 34px;
   padding-top: 1em;
 }
 
-.PizzaList.img {
-  padding-left: 10px;
-}
-
-.Figcaption {
+.cardback {
   height: 250px;
-  width: 50vw;
+  width: 30em;
+  border-radius: 34px;
 }
 
 .Ingredients {
   max-width: 40vw;
 }
 
-.button {
+/*.button {
   width: 15em;
-}
+}*/
 
-.Cards {
+.Card {
   margin: auto;
 }
+
 /* ************************* FORM *************************  */
 .messages {
   margin-top: 30px;
@@ -172,6 +243,7 @@ body {
   background: #eee;
   border-bottom-right-radius: 15px;
 }
+
 .message:last-child::after {
   content: '';
   position: absolute;
@@ -213,125 +285,166 @@ body {
   background-color: var(--tomato-color);
   color: white;
 }
+/************************** UNDERCONSTRUCTION ************************ */
+.under-construction {
+  margin: auto;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  border-radius: 12px;
+  align-items: center;
+}
 
+.workinprogress {
+  margin: auto;
+  padding-top: 100px;
+  max-width: 80vw;
+}
 /* ************************* MEDIA QUERIES *************************  */
 @media screen and (min-width: 640px) {
   .pizza-button-container {
-    width: 40vw;
-    height: 45vw;
+    width: 60vw;
   }
+
+  .pizza {
+    margin-top: -30vw;
+  }
+
   .pizza-mockup-container {
     width: 300px;
     height: 300px;
   }
-  .pizza {
-    margin-top: -20vw;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .pizza-button-container {
-    width: 300px;
-  }
-
-  .pizza-with-ingredients {
-    display: flex;
-  }
-  .pizza-mockup-container {
-    width: 300px;
-    height: 300px;
-  }
-
-  .pizza {
-    margin-top: -150px;
-  }
-
-  .ingredientsList {
-    overflow-x: visible;
-    @apply flex flex-wrap justify-evenly;
-  }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1090px) {
   .pizza-button-container {
     width: 500px;
-  }
-
-  .pizza-mockup-container {
-    width: 500px;
-    height: 500px;
   }
 
   .pizza {
     margin-top: -250px;
   }
+
+  .pizza-with-ingredients {
+    display: flex;
+  }
+
+  .pizza-mockup-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .ingredientsList {
+    overflow-x: visible;
+    @apply flex flex-wrap justify-center;
+  }
+}
+
+/*  ***** TABLETS ***** */
+@media only screen and (min-device-width: 670px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .ourpizzas {
+    padding-bottom: 100px;
+  }
+
+  .Card {
+    height: fit-content;
+    width: 80vw;
+  }
+  .cardfront {
+    margin-bottom: 0px;
+  }
+  .cardback {
+    height: fit-content;
+    width: fit-content;
+    margin-bottom: 0;
+  }
+  .footer {
+    margin-top: 1em;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .pizza-mockup-container {
+    width: 500px;
+    height: 500px;
+  }
 }
 
 /* Small screens */
 @media only screen and (max-width: 640px) {
-  .Pizzacontainer {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .Cards {
-    width: 300px;
-    height: 300px;
-    margin-bottom: 60px;
-    margin-left: 0em;
-  }
-
-  .Card {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transform: scale(1);
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    position: absolute;
-    padding-bottom: 10px;
-  }
-
-  .PizzaList {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    box-shadow: none;
-    width: 20rem;
-    max-height: fit-content;
-
-    margin-top: 60px;
-    padding-top: 10px;
-  }
-
-  .PizzaList img {
-    backface-visibility: hidden;
-  }
-
-  .Cardfront {
-    width: 300px;
-    height: 300px;
-    position: relative;
-  }
-
-  .Figcaption {
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-    align-content: center;
-    justify-content: center;
-    padding-top: 20px;
-  }
-
-  .CardFront,
-  .Figcaption {
-    position: absolute;
-    width: 100%;
-  }
-
   .Pizzaname {
     padding-top: 2px;
   }
 
-  .Cards:active .Card {
+  .Ingredients {
+    max-width: 200px;
+  }
+
+  /*BEGINNING ANIMATION */
+
+  .Card {
+    max-width: none;
+    width: 300px;
+    height: 300px;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .cardfront,
+  .cardback {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    transition: transform 0.6s linear;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  }
+
+  .cardfront {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    box-shadow: none;
+    padding-top: 10px;
+    transform: rotateY(0deg);
+  }
+
+  .cardback {
+    align-content: center;
+    justify-content: center;
+    padding-top: 20px;
+    transform: rotateY(-180deg);
+  }
+
+  .Card.rotated > .cardfront {
     transform: rotateY(180deg);
+  }
+  .Card.rotated > .cardback {
+    transform: rotateY(0deg);
+  }
+
+  /**** END OF ANIMATION ****/
+
+  .footer {
+    max-height: 10vh;
+    margin-top: 1em;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .footer .attributions {
+    margin-top: 4em;
+    margin-bottom: 0;
+    font-size: 0.2rem;
+    line-height: 0.5rem;
+  }
+
+  .workinprogress {
+    margin-top: 10vh;
+    width: 100vh;
   }
 }
