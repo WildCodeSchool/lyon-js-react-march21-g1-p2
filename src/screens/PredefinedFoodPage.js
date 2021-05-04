@@ -49,7 +49,7 @@ function PizzaRecipes() {
   ];
 
   return (
-    <div>
+    <div className="ourpizzas">
       <div className="m-6 font-bold text-4xl text-center">Nos Pizzas</div>
       <div className="Pizzacontainer">
         {pizzaList.map((pizza) => (
