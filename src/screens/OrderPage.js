@@ -23,16 +23,6 @@ export default function OrderPage() {
           </Link>
         </li>
         <li className="orderGridCase">
-          <Link className="orderImage" to="/order/fav-pizza">
-            <img
-              className="orderImage"
-              src={pizzaImgFav}
-              alt="Vos Pizzas Favorites"
-            />
-            <h3 className="h3">{favoritePizza}</h3>
-          </Link>
-        </li>
-        <li className="orderGridCase">
           <Link className="orderImage" to="/order/create-pizza">
             <img
               className="orderImage"
@@ -40,6 +30,16 @@ export default function OrderPage() {
               alt="Vos Pizzas Favorites"
             />
             <h3 className="h3">{createPizza}</h3>
+          </Link>
+        </li>
+        <li className="orderGridCase">
+          <Link className="orderImage" to="/order/fav-pizza">
+            <img
+              className="orderImage"
+              src={pizzaImgFav}
+              alt="Vos Pizzas Favorites"
+            />
+            <h3 className="h3">{favoritePizza}</h3>
           </Link>
         </li>
       </ul>

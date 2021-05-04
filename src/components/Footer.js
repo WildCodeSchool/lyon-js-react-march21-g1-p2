@@ -6,7 +6,7 @@ export default function Footer() {
         <a id="attribution" href="https://all-free-download.com/">
           🍕 design baked for you by All Free Download
         </a>
-        <p>Ham and pineapple brought to you by Freepik</p>
+        <p>🐖 🍍Ham and pineapple illustrations brought to you by Freepik</p>
         <a href="https://fr.vecteezy.com/vecteur-libre/construction">
           Construction Vecteurs par Vecteezy
         </a>
