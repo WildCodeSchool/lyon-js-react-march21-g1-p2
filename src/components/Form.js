@@ -30,21 +30,21 @@ export default function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // destructure from inputs
-    const { email, name, subject, description } = emailInputs;
-    axios.post('/contact', {
+    axios
+      .post(`${process.env.REACT_APP_API_BASE_URL}/contact`, emailInputs)
       // make an object to be handled from req.body on the backend.
-      email,
-      name,
-      subject,
-      // change the name to represent text on the backend.
-      text: description,
-    });
+      .then(() => {
+        // eslint-disable-next-line no-alert
+        window.alert('Votre message a bien été envoyé');
+      });
   };
   return (
     <div>
-      <h2>Vos derniers messages :</h2>
+      <h2 className="my-2 font-semibold text-lg text-center">
+        Le livre d'or :
+      </h2>
       <div>
-        <ul className="messages">
+        <ul>
           <>
             {messages.map((message, index) => (
               // eslint-disable-next-line react/no-array-index-key
@@ -60,8 +60,8 @@ export default function Form() {
           className="bg-blue text-center max-w-lg px-3 py-4 text-black mx-auto rounded"
           onSubmit={handleBookSubmit}
         >
-          <h2 className="bg-blue text-center max-w-lg px-3 py-4 text-black mx-auto rounded">
-            laissez nous vos messages
+          <h2 className="my-2 font-semibold text-lg text-center">
+            Laissez nous vos messages :
           </h2>
           <input
             type="text"
@@ -90,42 +90,53 @@ export default function Form() {
         </form>
       </div>
       <>
-        <h1>feed back form. </h1>
-        <form onSubmit={handleSubmit}>
+        <h1 className="my-2 font-semibold text-lg text-center">
+          Envoyez nous un email :{' '}
+        </h1>
+        <form className="w-full max-w-lg mx-auto" onSubmit={handleSubmit}>
           <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             type="text"
-            placeholder="email"
+            placeholder="Votre adresse email"
             name="email"
             value={emailInputs.email}
             onChange={handleChange}
           />
           <br />
           <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             type="text"
-            placeholder="name"
+            placeholder="Votre pseudo"
             name="name"
             value={emailInputs.name}
             onChange={handleChange}
           />
           <br />
           <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             type="text"
-            placeholder="subject"
+            placeholder="L'objet de votre mail"
             name="subject"
             value={emailInputs.subject}
             onChange={handleChange}
           />
           <br />
           <textarea
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             name="description"
-            placeholder="tell us about your experience"
+            placeholder="Racontez-nous !"
             value={emailInputs.description}
             onChange={handleChange}
             cols="30"
             rows="10"
           />
           <br />
-          <button type="submit">submit</button>
+          <button
+            className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+            type="submit"
+          >
+            Envoyez
+          </button>
         </form>
       </>
     </div>
