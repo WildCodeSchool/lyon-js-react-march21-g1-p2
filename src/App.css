@@ -76,8 +76,7 @@ body,
 }
 
 .pizza {
-  margin-top: -40vw;
-  padding-bottom: 2em;
+  margin: -40vw auto 2em;
 }
 
 .rounded-text {
@@ -101,8 +100,8 @@ body,
 /* ************************* PIZZACHANGE *************************  */
 .pizza-mockup-container {
   width: 80vw;
-  height: 90vw;
-  margin: 5vw auto;
+  height: 80vw;
+  margin: 0 auto;
   position: relative;
   overflow: hidden;
 }
@@ -128,6 +127,61 @@ body,
   padding: 10px;
   border-radius: 10px;
   @apply flex flex-col m-2;
+}
+
+.gauges {
+  margin: 0 auto;
+}
+
+.gauge-container {
+  position: relative;
+  width: 200px;
+  height: 40px;
+  margin: 10px auto;
+}
+
+.gauge-position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 20px;
+}
+
+.gauge-bg {
+  border-radius: 10px;
+  background: grey;
+  opacity: 0.3;
+}
+
+.clip-path-cont {
+  position: absolute;
+  top: 15px;
+  left: 50px;
+}
+
+.gauge {
+  border-radius: 10px;
+  background-image: linear-gradient(to right, green, yellow, red);
+  clip-path: url(#clip-path-full-pizza);
+}
+
+.gauge-legend {
+  position: absolute;
+  top: 16px;
+}
+
+.kcal-val {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  line-height: 17px;
+}
+
+.gauge-quarter {
+  border-radius: 10px;
+  background-image: linear-gradient(to right, green, yellow, red);
+  clip-path: url(#clip-path-quarter-pizza);
 }
 
 /* ************************* PIZZACOMPOSITION *************************  */
@@ -157,6 +211,7 @@ body,
 .Cards {
   margin: auto;
 }
+
 /* ************************* FORM *************************  */
 .messages {
   margin-top: 30px;
@@ -186,6 +241,7 @@ body,
   background: #eee;
   border-bottom-right-radius: 15px;
 }
+
 .message:last-child::after {
   content: '';
   position: absolute;
@@ -242,54 +298,47 @@ body,
 /* ************************* MEDIA QUERIES *************************  */
 @media screen and (min-width: 640px) {
   .pizza-button-container {
-    width: 40vw;
-    height: 45vw;
+    width: 60vw;
   }
+
+  .pizza {
+    margin-top: -30vw;
+  }
+
   .pizza-mockup-container {
     width: 300px;
     height: 300px;
   }
-
-  .pizza {
-    margin-top: -20vw;
-  }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1090px) {
   .pizza-button-container {
-    width: 300px;
+    width: 500px;
+  }
+
+  .pizza {
+    margin-top: -250px;
   }
 
   .pizza-with-ingredients {
     display: flex;
   }
+
   .pizza-mockup-container {
     width: 300px;
     height: 300px;
   }
 
-  .pizza {
-    margin-top: -150px;
-  }
-
   .ingredientsList {
     overflow-x: visible;
-    @apply flex flex-wrap justify-evenly;
+    @apply flex flex-wrap justify-center;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .pizza-button-container {
-    width: 500px;
-  }
-
   .pizza-mockup-container {
     width: 500px;
     height: 500px;
-  }
-
-  .pizza {
-    margin-top: -250px;
   }
 }
 
@@ -325,7 +374,6 @@ body,
     box-shadow: none;
     width: 20rem;
     max-height: fit-content;
-
     margin-top: 60px;
     padding-top: 10px;
   }
