@@ -36,7 +36,7 @@ export default function PizzaRecipes() {
   }, []);
 
   return (
-    <div>
+    <div className="ourpizzas">
       <div className="m-6 font-bold text-4xl text-center">Nos Pizzas</div>
       {error && <h3>{error}</h3>}
       {loadingPizzas ? (
