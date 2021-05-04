@@ -14,11 +14,7 @@ export default function OrderPage() {
       <ul className="orderGrid">
         <li className="orderGridCase">
           <Link className="orderImage" to="/order/pizza-list">
-            <img
-              className="orderImage"
-              src={pizzaImg}
-              alt="Vos Pizzas Favorites"
-            />
+            <img className="orderImage" src={pizzaImg} alt="Nos Pizzas" />
             <h3 className="h3">{ourPizza}</h3>
           </Link>
         </li>
