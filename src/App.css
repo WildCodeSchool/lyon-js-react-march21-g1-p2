@@ -52,6 +52,7 @@ main {
   background-color: var(--header-footer-bg-color);
   padding: 10px;
   color: var(--primary-color);
+  bottom: 0;
 }
 
 html,
@@ -186,7 +187,7 @@ body,
 /* ************************* PIZZACOMPOSITION *************************  */
 .Card {
   display: flex;
-  max-width: 60vw;
+  width: 70vw;
   border-radius: 34px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
 }
@@ -295,7 +296,9 @@ body,
 }
 
 .workinprogress {
-  max-width: 100%;
+  margin: auto;
+  padding-top: 100px;
+  max-width: 80vw;
 }
 /* ************************* MEDIA QUERIES *************************  */
 @media screen and (min-width: 640px) {
@@ -334,6 +337,32 @@ body,
   .ingredientsList {
     overflow-x: visible;
     @apply flex flex-wrap justify-center;
+  }
+}
+
+/*  ***** TABLETS ***** */
+@media only screen and (min-device-width: 670px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .ourpizzas {
+    padding-bottom: 100px;
+  }
+
+  .Card {
+    height: fit-content;
+    width: 80vw;
+  }
+  .cardfront {
+    margin-bottom: 0px;
+  }
+  .cardback {
+    height: fit-content;
+    width: fit-content;
+    margin-bottom: 0;
+  }
+  .footer {
+    margin-top: 1em;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
   }
 }
 
