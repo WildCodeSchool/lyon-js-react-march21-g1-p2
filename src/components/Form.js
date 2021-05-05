@@ -125,7 +125,7 @@ export default function Form() {
             onChange={handleChange}
             required
           />
-          <br />
+
           <textarea
             className="tell-us appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             name="description"
