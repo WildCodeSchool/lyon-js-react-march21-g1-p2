@@ -4,8 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const maxKcal = 2000;
 
-export default function PizzaChange(props) {
-  const chosenIngredientsList = Object.keys(props).map((i) => props[i]);
+export default function PizzaChange({ chosenIngredientsList, totalPrice }) {
   const requestImageFile = require.context('../assets', true, /.*/);
   const [clipGauge, setClipGauge] = useState(0);
   const [leftPositionKcallFull, setLeftPositionKcallFull] = useState(0);
@@ -56,8 +55,10 @@ export default function PizzaChange(props) {
             totalWeight + currentIngr.quantity * currentIngr.serving,
           0
         )}{' '}
-        g
+        g - Prix total :{' '}
+        {totalPrice % 1 === 0 ? totalPrice : totalPrice.toFixed(2)} €
       </div>
+
       <div className="gauges">
         <div className="gauge-container">
           <div className="gauge-bg gauge-position" />
