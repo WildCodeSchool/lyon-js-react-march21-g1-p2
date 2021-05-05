@@ -98,7 +98,7 @@ export default function CustomizedFoodPage() {
     return ingredExists.length > 0 ? (
       <span className="m-0">{ingredExists[0].quantity} </span>
     ) : (
-      <span className="m-0"> 0 </span>
+      <span className="m-0">0 </span>
     );
   };
 
