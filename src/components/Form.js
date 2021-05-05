@@ -76,7 +76,7 @@ export default function Form() {
           <input
             type="text"
             placeholder="Votre message"
-            className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl"
+            className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl mb-2"
             required
             value={userInput}
             onChange={(event) => setUserInput(event.target.value)}
@@ -92,7 +92,7 @@ export default function Form() {
         </form>
       </div>
       <>
-        <form className="ml-20 mr-20" onSubmit={handleSubmit}>
+        <form className="ml-10 mr-10" onSubmit={handleSubmit}>
           <h1 className="my-2 font-semibold text-lg text-center">
             Envoyez nous un email :{' '}
           </h1>
