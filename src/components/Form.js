@@ -6,7 +6,9 @@ import axios from 'axios';
 
 // livre d'or
 export default function Form() {
-  const [messages, setMessages] = React.useState(['Great Work !']);
+  const [messages, setMessages] = React.useState([
+    'Pseudo: Ceci est un exemple de message de félicitations',
+  ]);
   const [userInput, setUserInput] = React.useState('');
   const [userPseudo, setUserPseudo] = React.useState('');
 
@@ -48,7 +50,7 @@ export default function Form() {
           <>
             {messages.map((message, index) => (
               // eslint-disable-next-line react/no-array-index-key
-              <li key={index} className="message">
+              <li key={index} className="message mb-2">
                 {message}
               </li>
             ))}
@@ -66,7 +68,7 @@ export default function Form() {
           <input
             type="text"
             placeholder="Votre pseudo"
-            className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl"
+            className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl mb-2"
             required
             value={userPseudo}
             onChange={(event) => setUserPseudo(event.target.value)}
@@ -90,46 +92,49 @@ export default function Form() {
         </form>
       </div>
       <>
-        <h1 className="my-2 font-semibold text-lg text-center">
-          Envoyez nous un email :{' '}
-        </h1>
-        <form className="w-full max-w-lg mx-auto" onSubmit={handleSubmit}>
+        <form className="ml-20 mr-20" onSubmit={handleSubmit}>
+          <h1 className="my-2 font-semibold text-lg text-center">
+            Envoyez nous un email :{' '}
+          </h1>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             type="text"
             placeholder="Votre adresse email"
             name="email"
             value={emailInputs.email}
             onChange={handleChange}
+            required
           />
           <br />
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             type="text"
             placeholder="Votre pseudo"
             name="name"
-            require
+            required
             value={emailInputs.name}
             onChange={handleChange}
           />
           <br />
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             type="text"
             placeholder="L'objet de votre mail"
             name="subject"
             value={emailInputs.subject}
             onChange={handleChange}
+            required
           />
           <br />
           <textarea
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             name="description"
             placeholder="Racontez-nous !"
             value={emailInputs.description}
             onChange={handleChange}
             cols="30"
             rows="10"
+            required
           />
           <br />
           <button
