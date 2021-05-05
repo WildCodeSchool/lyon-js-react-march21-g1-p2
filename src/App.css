@@ -207,9 +207,9 @@ body,
   max-width: 40vw;
 }
 
-/*.button {
-  width: 15em;
-}*/
+.order-btn {
+  width: 210px;
+}
 
 .Card {
   margin: auto;
@@ -297,8 +297,8 @@ body,
 
 .workinprogress {
   margin: auto;
-  padding-top: 100px;
-  max-width: 80vw;
+  padding-top: 80px;
+  max-width: 60vw;
 }
 /* ************************* MEDIA QUERIES *************************  */
 @media screen and (min-width: 640px) {
@@ -364,6 +364,18 @@ body,
     display: flex;
     flex-direction: row;
   }
+
+  .contact-page {
+    height: 80vh;
+  }
+
+  .form-content {
+    max-height: 50vh;
+  }
+
+  .tell-us {
+    max-height: 150px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -391,6 +403,10 @@ body,
     height: 300px;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+  }
+
+  .preset-pizza {
+    max-width: fit-content;
   }
 
   .cardfront,

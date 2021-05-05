@@ -41,7 +41,7 @@ export default function Form() {
       });
   };
   return (
-    <div>
+    <div className="contact-page">
       <h2 className="my-2 font-semibold text-lg text-center">
         Le livre d'or :
       </h2>
@@ -59,7 +59,7 @@ export default function Form() {
       </div>
       <div className="container">
         <form
-          className="bg-blue text-center max-w-lg px-3 py-4 text-black mx-auto rounded"
+          className="  bg-blue text-center max-w-lg px-3 py-4 text-black mx-auto rounded"
           onSubmit={handleBookSubmit}
         >
           <h2 className="my-2 font-semibold text-lg text-center">
@@ -92,7 +92,7 @@ export default function Form() {
         </form>
       </div>
       <>
-        <form className="ml-10 mr-10" onSubmit={handleSubmit}>
+        <form className="form-content ml-20 mr-20" onSubmit={handleSubmit}>
           <h1 className="my-2 font-semibold text-lg text-center">
             Envoyez nous un email :{' '}
           </h1>
@@ -127,7 +127,7 @@ export default function Form() {
           />
           <br />
           <textarea
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
+            className="tell-us appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             name="description"
             placeholder="Racontez-nous !"
             value={emailInputs.description}
@@ -136,7 +136,6 @@ export default function Form() {
             rows="10"
             required
           />
-          <br />
           <button
             className="inline-block px-6 py-2 text-xs font-medium leading-6 text-gray-100 hover:text-red-500  uppercase transition bg-red-500 rounded shadow ripple hover:shadow-lg hover:bg-gray-50 focus:outline-none"
             type="submit"
