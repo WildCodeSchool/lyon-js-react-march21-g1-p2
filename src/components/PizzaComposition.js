@@ -43,7 +43,7 @@ const PizzaComposition = ({
           {name}
         </div>
         <div className="Ingredients italic text-m m-auto">
-          {Object.entries(JSON.parse(selectedIngredients))
+          {listOfSelectedIndredients
             .reduce(
               (listOfIngredients, ingredient) =>
                 `${listOfIngredients} ${ingredient[0]},`,
