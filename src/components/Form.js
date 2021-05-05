@@ -108,6 +108,7 @@ export default function Form() {
             type="text"
             placeholder="Votre pseudo"
             name="name"
+            require
             value={emailInputs.name}
             onChange={handleChange}
           />
@@ -132,7 +133,7 @@ export default function Form() {
           />
           <br />
           <button
-            className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+            className="inline-block px-6 py-2 text-xs font-medium leading-6 text-gray-100 hover:text-red-500  uppercase transition bg-red-500 rounded shadow ripple hover:shadow-lg hover:bg-gray-50 focus:outline-none"
             type="submit"
           >
             Envoyez
