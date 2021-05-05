@@ -42,6 +42,7 @@
   },
   "scripts": {
     "start": "craco start",
+    "proxy": "http://localhost:4444/",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
