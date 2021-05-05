@@ -207,9 +207,9 @@ body,
   max-width: 40vw;
 }
 
-/*.button {
-  width: 15em;
-}*/
+.order-btn {
+  width: 210px;
+}
 
 .Card {
   margin: auto;

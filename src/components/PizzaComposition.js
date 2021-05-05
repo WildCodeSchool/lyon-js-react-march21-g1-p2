@@ -43,7 +43,7 @@ const PizzaComposition = ({
           {name}
         </div>
         <div className="Ingredients italic text-m m-auto">
-          {Object.entries(JSON.parse(selectedIngredients))
+          {listOfSelectedIndredients
             .reduce(
               (listOfIngredients, ingredient) =>
                 `${listOfIngredients} ${ingredient[0]},`,
@@ -55,7 +55,7 @@ const PizzaComposition = ({
         <div className="font-bold italic text-s pb-2 pt-2">
           {price % 1 === 0 ? price : price.toFixed(2)} €
         </div>
-        <div className="Button text-center m-auto">
+        <div className="Button text-center m-auto ">
           <NavLink
             to={{
               pathname: '/order/confirmation',
@@ -65,7 +65,7 @@ const PizzaComposition = ({
             }}
           >
             <button
-              className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex justify-center  "
+              className="order-btn bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex justify-center "
               type="button"
             >
               <img
@@ -87,7 +87,7 @@ const PizzaComposition = ({
             }}
           >
             <button
-              className="mt-2 bg-yellow-800 hover:bg-yellow-500 text-gray-200 hover:text-red-600 font-semibold py-2 px-4 border border-gray-400 rounded shadow mb-4 p-6"
+              className="mt-2 bg-yellow-800 hover:bg-yellow-500 text-gray-200 hover:text-red-600 font-semibold py-2 px-4 border border-gray-400 rounded shadow mb-4 w-58"
               type="button"
             >
               Personnaliser la pizza
