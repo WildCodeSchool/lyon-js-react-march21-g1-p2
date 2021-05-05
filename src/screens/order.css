@@ -1,8 +1,7 @@
 .orderContainer {
   margin-left: 15%;
   margin-right: 15%;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin-top: 8%;
 }
 
 .orderGrid {
@@ -40,5 +39,11 @@
   }
   .orderGridCase {
     margin-bottom: 10px;
+  }
+}
+
+@media only screen and (min-device-width: 670px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .orderContainer {
+    padding-top: 20%;
   }
 }

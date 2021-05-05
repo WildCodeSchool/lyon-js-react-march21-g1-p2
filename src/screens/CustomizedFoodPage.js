@@ -11,6 +11,16 @@ require('dotenv').config();
 
 const { CancelToken } = axios;
 
+const convertArrayToObject = (array, key) => {
+  const initialValue = {};
+  return array.reduce((obj, item) => {
+    return {
+      ...obj,
+      [item[key]]: item.quantity,
+    };
+  }, initialValue);
+};
+
 export default function CustomizedFoodPage() {
   const [ingredientsKcal, setIngredientsKcal] = useState([]);
   const [error, setError] = useState('');
@@ -20,6 +30,9 @@ export default function CustomizedFoodPage() {
 
   const location = useLocation();
   const [chosenIngredientsList, setChosenIngredientsList] = useState([]);
+  const [dataForConfirmation, setDataForConfirmation] = useState({});
+  const [orderData, setOrderData] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const handleError = (err) => {
     if (!axios.isCancel(err))
@@ -96,14 +109,14 @@ export default function CustomizedFoodPage() {
     );
 
     return ingredExists.length > 0 ? (
-      <span>{ingredExists[0].quantity} </span>
+      <span className="m-0">{ingredExists[0].quantity} </span>
     ) : (
-      <span>0 </span>
+      <span className="m-0">0 </span>
     );
   };
 
   /* function to manage the adding/removing of ingredients on the customized pizza */
-  const handleChangeQuantity = (id, operator) => {
+  const handleChangeQuantity = (id, name, operator) => {
     const ingredToUpdate = chosenIngredientsList.filter(
       (ingred) => ingred.id === id
     );
@@ -112,6 +125,11 @@ export default function CustomizedFoodPage() {
 
     if (operator === 'add') {
       if (ingredToUpdate.length === 0) {
+        if (name === 'Ananas') {
+          alert(
+            "Etes-vous certain qu'ajouter de l'ananas sur votre pizza n'enfreint pas les lois de votre pays ?!!!"
+          );
+        }
         const ingredToAdd = ingredientsKcal.filter(
           (ingred) => ingred.id === id
         );
@@ -164,35 +182,66 @@ export default function CustomizedFoodPage() {
     setChosenIngredientsList(chosenIngredientsList.slice(0, 2));
   };
 
+  // construction of the array sent to ConfirmationPage : first step
+  useEffect(() => {
+    setOrderData(
+      chosenIngredientsList.map((ingred) => {
+        return {
+          name: ingred.name,
+          quantity: ingred.quantity,
+          ingredprice: ingred.quantity * ingred.price,
+        };
+      })
+    );
+  }, [chosenIngredientsList]);
+
+  // construction of the array sent to ConfirmationPage : second step
+  useEffect(() => {
+    setTotalPrice(
+      orderData.reduce((total, ingredient) => total + ingredient.ingredprice, 0)
+    );
+    const ingredsObject = convertArrayToObject(orderData, 'name');
+    setDataForConfirmation({
+      ingredients: JSON.stringify(ingredsObject),
+      quantity: 1,
+      price: totalPrice,
+    });
+  }, [orderData]);
+
   return (
     <div>
       <div className="pizza-with-ingredients">
         <div className="mx-4 flex justify-center flex-col items-center">
-          <NavLink
-            to={{
-              pathname: '/order/confirmation',
-              state: {
-                chosenIngredientsList,
-              },
-            }}
-          >
-            <button
-              className="bg-yellow-800 hover:bg-red-600 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex m-4"
-              type="button"
+          <div className="flex flex-wrap justify-center">
+            <NavLink
+              to={{
+                pathname: '/order/confirmation',
+                state: {
+                  dataForConfirmation,
+                },
+              }}
             >
-              <img src={pizzabox} alt="pizzabox" className="h-6 w-6 mr-2" />
-              Ajouter au panier
+              <button
+                className="bg-yellow-800 hover:bg-red-600 text-gray-200 text-sm sm:text-base font-bold py-2 px-2 sm:px-4 border border-gray-400 rounded shadow inline-flex m-1 sm:m-8"
+                type="button"
+              >
+                <img src={pizzabox} alt="pizzabox" className="h-6 w-6 mr-2" />
+                Commander
+              </button>
+            </NavLink>
+            <button
+              className="bg-red-500 hover:bg-red-900 text-gray-200 text-sm sm:text-base font-bold py-2 px-2 sm:px-4 border border-gray-400 rounded shadow inline-flex m-1 sm:m-8"
+              type="button"
+              onClick={handleEmptyingPizza}
+            >
+              <img src={emptyPizza} alt="emptyPizza" className="h-6 w-6 mr-2" />
+              Vider la pizza
             </button>
-          </NavLink>
-          <button
-            className="bg-red-500 hover:bg-red-900 text-gray-200 font-bold py-2 px-4 border border-gray-400 rounded shadow inline-flex "
-            type="button"
-            onClick={handleEmptyingPizza}
-          >
-            <img src={emptyPizza} alt="emptyPizza" className="h-6 w-6 mr-2" />
-            Vider la pizza
-          </button>
-          <PizzaChange {...chosenIngredientsList} />
+          </div>{' '}
+          <PizzaChange
+            chosenIngredientsList={chosenIngredientsList}
+            totalPrice={totalPrice}
+          />
         </div>
         {error && <h3>{error}</h3>}
         {loadingIngredientsListDB ? (
@@ -209,7 +258,9 @@ export default function CustomizedFoodPage() {
                   <button
                     type="button"
                     className="m-auto w-full"
-                    onClick={() => handleChangeQuantity(ingr.id, 'add')}
+                    onClick={() =>
+                      handleChangeQuantity(ingr.id, ingr.name, 'add')
+                    }
                   >
                     <img
                       id={ingr.id}
@@ -232,7 +283,9 @@ export default function CustomizedFoodPage() {
                       id={ingr.id}
                       type="button"
                       className="bg-green-500 text-white font-bold w-8 h-8 m-2 rounded"
-                      onClick={() => handleChangeQuantity(ingr.id, 'add')}
+                      onClick={() =>
+                        handleChangeQuantity(ingr.id, ingr.name, 'add')
+                      }
                     >
                       +
                     </button>
@@ -241,7 +294,9 @@ export default function CustomizedFoodPage() {
                     <button
                       type="button"
                       className="bg-red-500 text-white font-bold w-8 h-8 m-2 rounded"
-                      onClick={() => handleChangeQuantity(ingr.id, 'remove')}
+                      onClick={() =>
+                        handleChangeQuantity(ingr.id, ingr.name, 'remove')
+                      }
                     >
                       -
                     </button>

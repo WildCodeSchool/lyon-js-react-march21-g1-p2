@@ -5,50 +5,39 @@ import API from '../APIClient';
 export default function ConfirmationPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [showData, setShowData] = useState(null);
   const location = useLocation();
-  const chosenIngredientsList =
-    location.state != null ? location.state.chosenIngredientsList : [];
-
-  // Formating the data for the order confirmation (and update of database) from the data released by customizedFoodPage
-  const orderData = chosenIngredientsList.map((ingred) => {
-    return {
-      name: ingred.name,
-      quantity: ingred.quantity,
-      ingredprice: ingred.quantity * ingred.price,
-    };
-  });
-
-  const totalPrice = orderData.reduce(
-    (total, ingredient) => total + ingredient.ingredprice,
-    0
-  );
-
-  const convertArrayToObject = (array, key) => {
-    const initialValue = {};
-    return array.reduce((obj, item) => {
-      return {
-        ...obj,
-        [item[key]]: item.quantity,
-      };
-    }, initialValue);
-  };
-
-  const ingredsObject = convertArrayToObject(orderData, 'name');
-  const data = {
-    ingredients: JSON.stringify(ingredsObject),
-    quantity: 1,
-    price: totalPrice,
-  };
+  const dataForConfirmation =
+    location.state != null ? location.state.dataForConfirmation : null;
 
   // Adding this order data to the database
   useEffect(() => {
-    API.post('/orders', data)
-      .then(() => {
-        setSuccess(true);
-      })
-      .catch(() => {
-        setError('Cannot record this order.');
-      });
+    if (dataForConfirmation) {
+      API.post('/orders', dataForConfirmation)
+        .then(() => {
+          setSuccess(true);
+        })
+        .catch(() => {
+          setError('Cannot record this order.');
+        });
+
+      setShowData(
+        <tbody>
+          <tr>
+            <td>
+              {Object.entries(JSON.parse(dataForConfirmation.ingredients))
+                .reduce(
+                  (listOfIngredients, ingredient) =>
+                    `${listOfIngredients} ${ingredient[0]},`,
+                  ''
+                )
+                .replace(/,\s*$/, '')}
+            </td>
+            <td>{dataForConfirmation.price} €</td>
+          </tr>
+        </tbody>
+      );
+    }
   }, []);
 
   return (
@@ -63,21 +52,7 @@ export default function ConfirmationPage() {
             <th>Prix total</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>
-              {orderData
-                .slice(2, orderData.length)
-                .reduce(
-                  (listOfIngredients, ingredient) =>
-                    `${listOfIngredients} ${ingredient.name},`,
-                  ''
-                )
-                .replace(/,\s*$/, '')}
-            </td>
-            <td>{totalPrice} €</td>
-          </tr>
-        </tbody>
+        {showData}
       </table>
 
       {error && <h3 className="text-2xl font-bold m-3">{error}</h3>}
