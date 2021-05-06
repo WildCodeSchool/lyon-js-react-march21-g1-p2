@@ -297,9 +297,10 @@ body,
 
 .workinprogress {
   margin: auto;
-  padding-top: 100px;
-  max-width: 80vw;
+  padding-top: 5vh;
+  max-width: 60vw;
 }
+
 /* ************************* MEDIA QUERIES *************************  */
 @media screen and (min-width: 640px) {
   .pizza-button-container {

@@ -4,8 +4,9 @@ import underconstruction from '../assets/under-construction.png';
 const UnderConstruction = () => {
   return (
     <div>
-      <p className="text-xs font-italic">
-        Cette page est en cours de construction, revenez-vite!
+      <p className="text-md m-3 font-italic">
+        Cette fonctionnalité est en cours de construction, elle sera
+        prochainement disponible
       </p>
       <img
         src={underconstruction}
