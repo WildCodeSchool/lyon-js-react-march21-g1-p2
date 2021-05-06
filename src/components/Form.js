@@ -6,7 +6,9 @@ import axios from 'axios';
 
 // livre d'or
 export default function Form() {
-  const [messages, setMessages] = React.useState(['Great Work !']);
+  const [messages, setMessages] = React.useState([
+    'Eddy.M: Mais quel site merveilleux ! Je suis tellement impressionné malgré mes vérifications furtives de votre code !',
+  ]);
   const [userInput, setUserInput] = React.useState('');
   const [userPseudo, setUserPseudo] = React.useState('');
 
@@ -35,20 +37,18 @@ export default function Form() {
       // make an object to be handled from req.body on the backend.
       .then(() => {
         // eslint-disable-next-line no-alert
-        window.alert('Votre message a bien été envoyé');
+        window.alert('Votre email a bien été envoyé (ne spammez pas trop :-)');
       });
   };
   return (
-    <div>
-      <h2 className="my-2 font-semibold text-lg text-center">
-        Le livre d'or :
-      </h2>
+    <div className="contact-page">
+      <h2 className="my-4 font-semibold text-lg text-center">Livre d'Or :</h2>
       <div>
         <ul>
           <>
             {messages.map((message, index) => (
               // eslint-disable-next-line react/no-array-index-key
-              <li key={index} className="message">
+              <li key={index} className="message mb-2">
                 {message}
               </li>
             ))}
@@ -57,7 +57,7 @@ export default function Form() {
       </div>
       <div className="container">
         <form
-          className="bg-blue text-center max-w-lg px-3 py-4 text-black mx-auto rounded"
+          className="  bg-blue text-center max-w-lg px-3 py-4 text-black mx-auto rounded"
           onSubmit={handleBookSubmit}
         >
           <h2 className="my-2 font-semibold text-lg text-center">
@@ -66,7 +66,7 @@ export default function Form() {
           <input
             type="text"
             placeholder="Votre pseudo"
-            className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl"
+            className="block w-full focus:outline-none mx-auto text-sm py-2 px-3 rounded-2xl mb-2"
             required
             value={userPseudo}
             onChange={(event) => setUserPseudo(event.target.value)}
@@ -74,7 +74,7 @@ export default function Form() {
           <input
             type="text"
             placeholder="Votre message"
-            className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl"
+            className="block w-full focus:outline-none mx-auto text-sm py-2 px-3 rounded-2xl mb-2"
             required
             value={userInput}
             onChange={(event) => setUserInput(event.target.value)}
@@ -83,63 +83,68 @@ export default function Form() {
           <button
             value="Envoyer"
             type="submit"
-            className="bg-blue text-white font-bold py-2 px-4 rounded-2xl border block mx-auto w-full"
+            className="form-btn mb-4 mt-2 px-10 py-2 text-xs font-medium leading-6 text-gray-100 hover:text-red-500 uppercase transition  rounded shadow ripple hover:shadow-lg hover:bg-gray-50 focus:outline-none mb-2 max-w-md"
           >
-            Envoyer
+            Envoyez
           </button>
         </form>
       </div>
-      <>
-        <h1 className="my-2 font-semibold text-lg text-center">
-          Envoyez nous un email :{' '}
-        </h1>
-        <form className="w-full max-w-lg mx-auto" onSubmit={handleSubmit}>
+      <div className="w-9/12 m-auto">
+        <form
+          className="form-content m-auto flex flex-col items-center"
+          onSubmit={handleSubmit}
+        >
+          <h1 className="my-2 font-semibold text-lg text-center">
+            Envoyez nous un email :{' '}
+          </h1>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            type="text"
+            className="appearance-none block w-full bg-gray-100 text-gray-700 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
+            type="email"
             placeholder="Votre adresse email"
             name="email"
             value={emailInputs.email}
             onChange={handleChange}
+            required
           />
-          <br />
+
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             type="text"
             placeholder="Votre pseudo"
             name="name"
-            require
+            required
             value={emailInputs.name}
             onChange={handleChange}
           />
-          <br />
+
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             type="text"
             placeholder="L'objet de votre mail"
             name="subject"
             value={emailInputs.subject}
             onChange={handleChange}
+            required
           />
-          <br />
+
           <textarea
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="tell-us appearance-none block w-full bg-gray-100 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             name="description"
             placeholder="Racontez-nous !"
             value={emailInputs.description}
             onChange={handleChange}
             cols="30"
             rows="10"
+            required
           />
-          <br />
           <button
-            className="inline-block px-6 py-2 text-xs font-medium leading-6 text-gray-100 hover:text-red-500  uppercase transition bg-red-500 rounded shadow ripple hover:shadow-lg hover:bg-gray-50 focus:outline-none"
+            className="form-btn mb-4 mt-2 px-10 py-2 text-xs font-medium leading-6 text-gray-100 hover:text-red-500 uppercase transition  rounded shadow ripple hover:shadow-lg hover:bg-gray-50 focus:outline-none mb-2 max-w-md"
             type="submit"
           >
             Envoyez
           </button>
         </form>
-      </>
+      </div>
     </div>
   );
 }

@@ -207,9 +207,9 @@ body,
   max-width: 40vw;
 }
 
-/*.button {
-  width: 15em;
-}*/
+.order-btn {
+  width: 210px;
+}
 
 .Card {
   margin: auto;
@@ -225,8 +225,8 @@ body,
   border-radius: 20px;
   padding: 8px 15px;
   margin-top: 5px;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 10%;
+  margin-right: 10%;
   list-style: none;
   text-align: left;
   background-color: #eee;
@@ -242,7 +242,7 @@ body,
   height: 20px;
   width: 20px;
   background: #eee;
-  border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 1px;
 }
 
 .message:last-child::after {
@@ -255,6 +255,10 @@ body,
   height: 20px;
   background: var(--primary-color);
   border-bottom-right-radius: 10px;
+}
+
+.form-btn {
+  background-color: green;
 }
 
 /* ************************* OrdersRecap *************************  */
@@ -301,7 +305,6 @@ body,
 
 .workinprogress {
   margin: auto;
-  /* padding-top: 5vh; */
   max-height: 50vh;
 }
 
@@ -369,12 +372,29 @@ body,
     display: flex;
     flex-direction: row;
   }
+
+  .contact-page {
+    height: 80vh;
+  }
+
+  .form-content {
+    max-height: 50vh;
+  }
+
+  .tell-us {
+    max-height: 150px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .pizza-mockup-container {
     width: 500px;
     height: 500px;
+  }
+  .form-content {
+    max-width: 70%;
+    justify-content: center;
+    margin: auto;
   }
 }
 
@@ -396,6 +416,11 @@ body,
     height: 300px;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+    box-shadow: none;
+  }
+
+  .preset-pizza {
+    max-width: fit-content;
   }
 
   .cardfront,
@@ -406,7 +431,6 @@ body,
     backface-visibility: hidden;
     position: absolute;
     transition: transform 0.6s linear;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
   }
 
   .cardfront {
@@ -416,6 +440,7 @@ body,
     box-shadow: none;
     padding-top: 10px;
     transform: rotateY(0deg);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
   }
 
   .cardback {

@@ -66,7 +66,7 @@ export default function OrdersRecap() {
                         .replace(/:/g, ': ')}
                     </td>
                     <td>{quantity}</td>
-                    <td>{price}</td>
+                    <td>{price % 1 === 0 ? price : price.toFixed(2)} €</td>
                   </tr>
                 );
               })}

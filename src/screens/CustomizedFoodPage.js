@@ -126,6 +126,7 @@ export default function CustomizedFoodPage() {
     if (operator === 'add') {
       if (ingredToUpdate.length === 0) {
         if (name === 'Ananas') {
+          // eslint-disable-next-line no-alert
           alert(
             "Etes-vous certain qu'ajouter de l'ananas sur votre pizza n'enfreint pas les lois de votre pays ?!!!"
           );
@@ -257,7 +258,7 @@ export default function CustomizedFoodPage() {
                   </div>
                   <button
                     type="button"
-                    className="m-auto w-full"
+                    className="m-auto w-full focus:outline-none"
                     onClick={() =>
                       handleChangeQuantity(ingr.id, ingr.name, 'add')
                     }
