@@ -257,6 +257,10 @@ body,
   border-bottom-right-radius: 10px;
 }
 
+.form-btn {
+  background-color: green;
+}
+
 /* ************************* OrdersRecap *************************  */
 #orders-recap {
   font-family: Arial, Helvetica, sans-serif;
@@ -297,7 +301,7 @@ body,
 
 .workinprogress {
   margin: auto;
-  padding-top: 80px;
+  padding-top: 5vh;
   max-width: 60vw;
 }
 /* ************************* MEDIA QUERIES *************************  */

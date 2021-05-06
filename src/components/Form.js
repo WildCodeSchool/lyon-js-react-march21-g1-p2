@@ -7,7 +7,7 @@ import axios from 'axios';
 // livre d'or
 export default function Form() {
   const [messages, setMessages] = React.useState([
-    'Pseudo: Ceci est un exemple de message de félicitations',
+    'Eddy.M: Mais quel site merveilleux ! Je suis tellement impressionné malgré mes verifications furtives de votre code !',
   ]);
   const [userInput, setUserInput] = React.useState('');
   const [userPseudo, setUserPseudo] = React.useState('');
@@ -42,9 +42,7 @@ export default function Form() {
   };
   return (
     <div className="contact-page">
-      <h2 className="my-2 font-semibold text-lg text-center">
-        Le livre d'or :
-      </h2>
+      <h2 className="my-4 font-semibold text-lg text-center">Livre d'Or :</h2>
       <div>
         <ul>
           <>
@@ -92,13 +90,16 @@ export default function Form() {
         </form>
       </div>
       <>
-        <form className="form-content ml-20 mr-20" onSubmit={handleSubmit}>
+        <form
+          className="form-content  ml-20 mr-20 flex flex-col items-center"
+          onSubmit={handleSubmit}
+        >
           <h1 className="my-2 font-semibold text-lg text-center">
             Envoyez nous un email :{' '}
           </h1>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
-            type="text"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
+            type="email"
             placeholder="Votre adresse email"
             name="email"
             value={emailInputs.email}
@@ -107,7 +108,7 @@ export default function Form() {
           />
 
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             type="text"
             placeholder="Votre pseudo"
             name="name"
@@ -117,7 +118,7 @@ export default function Form() {
           />
 
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             type="text"
             placeholder="L'objet de votre mail"
             name="subject"
@@ -137,7 +138,7 @@ export default function Form() {
             required
           />
           <button
-            className="inline-block px-6 py-2 text-xs font-medium leading-6 text-gray-100 hover:text-red-500  uppercase transition bg-red-500 rounded shadow ripple hover:shadow-lg hover:bg-gray-50 focus:outline-none"
+            className="form-btn px-6 py-2 text-xs font-medium leading-6 text-gray-100 hover:text-red-500 uppercase transition  rounded shadow ripple hover:shadow-lg hover:bg-gray-50 focus:outline-none mb-2 max-w-md"
             type="submit"
           >
             Envoyez
