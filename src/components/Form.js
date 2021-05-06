@@ -7,7 +7,7 @@ import axios from 'axios';
 // livre d'or
 export default function Form() {
   const [messages, setMessages] = React.useState([
-    'Pseudo: Ceci est un exemple de message de félicitations',
+    'EdouardMisset: Mais quel site merveilleux ! Je suis tellement impressioné malgré mes verifications de votre code furtives !',
   ]);
   const [userInput, setUserInput] = React.useState('');
   const [userPseudo, setUserPseudo] = React.useState('');
