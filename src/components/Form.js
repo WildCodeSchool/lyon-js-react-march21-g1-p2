@@ -7,7 +7,7 @@ import axios from 'axios';
 // livre d'or
 export default function Form() {
   const [messages, setMessages] = React.useState([
-    'Eddy.M: Mais quel site merveilleux ! Je suis tellement impressionné malgré mes verifications furtives de votre code !',
+    'Eddy.M: Mais quel site merveilleux ! Je suis tellement impressionné malgré mes vérifications furtives de votre code !',
   ]);
   const [userInput, setUserInput] = React.useState('');
   const [userPseudo, setUserPseudo] = React.useState('');
@@ -37,7 +37,7 @@ export default function Form() {
       // make an object to be handled from req.body on the backend.
       .then(() => {
         // eslint-disable-next-line no-alert
-        window.alert('Votre message a bien été envoyé');
+        window.alert('Votre email a bien été envoyé (ne spammez pas trop :-)');
       });
   };
   return (
@@ -66,7 +66,7 @@ export default function Form() {
           <input
             type="text"
             placeholder="Votre pseudo"
-            className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl mb-2"
+            className="block w-full focus:outline-none mx-auto text-sm py-2 px-3 rounded-2xl mb-2"
             required
             value={userPseudo}
             onChange={(event) => setUserPseudo(event.target.value)}
@@ -74,7 +74,7 @@ export default function Form() {
           <input
             type="text"
             placeholder="Votre message"
-            className="block w-full mx-auto text-sm py-2 px-3 rounded-2xl mb-2"
+            className="block w-full focus:outline-none mx-auto text-sm py-2 px-3 rounded-2xl mb-2"
             required
             value={userInput}
             onChange={(event) => setUserInput(event.target.value)}
@@ -83,22 +83,22 @@ export default function Form() {
           <button
             value="Envoyer"
             type="submit"
-            className="bg-blue text-white font-bold py-2 px-4 rounded-2xl border block mx-auto w-full"
+            className="form-btn mb-4 mt-2 px-10 py-2 text-xs font-medium leading-6 text-gray-100 hover:text-red-500 uppercase transition  rounded shadow ripple hover:shadow-lg hover:bg-gray-50 focus:outline-none mb-2 max-w-md"
           >
-            Envoyer
+            Envoyez
           </button>
         </form>
       </div>
-      <>
+      <div className="w-9/12 m-auto">
         <form
-          className="form-content  ml-20 mr-20 flex flex-col items-center"
+          className="form-content m-auto flex flex-col items-center"
           onSubmit={handleSubmit}
         >
           <h1 className="my-2 font-semibold text-lg text-center">
             Envoyez nous un email :{' '}
           </h1>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-100 text-gray-700 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             type="email"
             placeholder="Votre adresse email"
             name="email"
@@ -108,7 +108,7 @@ export default function Form() {
           />
 
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             type="text"
             placeholder="Votre pseudo"
             name="name"
@@ -118,7 +118,7 @@ export default function Form() {
           />
 
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             type="text"
             placeholder="L'objet de votre mail"
             name="subject"
@@ -128,7 +128,7 @@ export default function Form() {
           />
 
           <textarea
-            className="tell-us appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
+            className="tell-us appearance-none block w-full bg-gray-100 text-gray-700 border border-red-500 rounded-2xl py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
             name="description"
             placeholder="Racontez-nous !"
             value={emailInputs.description}
@@ -138,13 +138,13 @@ export default function Form() {
             required
           />
           <button
-            className="form-btn px-6 py-2 text-xs font-medium leading-6 text-gray-100 hover:text-red-500 uppercase transition  rounded shadow ripple hover:shadow-lg hover:bg-gray-50 focus:outline-none mb-2 max-w-md"
+            className="form-btn mb-4 mt-2 px-10 py-2 text-xs font-medium leading-6 text-gray-100 hover:text-red-500 uppercase transition  rounded shadow ripple hover:shadow-lg hover:bg-gray-50 focus:outline-none mb-2 max-w-md"
             type="submit"
           >
             Envoyez
           </button>
         </form>
-      </>
+      </div>
     </div>
   );
 }

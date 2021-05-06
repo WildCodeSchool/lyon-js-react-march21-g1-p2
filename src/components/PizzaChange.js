@@ -85,7 +85,7 @@ export default function PizzaChange({ chosenIngredientsList, totalPrice }) {
         </div>
         <div className="gauge-container">
           <div className="gauge-bg gauge-position" />
-          <div className="gauge-quarter gauge-position" />
+          <d iv className="gauge-quarter gauge-position" />
           <div
             className="kcal-val gauge-position"
             style={{

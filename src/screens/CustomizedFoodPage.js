@@ -211,7 +211,7 @@ export default function CustomizedFoodPage() {
 
   return (
     <div>
-      <div className="pizza-with-ingredients">
+      <div className="pizza-with-ingredients my-3">
         <div className="mx-4 flex justify-center flex-col items-center">
           <div className="flex flex-wrap justify-center">
             <NavLink
@@ -258,7 +258,7 @@ export default function CustomizedFoodPage() {
                   </div>
                   <button
                     type="button"
-                    className="m-auto w-full"
+                    className="m-auto w-full focus:outline-none"
                     onClick={() =>
                       handleChangeQuantity(ingr.id, ingr.name, 'add')
                     }

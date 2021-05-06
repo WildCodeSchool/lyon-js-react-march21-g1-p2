@@ -57,7 +57,7 @@ export default function ConfirmationPage() {
 
       {error && <h3 className="text-2xl font-bold m-3">{error}</h3>}
       {success && (
-        <h3 className="text-2xl font-bold m-3 text-center">
+        <h3 className="text-2xl text-center font-bold m-3 text-center">
           Votre commande a bien été enregistrée !
         </h3>
       )}
