@@ -48,10 +48,10 @@ export default function OrdersRecap() {
           <table id="orders-recap">
             <thead>
               <tr>
-                <th>Numéro de commande</th>
+                <th>N°</th>
                 <th>Ingrédients/quantité</th>
                 <th>Nombre de pizzas</th>
-                <th>Prix de la commande</th>
+                <th>Prix total</th>
               </tr>
             </thead>
             <tbody>
