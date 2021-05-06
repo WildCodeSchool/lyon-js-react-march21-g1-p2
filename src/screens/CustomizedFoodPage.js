@@ -210,7 +210,7 @@ export default function CustomizedFoodPage() {
 
   return (
     <div>
-      <div className="pizza-with-ingredients">
+      <div className="pizza-with-ingredients my-3">
         <div className="mx-4 flex justify-center flex-col items-center">
           <div className="flex flex-wrap justify-center">
             <NavLink

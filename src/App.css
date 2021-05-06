@@ -275,6 +275,10 @@ body,
   background-color: #f2f2f2;
 }
 
+#orders-recap tr:nth-child(odd) {
+  background-color: #e9b567;
+}
+
 #orders-recap tr:hover {
   background-color: #ddd;
 }
@@ -297,9 +301,10 @@ body,
 
 .workinprogress {
   margin: auto;
-  padding-top: 100px;
-  max-width: 80vw;
+  /* padding-top: 5vh; */
+  max-height: 50vh;
 }
+
 /* ************************* MEDIA QUERIES *************************  */
 @media screen and (min-width: 640px) {
   .pizza-button-container {
