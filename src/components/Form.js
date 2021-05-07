@@ -1,30 +1,90 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-// import API from '../APIClient';
+import API from '../APIClient';
 
-// email
+const { CancelToken } = axios;
 
-// livre d'or
 export default function Form() {
-  const [messages, setMessages] = React.useState([
-    'Eddy.M: Mais quel site merveilleux ! Je suis tellement impressionné malgré mes vérifications furtives de votre code !',
-  ]);
-  const [userInput, setUserInput] = React.useState('');
-  const [userPseudo, setUserPseudo] = React.useState('');
+  // const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState(null);
+  const [userInput, setUserInput] = useState('');
+  const [userPseudo, setUserPseudo] = useState('');
+  const [successPost, setSuccessPost] = useState(false);
+  const [loadingMessages, setLoadingMessages] = useState(false);
+  const [error, setError] = useState('');
+  const [errorPost, setErrorPost] = useState('');
+  const [showMessages, setShowMessages] = useState(null);
 
-  const [emailInputs, setEmailInputs] = React.useState({
+  const [emailInputs, setEmailInputs] = useState({
     email: '',
     name: '',
     subject: '',
     description: '',
   });
 
+  const handleError = (err) => {
+    if (!axios.isCancel(err))
+      setError('Something bad happened, sorry for the inconvenience');
+  };
+
+  const useGet = () => {
+    const source = CancelToken.source();
+    setLoadingMessages(true);
+    API.get('/contact', { cancelToken: source.token })
+      .then((res) => {
+        // setMessages(res.data);
+        setShowMessages(
+          <div>
+            <ul>
+              {res.data.map((msg, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={index} className="message mb-2">
+                  {`De ${msg.user} : ${msg.input}`}
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })
+      .catch(handleError)
+      .finally(() => {
+        if (
+          !(
+            source.token.reason &&
+            source.token.reason.message === 'request cancelled'
+          )
+        )
+          setLoadingMessages(false);
+      });
+    return () => {
+      source.cancel('request cancelled');
+    };
+  };
+
+  useEffect(() => {
+    if (message) {
+      API.post('/contact', message)
+        .then(() => {
+          setSuccessPost(true);
+          useGet();
+        })
+        .catch(() => {
+          setErrorPost('Cannot record this message.');
+        });
+    }
+  }, [message]);
+
+  useEffect(() => {
+    useGet();
+  }, []);
+
   const handleBookSubmit = (event) => {
     event.preventDefault();
-    setUserInput('');
+    setMessage({ user: userPseudo, input: userInput });
     setUserPseudo('');
-    setMessages([...messages, `${userPseudo}: ${userInput}`]);
+    setUserInput('');
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEmailInputs((prev) => ({ ...prev, [name]: value }));
@@ -33,31 +93,32 @@ export default function Form() {
     e.preventDefault();
     // destructure from inputs
     axios
-      .post(`${process.env.REACT_APP_API_BASE_URL}/contact`, emailInputs)
+      .post(`${process.env.REACT_APP_API_BASE_URL}/contactmail`, emailInputs)
       // make an object to be handled from req.body on the backend.
       .then(() => {
         // eslint-disable-next-line no-alert
         window.alert('Votre email a bien été envoyé (ne spammez pas trop :-)');
       });
+    setEmailInputs({
+      email: '',
+      name: '',
+      subject: '',
+      description: '',
+    });
   };
+
   return (
     <div className="contact-page">
       <h2 className="my-4 font-semibold text-lg text-center">Livre d'Or :</h2>
-      <div>
-        <ul>
-          <>
-            {messages.map((message, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <li key={index} className="message mb-2">
-                {message}
-              </li>
-            ))}
-          </>
-        </ul>
-      </div>
+      {error && <h3>{error}</h3>}
+      {loadingMessages ? (
+        <div className="flex justify-center  pt-3">Loading in progress</div>
+      ) : null}
+      {showMessages}
+
       <div className="container">
         <form
-          className="  bg-blue text-center max-w-lg px-3 py-4 text-black mx-auto rounded"
+          className="text-center max-w-lg px-3 py-4 text-black mx-auto rounded"
           onSubmit={handleBookSubmit}
         >
           <h2 className="my-2 font-semibold text-lg text-center">
@@ -65,12 +126,13 @@ export default function Form() {
           </h2>
           <input
             type="text"
-            placeholder="Votre pseudo"
+            placeholder="Votre pseudo, max 30 caractères"
             className="block w-full focus:outline-none mx-auto text-sm py-2 px-3 rounded-2xl mb-2"
             required
             value={userPseudo}
             onChange={(event) => setUserPseudo(event.target.value)}
           />
+
           <input
             type="text"
             placeholder="Votre message"
@@ -89,6 +151,12 @@ export default function Form() {
           </button>
         </form>
       </div>
+      {errorPost && <h3 className="text-2xl font-bold m-3">{errorPost}</h3>}
+      {successPost && (
+        <h3 className="text-2xl text-center font-bold m-3 text-center">
+          Votre message a bien été enregistré !
+        </h3>
+      )}
       <div className="w-9/12 m-auto">
         <form
           className="form-content m-auto flex flex-col items-center"
